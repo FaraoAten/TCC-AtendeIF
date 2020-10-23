@@ -3,29 +3,33 @@ const connection = require('../database/connection');
 module.exports = {
     //Rota de postagem de atendimento
     async create(request, response){
-        const {data_atendimento, horario, local, materia} = request.body; 
-        const id_usuario = request.headers.authorization;
-        let status_presenca = false;//tenho 60% de certeza de que está errado.
-        let status_cancelamento = false;//tenho 60% de certeza de que está errado.
+        const {data_atendimento, horario, local, materia, id_aluno} = request.body; 
+        const id_professor = request.headers.authorization;
 
         await connection('atendimento').insert({
             data_atendimento,
             horario, 
             local, 
             materia, 
-            status_presenca,
-            status_cancelamento,
-            id_usuario
+            status_presenca:false,
+            status_cancelamento:false,
+            id_aluno,//O DO ALUNO PUXAMOS DO RESULTADO DA PESQUISA ATRAVÉS DO FRONTE
+            id_professor
         })
 
-        return response.json({titulo,data,corpo,id_usuario,id_atendimento}); //essa resposta só para testes.
+        return response.json({titulo,data,corpo,id_professor}); //essa resposta só para testes.
         },
 
-    
-    //provalmente esse daqui vai ter ser criado 2 versões por causa das visualizações do calendário do aluno feitas pelo professor e pela pedagogia.
-    //Rota de listagem de atendimentos, será modificada dps.
+    //Rota de listagem de atendimentos.
     async index(request,response) {
-        const atendimento = await connection('atendimento').select('*');
+        const tipo = request.headers.tipo;//TIPO DO USUÁRIO
+        const id_usuario = request.headers.id_usuario;//ID DE QUEM TÁ LOGADO
+        if(tipo == 1){
+            const atendimento = await connection('atendimento').select('*').where('id_aluno', id_usuario);//NO CASO DO PROFESSOR QUERER VER OS ATENDIMENTOS DOS ALUNOS VAI SER CHAMADO ESSE MÉTODO TAMBÉM, ATRAVÉS DO FRONT.
+        }else{
+            const atendimento = await connection('atendimento').select('*').where('id_professor', id_usuario);
+        }
+        
         
         return response.json(atendimento);
     }

@@ -1,6 +1,7 @@
-//na real que aqui tem mta informação que é puxada de tudo que é canto, então por isso não fiz a base desse
-//vou fazer quando entender como puxar os dados direito.
+//VOU FAZER ESTA BAGAÇA QUANDO EU VE O VÍDEO DE COMO QUE FAZ.
 
 const connection = require('../database/connection');
 
-module.exports = {};
+module.exports = {
+    
+};
