@@ -2,7 +2,7 @@
 const connection = require('../database/connection');
 
 module.exports = {
-    //rota de upload de arquivo/img
+    //rota de upload de arquivo
     async create(request, response){
         const {filename} = require.file;
         const {tipo_arquivo} = request.body;
@@ -17,10 +17,10 @@ module.exports = {
         return response.json({url, tipo_arquivo, id_usuario}); //essa resposta só para testes.
         },
 
-     //Rota de listagem de arquivo/img, talvez tenhamos que criar uma para cada tipo (arquivo e imagens)
+     //Rota de listagem de arquivo
      async index(request,response) {
         const id_usuario = request.headers.authorization;
-        const arquivo = await connection('urls').select('*').where('id_usuario',id_usuario).andWhere('tipo_arquivo',/*Não sei como passar o tipo aqui, na próxima reunião que tiver com o William vejo isso*/);
+        const arquivo = await connection('urls').select('*');
         
         return response.json(arquivo);
     }

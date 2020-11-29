@@ -13,7 +13,7 @@ module.exports = {
             materia, 
             status_presenca:false,
             status_cancelamento:false,
-            id_aluno,//O DO ALUNO PUXAMOS DO RESULTADO DA PESQUISA ATRAVÉS DO FRONTE
+            id_aluno,//O DO ALUNO PUXAMOS DO RESULTADO DA PESQUISA ATRAVÉS DO FRONT
             id_professor
         })
 
