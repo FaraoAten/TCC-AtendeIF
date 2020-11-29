@@ -5,16 +5,14 @@ module.exports = {
     //rota de upload de arquivo
     async create(request, response){
         const {filename} = require.file;
-        const {tipo_arquivo} = request.body;
         const id_usuario = request.headers.authorization;
 
         await connection('urls').insert({
             url:filename,
-            tipo_arquivo,
             id_usuario
         })
 
-        return response.json({url, tipo_arquivo, id_usuario}); //essa resposta só para testes.
+        return response.json({url, id_usuario}); //essa resposta só para testes.
         },
 
      //Rota de listagem de arquivo
