@@ -30,9 +30,9 @@ routes.get('/atendimento', AtendimentoController.index)
 //Rota de registro do atendimento
 routes.post('/atendimento', AtendimentoController.create);
 
-//Rota de listagem de arquivos/imagens
-routes.post('/urls', UrlController.index);
+//Rota de listagem de arquivos
+routes.get('/urls', UrlController.index);
 
-//Rota de upload de arquivos/imagens
+//Rota de upload de arquivos
 routes.post('/urls', upload.single('url'),UrlController.create);
 module.exports = routes; 
