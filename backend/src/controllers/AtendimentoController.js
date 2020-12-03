@@ -17,20 +17,13 @@ module.exports = {
             id_professor
         })
 
-        return response.json({titulo,data,corpo,id_professor}); //essa resposta só para testes.
+        return response.json({data_atendimento, horario, local, materia, id_aluno}); //essa resposta só para testes.
         },
 
     //Rota de listagem de atendimentos.
     async index(request,response) {
-        const tipo = request.headers.tipo;//TIPO DO USUÁRIO
-        const id_usuario = request.headers.id_usuario;//ID DE QUEM TÁ LOGADO
-        if(tipo == 1){
-            const atendimento = await connection('atendimento').select('*').where('id_aluno', id_usuario);//NO CASO DO PROFESSOR QUERER VER OS ATENDIMENTOS DOS ALUNOS VAI SER CHAMADO ESSE MÉTODO TAMBÉM, ATRAVÉS DO FRONT.
-        }else{
-            const atendimento = await connection('atendimento').select('*').where('id_professor', id_usuario);
-        }
-        
-        
+        const id_usuario = request.headers.id_usuario;
+        const atendimento = await connection('atendimento').select('*').where('id_aluno', id_usuario).orWhere('id_professor', id_usuario);
         return response.json(atendimento);
     }
 }

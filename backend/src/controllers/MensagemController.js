@@ -6,15 +6,16 @@ module.exports = {
     async create(request, response){
         const {titulo, corpo, id_aluno, id_atendimento} = request.body;
         const tipo = request.headers.tipo;//TIPO DO USUÁRIO
-        const id_usuario = request.headers.id_usuario;//ID DE QUEM TÁ LOGADO
+        const id_usuario = request.headers.id_usuario;
 
-        if(tipo == 2){//SETA O TIPO DAS MENSAGENS
-            const tipo_mensagens = 1;
+        //TIPO DAS MENSAGENS
+        if(tipo == 2){// tipo do usuario (professor)
+            const tipo_mensagens = 1;//parecer avaliativo
             if(id_aluno == null && id_atendimento == null){//ISSO EVITA QUE ESTEJA FALTANDO UM DESSES DADOS PARA O ENVIO DA MENSAGEM
                 return response.status(400).send();
             }
-        }else if(tipo == 4){
-            const tipo_mensagens = 2;
+        }else if(tipo == 4){// tipo do usuario (DEPEN/Apoio) 
+            const tipo_mensagens = 2;//mensagem institucional
         }else{
             return response.status(400).send();
         }
@@ -29,21 +30,17 @@ module.exports = {
             id_atendimento
         })
 
-        return response.json({titulo,data,corpo,id_usuario,id_atendimento}); //essa resposta só para testes.
+        return response.json({titulo, corpo, id_aluno, id_atendimento}); //essa resposta só para testes.
         },
     
-    //Rota de listagem de mensagens, talvez será modificada dps.
-    async index(request,response) { //AINDA NÃO ENTENDI DIREITO ISSO AQUI, QUANDO FALAR COM O WILLIAM DNV VOU PEDIR PRA ELE ME EXPLICAR DNV.
-        const tipo = request.headers.tipo;
+    //Rota de listagem de mensagens
+    async index(request,response) {
         const id_usuario = request.headers.id_usuario;
         let mensagem = [];
-        if(tipo == 1){
-             mensagem = await connection('mensagem').select('*').where('id_aluno', id_usuario);
-        }else if(tipo == 2){
-            mensagem = await connection('mensagem').select('*').where('id_professor', id_usuario);
-        }
+            
+        mensagem = await connection('mensagem').select('*').where('id_aluno', id_usuario);
 
-        mensagem.push( await connection('mensagem').select('*').where('tipo_mensagens', 2));
+        mensagem.push(await connection('mensagem').select('*').where('tipo_mensagens', 2));
         
         return response.json(mensagem);
     }
