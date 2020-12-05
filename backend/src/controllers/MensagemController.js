@@ -30,7 +30,7 @@ module.exports = {
             id_atendimento
         })
 
-        return response.json({titulo, corpo, id_aluno, id_atendimento}); //essa resposta só para testes.
+        return response.status(204).send(); 
         },
     
     //Rota de listagem de mensagens

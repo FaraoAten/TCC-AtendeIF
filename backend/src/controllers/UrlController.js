@@ -1,26 +1,25 @@
 // Tive q add a lib multer pra fazer isso, pq o express ñ lida com formatos multipartform
-const { delete } = require('../database/connection');
 const connection = require('../database/connection');
 
 module.exports = {
     //rota de upload de arquivo
     async create(request, response){
-        const {filename} = require.file;
+        const {filename} = request.file;
         const id_usuario = request.headers.authorization;
 
-        const user = await connection('usuario').findById(id_usuario);
+        /*const user = await connection('usuario').findById(id_usuario);
 
         if (!connection){
             return response.status(400).json({erro: 'Usuário inexistente'})
-        }else{
+        }else{*/
 
             await connection('urls').insert({
                 url:filename,
                 id_usuario
             })
 
-            return response.json({url, id_usuario}); //essa resposta só para testes.
-        }
+            return response.status(204).send(); 
+        //}
     },
 
      //Rota de listagem de arquivo

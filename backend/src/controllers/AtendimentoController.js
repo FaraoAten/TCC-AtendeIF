@@ -17,7 +17,7 @@ module.exports = {
             id_professor
         })
 
-        return response.json({data_atendimento, horario, local, materia, id_aluno}); //essa resposta só para testes.
+        return response.status(204).send(); 
         },
 
     //Rota de listagem de atendimentos.
