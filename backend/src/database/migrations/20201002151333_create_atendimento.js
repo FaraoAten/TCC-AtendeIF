@@ -6,7 +6,7 @@ exports.up = function(knex) {
         table.time('horario').notNullable();
         table.string('local').notNullable();
         table.string('materia').notNullable();
-        table.boolean('status_presenca').notNullable();
+        table.boolean('status_presenca');
         table.boolean('status_cancelamento').notNullable();
         table.integer('id_aluno').notNullable().unsigned();
         table.integer('id_professor').notNullable().unsigned();
