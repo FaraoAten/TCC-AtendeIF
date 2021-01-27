@@ -18,6 +18,8 @@ routes.get('/usuario', UsuarioController.index)
 //Rota de registro do usuário
 routes.post('/usuario', UsuarioController.create);
 
+//Rota de atualizar usuário (ver como resolver isso pq ambos devem se post)
+
 //Rota de listagem de mensagens.
 routes.get('/mensagem', MensagemController.index)
 
@@ -30,9 +32,15 @@ routes.get('/atendimento', AtendimentoController.index)
 //Rota de registro do atendimento
 routes.post('/atendimento', AtendimentoController.create);
 
+//Rota de atualizar atendimento
+
 //Rota de listagem de arquivos
 routes.get('/urls', UrlController.index);
 
 //Rota de upload de arquivos
 routes.post('/urls', upload.single('url'),UrlController.create);
+
+//Rota de delete de arquivos
+routes.delete('/urls', UrlController.delete)
 module.exports = routes; 
+

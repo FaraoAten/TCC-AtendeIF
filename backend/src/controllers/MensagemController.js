@@ -9,7 +9,7 @@ module.exports = {
         const tipo = request.headers.tipo;//TIPO DO USUÁRIO
         const id_usuario = request.headers.id_usuario;
 
-        //TIPO DAS MENSAGENS
+        //TIPO DAS MENSAGENS (rever questão dos tipos mistos em relação ao tipo de mensagem)
         if (tipo == 2) {// tipo do usuario (professor)
             tipo_mensagens = 1;//parecer avaliativo
             if (destinatarios == null || id_atendimento == null) {//ISSO EVITA QUE ESTEJA FALTANDO UM DESSES DADOS PARA O ENVIO DA MENSAGEM
@@ -20,7 +20,6 @@ module.exports = {
         } else if (tipo == "null" || tipo == "undefined") {
             tipo_mensagens = 3;//mensagem do sistema
         } else {
-            console.log(typeof tipo, id_usuario)
             return response.status(400).send();
         }
 
