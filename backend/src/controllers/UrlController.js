@@ -1,17 +1,11 @@
 // Tive q add a lib multer pra fazer isso, pq o express ñ lida com formatos multipartform
 const connection = require('../database/connection');
 
-module.exports = {
+module.exports = { //problema salva, mas ñ manda pro banco, nome não tá setando
     //rota de upload de arquivo
     async create(request, response){
-        const {filename} = request.file;
+        const filename = request.file;
         const id_usuario = request.headers.authorization;
-
-        /*const user = await connection('usuario').findById(id_usuario);
-
-        if (!connection){
-            return response.status(400).json({erro: 'Usuário inexistente'})
-        }else{*/
 
             await connection('urls').insert({
                 url:filename,

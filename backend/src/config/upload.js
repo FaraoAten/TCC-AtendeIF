@@ -8,10 +8,10 @@ module.exports = {
         //pasta onde os arquivos serão salvos
         destination: path.resolve(__dirname,'..','..','uploads'),
         //como o nome do arquivo será formado
-        filename: (require, file, callback) => {
+        filename: (require, file, cb) => {
             const ext = path.extname(file.originalname);
             const name = path.basename(file.originalname, ext);
-            callback(null, `${name}-${Date.now()}${ext}`);
+            cb(null, `${name}-${Date.now()}${ext}`);
         }
     })
 };
