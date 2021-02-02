@@ -11,8 +11,6 @@ const UsuarioController = require('./controllers/UsuarioController');
 const MensagemController = require('./controllers/MensagemController');
 const AtendimentoController = require('./controllers/AtendimentoController');
 const UrlController = require('./controllers/UrlController');
-const EditaUsuarioController = require('./controllers/EditaUsuarioController');
-const EditaAtendimentoController = require('./controllers/EditaAtendimentoController');
 
 //Rota de listagem de usuários (usada na pt de pesquisa de usuário).
 routes.get('/usuario', UsuarioController.index)
@@ -21,7 +19,7 @@ routes.get('/usuario', UsuarioController.index)
 routes.post('/usuario', UsuarioController.create);
 
 //Rota de atualizar usuário
-routes.post('/editar', EditaUsuarioController.edit)
+routes.put('/usuario', UsuarioController.edit)
 
 //Rota de listagem de mensagens.
 routes.get('/mensagem', MensagemController.index)
@@ -36,7 +34,7 @@ routes.get('/atendimento', AtendimentoController.index)
 routes.post('/atendimento', AtendimentoController.create);
 
 //Rota de atualizar atendimento
-routes.post('/adiar', EditaAtendimentoController.edit)
+routes.put('/atendimento', AtendimentoController.edit)
 
 //Rota de listagem de arquivos
 routes.get('/urls', UrlController.index);

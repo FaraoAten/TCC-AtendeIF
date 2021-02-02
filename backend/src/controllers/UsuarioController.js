@@ -26,6 +26,46 @@ module.exports = {
         const usuario = await connection('usuario').select('*').where('num_matricula', 'like', '%'+informacao+'%').orWhere('nome','like', '%'+informacao+'%').andWhere('tipo',1);//RESULTA O SER PESQUISADO
         
         return response.json(usuario);
-    }
+    },
+
+        //Rota de update de usuários (edição de perfil)
+        async edit(request,response) {
+            const id_usuario = request.headers.id_usuario
+            const tipo_usuario = request.headers.tipo_usuario;//TIPO DO USUÁRIO
+            const {num_matricula, email, senha, nome, tipo} = request.body;
+
+            if(tipo_usuario == 1){
+                if(num_matricula != null && num_matricula != ""){
+                    const editar = await connection('usuario').where('id_usuario', id_usuario).update({num_matricula:num_matricula})
+                }
+                if(email != null && email != ""){
+                    const editar = await connection('usuario').where('id_usuario', id_usuario).update({email:email})
+                }
+                if(senha != null && senha != ""){
+                    const editar = await connection('usuario').where('id_usuario', id_usuario).update({senha:senha})
+                }
+                if(nome != null && nome != ""){
+                    const editar = await connection('usuario').where('id_usuario', id_usuario).update({nome:nome})
+                }
+                return response.status(204).send();
+            }else if(tipo_usuario == 2 || tipo_usuario == 5 || tipo_usuario ==6){
+                if(num_matricula != null && num_matricula != ""){
+                    const editar = await connection('usuario').where('id_usuario', id_usuario).update({num_matricula:num_matricula})
+                }
+                if(email != null && email != ""){
+                    const editar = await connection('usuario').where('id_usuario', id_usuario).update({email:email})
+                }
+                if(senha != null && senha != ""){
+                    const editar = await connection('usuario').where('id_usuario', id_usuario).update({senha:senha})
+                }
+                if(nome != null && nome != ""){
+                    const editar = await connection('usuario').where('id_usuario', id_usuario).update({nome:nome})
+                }
+                const editar = await connection('usuario').where('id_usuario', id_usuario).update({tipo:tipo})
+                return response.status(204).send();
+            }else{
+                return response.status(400).send();
+            }
+        }
 }
 
