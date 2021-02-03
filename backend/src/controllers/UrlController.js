@@ -4,16 +4,15 @@ const connection = require('../database/connection');
 module.exports = { //problema salva, mas ñ manda pro banco, nome não tá setando
     //rota de upload de arquivo
     async create(request, response){
-        const filename = request.file;
+        const filename = request.file.filename;
         const id_usuario = request.headers.authorization;
-
+        
             await connection('urls').insert({
                 url:filename,
                 id_usuario
             })
 
             return response.status(204).send(); 
-        //}
     },
 
      //Rota de listagem de arquivo
@@ -25,8 +24,8 @@ module.exports = { //problema salva, mas ñ manda pro banco, nome não tá setan
 
     //Rota de delete de arquivo
     async delete(request,response){
-        const {id_url} = request.params;
-        await connection('urls').where('id_url',id_url).delete();
+        const {id_url} = request.body;
+        await connection('urls').where('id_url',id_url).del();
         return response.status(204).send();
     }
 };

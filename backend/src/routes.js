@@ -40,7 +40,7 @@ routes.put('/atendimento', AtendimentoController.edit)
 routes.get('/urls', UrlController.index);
 
 //Rota de upload de arquivos
-routes.post('/urls', upload.any('url'),UrlController.create);
+routes.post('/urls', upload.single('URL'), UrlController.create);
 
 //Rota de delete de arquivos
 routes.delete('/urls', UrlController.delete)
