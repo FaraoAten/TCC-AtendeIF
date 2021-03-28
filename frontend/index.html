@@ -17,25 +17,43 @@
                 <img class="img-fluid" src="./imagens/logo_full.png">
             </div>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control border border-dark" id="floatingInput" placeholder="nome@exemplo.com">
-                    <label for="floatingInput">E-mail</label>
-                  </div>
-                  <div class="form-floating">
-                    <input type="password" class="form-control border border-dark" id="floatingPassword" placeholder="senha">
-                    <label for="floatingPassword">Senha</label>
-                  </div>
+        <form>
+            <div class="row justify-content-center">
+                <div class="mb-3 col-md-4">
+                    <div class="form-floating">
+                        <input type="email" class="form-control border border-dark arredondado sombra" id="emailLogin" placeholder="email@exemplo.com" required>
+                        <label class="maior" for="emailLogin">E-mail</label>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row justify-content-center mt-4">
-            <button type="button" class="btn btn-success btn-lg col-md-3 col-10">Entrar</button>
-        </div>
+            <div class="row justify-content-center">
+                <div class="mb-1 col-md-4">
+                    <div class="form-floating">
+                        <input type="password" class="form-control border border-dark arredondado sombra" id="senhaLogin" placeholder="Senha" required>
+                        <label class="maior" for="senhaLogin">Senha</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="form-check">
+                        <input class="form-check-input border-dark" type="checkbox" value="" id="cbSenha" onChange="mostrarSenha()">
+                        <label class="form-check-label maior" for="cbSenha" id="labelCbSenha">
+                            Ver senha <i class="far fa-eye" id="olho"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <button type="submit" class="btn btn-success btn-lg col-md-3 col-10 arredondado sombra"><strong>ENTRAR&nbsp;&nbsp;</strong><i class="fas fa-sign-in-alt"></i></button>
+            </div>
+        </form>
         <div class="row justify-content-center mt-4">
             <button type="button" class="btn btn-link btn-sm col-md-3">Não tenho cadastro</button>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/c9d38635a3.js" crossorigin="anonymous"></script>
+    <script src="./javascript/index.js"></script>
 </body>
 </html>
