@@ -7,7 +7,6 @@
     <title>AtendeIF</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/geral.css">
-    <link rel="stylesheet" href="./css/index.css">
     <link rel="sortcut icon" href="./imagens/logo.png" type="image/png"/>
 </head>
 <body>
@@ -17,28 +16,30 @@
                 <img class="img-fluid" src="./imagens/logo_full.png">
             </div>
         </div>
-        <form>
+        <form class="needs-validation" novalidate>
             <div class="row justify-content-center">
                 <div class="mb-3 col-md-4">
                     <div class="form-floating">
-                        <input type="email" class="form-control border border-dark arredondado sombra" id="emailLogin" placeholder="email@exemplo.com" required>
-                        <label class="maior" for="emailLogin">E-mail</label>
+                        <input type="text" class="form-control border border-dark arredondado sombra maiuscula" id="matriculaLogin" placeholder="Matrícula" autocomplete="off" pattern="[0-9]{6}[A-z]{3}[Qq]|[0-9]{7}" onblur="setaErro('matriculaLogin','invalidMatriculaL')" required>
+                        <label class="maior" for="matriculaLogin">Matrícula</label>
+                        <div class="invalid-feedback maior" id="invalidMatriculaL">Digite sua matrícula.</div>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="mb-1 col-md-4">
                     <div class="form-floating">
-                        <input type="password" class="form-control border border-dark arredondado sombra" id="senhaLogin" placeholder="Senha" required>
+                        <input type="password" class="form-control border border-dark arredondado sombra" id="senhaLogin" placeholder="Senha" autocomplete="off" required>
                         <label class="maior" for="senhaLogin">Senha</label>
+                        <div class="invalid-feedback maior">Digite sua senha.</div>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-4">
                     <div class="form-check">
-                        <input class="form-check-input border-dark" type="checkbox" value="" id="cbSenha" onChange="mostrarSenha()">
-                        <label class="form-check-label maior" for="cbSenha" id="labelCbSenha">
+                        <input class="form-check-input border-dark" type="checkbox" value="" id="cbSenha" onchange="mostrarSenha('senhaLogin', 'labelCbSenhaLogin')">
+                        <label class="form-check-label maior" for="cbSenha" id="labelCbSenhaLogin">
                             Ver senha <i class="far fa-eye" id="olho"></i>
                         </label>
                     </div>
@@ -49,11 +50,11 @@
             </div>
         </form>
         <div class="row justify-content-center mt-4">
-            <button type="button" class="btn btn-link btn-sm col-md-3">Não tenho cadastro</button>
+            <button type="button" onclick="location.href='./html/cadastro.html';" class="btn btn-link btn-sm col-md-3">Não tenho cadastro</button>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/c9d38635a3.js" crossorigin="anonymous"></script>
-    <script src="./javascript/index.js"></script>
+    <script src="./javascript/geral.js"></script>
 </body>
 </html>

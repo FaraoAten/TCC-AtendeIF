@@ -12,30 +12,25 @@
 <body>
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <img class="img-fluid" src="../imagens/logo_full.png">
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-md-4">
+            <div class="col-md-4 mb-4">
                 <h1>Cadastro</h1>
             </div>
         </div>
-        <form class="row g-3">
+        <form class="row justify-content-center g-2 needs-validation" novalidate>
             <div class="mb-3 col-md-4">
                 <div class="form-floating">
-                    <input type="text" class="form-control border border-dark arredondado sombra" id="nomeCadastro" placeholder="Nome Completo" required>
+                    <input type="text" class="form-control border border-dark arredondado sombra" id="nomeCadastro" placeholder="Nome Completo" autocomplete="off" required>
                     <label class="maior" for="nomeCadastro">Nome Completo</label>
+                    <div class="invalid-feedback maior">Digite seu nome.</div>
                 </div>
             </div>
             <div class="mb-3 col-md-4">
-                <div class="form-floating">
-                    <input type="text" class="form-control border border-dark arredondado sombra" id="matriculaCadastro" placeholder="Matrícula ou SIAPE" required>
-                    <label class="maior" for="matriculaCadastro">Matrícula ou SIAPE</label>
-                </div>
-            </div>
-            <div class="mb-3 col-md-4">
-                <select class="form-select border-dark arredondado sombra" required>
+                <select class="form-select border-dark arredondado sombra" autocomplete="off" required>
                     <option selected disabled value="">Tipo</option>
                     <option value="1">Estudante</option>
                     <option value="2">Professor</option>
@@ -44,41 +39,60 @@
                     <option value="5">Pedagogia</option>
                     <option value="6">DEPEN/Apoio</option>
                 </select>
+                <div class="invalid-feedback maior">Escolha um tipo de usuário.</div>
             </div>
             <div class="row justify-content-center g-2">
                 <div class="mb-3 col-md-4">
                     <div class="form-floating">
-                        <input type="email" class="form-control border border-dark arredondado sombra" id="emailCadastro" placeholder="email@exemplo.com" required>
-                        <label class="maior" for="emailCadastro">E-mail</label>
+                        <input type="text" class="form-control border border-dark arredondado sombra maiuscula" id="matriculaCadastro" placeholder="Matrícula do IFSul ou do SIAPE" autocomplete="off" pattern="[0-9]{6}[A-z]{3}[Qq]|[0-9]{7}" onblur="setaErro('matriculaCadastro','invalidMatriculaCad')" required>
+                        <label class="maior" for="matriculaCadastro">Matrícula do IFSul ou do SIAPE</label>
+                        <div class="invalid-feedback maior" id="invalidMatriculaCad">Digite sua matrícula</div>
                     </div>
                 </div>
                 <div class="mb-3 col-md-4">
                     <div class="form-floating">
-                        <input type="email" class="form-control border border-dark arredondado sombra" id="cEmailCadastro" placeholder="email@exemplo.com" required>
-                        <label class="maior" for="cEmailCadastro">Confirmar E-mail</label>
+                        <input type="text" class="form-control border border-dark arredondado sombra maiuscula" id="cMatriculaCadastro" placeholder="Confirmar Matrícula" autocomplete="off" pattern="[0-9]{6}[A-z]{3}[Qq]|[0-9]{7}" onblur="verificaIgual('matriculaCadastro','cMatriculaCadastro')" onblur="setaErro('cMatriculaCadastro','invalidCMatriculaCad')" required>
+                        <label class="maior" for="cMatriculaCadastro">Confirmar Matrícula</label>
+                        <div class="invalid-feedback maior" id="invalidCMatriculaCad">Digite sua matrícula</div>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-center g-2">
                 <div class="mb-3 col-md-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control border border-dark arredondado sombra" id="senhaCadastro" placeholder="Senha" required>
+                        <input type="password" class="form-control border border-dark arredondado sombra" id="senhaCadastro" placeholder="Senha" autocomplete="off" required>
                         <label class="maior" for="senhaCadastro">Senha</label>
+                        <div class="invalid-feedback maior">Digite sua senha.</div>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input border-dark" type="checkbox" value="" id="cbSenha" onchange="mostrarSenha('senhaCadastro','labelCbSenhaCadastro')">
+                        <label class="form-check-label maior" for="cbSenha" id="labelCbSenhaCadastro">
+                            Ver senha <i class="far fa-eye" id="olho"></i>
+                        </label>
                     </div>
                 </div>
                 <div class="mb-3 col-md-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control border border-dark arredondado sombra" id="cSenhaCadastro" placeholder="Confirmar Senha" required>
+                        <input type="password" class="form-control border border-dark arredondado sombra" id="cSenhaCadastro" placeholder="Confirmar Senha" autocomplete="off" onBlur="verificaIgual('senhaCadastro','cSenhaCadastro')" required>
                         <label class="maior" for="cSenhaCadastro">Confirmar Senha</label>
+                        <div class="invalid-feedback maior">Digite sua senha.</div>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input border-dark" type="checkbox" value="" id="cbSenha" onchange="mostrarSenha('cSenhaCadastro','labelCbCSSenhaCadastro')">
+                        <label class="form-check-label maior" for="cbSenha" id="labelCbCSenhaCadastro">
+                            Ver senha <i class="far fa-eye" id="olho"></i>
+                        </label>
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center mt-4">
+            <div class="row justify-content-center mt-3 mb-2">
                 <button type="submit" class="btn btn-success btn-lg col-md-3 col-10 arredondado sombra"><strong>CADASTRAR&nbsp;&nbsp;</strong><i class="far fa-check-circle fa-lg"></i></button>
             </div>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/c9d38635a3.js" crossorigin="anonymous"></script>
+    <script src="../javascript/geral.js"></script>
+    <script src="../javascript/cadastro.js"></script>
 </body>
 </html>

@@ -1,3 +1,8 @@
+html{
+   height: 100%;
+   width: 100%;
+}
+
 .form-control:focus, .btn:focus, select:focus {
    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
 }
@@ -27,3 +32,29 @@ select{
    height: calc(3.5rem + 2px);
 }
 
+.form-check-input{
+   width: 22px;
+   height: 22px;
+   transition: 0.5s;
+}
+
+.maiuscula {
+   text-transform: uppercase;
+ }
+ 
+ .maiuscula::-webkit-input-placeholder { /* Chrome, Safari */
+   text-transform: none;
+ }
+ 
+ 
+ .maiuscula:-moz-placeholder { /* Firefox 18- */
+   text-transform: none; 
+ }
+ 
+ .maiuscula::-moz-placeholder {  /* Firefox 19+ */
+   text-transform: none;
+ }
+ 
+ .maiuscula:-ms-input-placeholder {  /* IE */
+   text-transform: none; 
+ }
