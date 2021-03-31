@@ -4,13 +4,12 @@ const crypto = require('crypto');
 module.exports = {
     //Rota de registro do usuário
     async create(request, response){
-        const {num_matricula, email, senha, nome, tipo} = request.body;
+        const {num_matricula, senha, nome, tipo} = request.body;
         const id_usuario = crypto.randomBytes(4).toString('HEX');
 
         await connection('usuario').insert({
             id_usuario,
-            num_matricula, 
-            email, 
+            num_matricula,
             senha, 
             nome, 
             tipo
@@ -32,13 +31,10 @@ module.exports = {
         async edit(request,response) {
             const id_usuario = request.headers.id_usuario
             const tipo_usuario = request.headers.tipo_usuario;//TIPO DO USUÁRIO
-            const {num_matricula, email, senha, nome, tipo} = request.body;
+            const {num_matricula, senha, nome, tipo} = request.body;
 
                 if(num_matricula != null && num_matricula != ""){
                     const editar = await connection('usuario').where('id_usuario', id_usuario).update({num_matricula:num_matricula})
-                }
-                if(email != null && email != ""){
-                    const editar = await connection('usuario').where('id_usuario', id_usuario).update({email:email})
                 }
                 if(senha != null && senha != ""){
                     const editar = await connection('usuario').where('id_usuario', id_usuario).update({senha:senha})
