@@ -12,24 +12,24 @@
 <body>
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-3">
+            <div class="col-md-5 col-lg-3">
                 <img class="img-fluid" src="../imagens/logo_full.png">
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-md-4 mb-4">
+            <div class="col-md-6 col-lg-4 mb-4">
                 <h1>Cadastro</h1>
             </div>
         </div>
         <form class="row justify-content-center g-2 needs-validation" novalidate>
-            <div class="mb-3 col-md-4">
+            <div class="mb-3 col-md-6 col-lg-4">
                 <div class="form-floating">
                     <input type="text" class="form-control arredondado sombra" id="nomeCadastro" placeholder="Nome Completo" pattern="[A-z\u00C0-\u00FF ]{5,}" autocomplete="off" required>
                     <label class="maior" for="nomeCadastro">Nome Completo</label>
                     <div class="invalid-feedback maior">Digite seu nome completo.</div>
                 </div>
             </div>
-            <div class="mb-3 col-md-4">
+            <div class="mb-3 col-md-6 col-lg-4">
                 <select class="form-select arredondado sombra" autocomplete="off" required>
                     <option selected disabled value="">Tipo</option>
                     <option value="1">Estudante</option>
@@ -42,14 +42,14 @@
                 <div class="invalid-feedback maior">Escolha um tipo de usuário.</div>
             </div>
             <div class="row justify-content-center g-2">
-                <div class="mb-3 col-md-4">
+                <div class="mb-3 col-md-6 col-lg-4">
                     <div class="form-floating">
                         <input type="text" class="form-control arredondado sombra maiuscula" id="matriculaCadastro" placeholder="Matrícula do IFSul ou do SIAPE" autocomplete="off" pattern="[0-9]{6}[A-z]{3}[Qq]|[0-9]{7}" onkeyup="setaErro('matriculaCadastro','invalidMatriculaCad')" onkeydown="verificaIgualMat('matriculaCadastro', 'cMatriculaCadastro', 'invalidCMatriculaCad')" required>
                         <label class="maior" for="matriculaCadastro">Matrícula do IFSul ou do SIAPE</label>
                         <div class="invalid-feedback maior" id="invalidMatriculaCad">Digite sua matrícula.</div>
                     </div>
                 </div>
-                <div class="mb-3 col-md-4">
+                <div class="mb-3 col-md-6 col-lg-4">
                     <div class="form-floating">
                         <input type="text" class="form-control arredondado sombra maiuscula" id="cMatriculaCadastro" placeholder="Confirmar Matrícula" autocomplete="off" onkeyup="verificaIgualMat('matriculaCadastro', 'cMatriculaCadastro', 'invalidCMatriculaCad')" required>
                         <label class="maior" for="cMatriculaCadastro">Confirmar Matrícula</label>
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="row justify-content-center g-2">
-                <div class="mb-3 col-md-4">
+                <div class="mb-3 col-md-6 col-lg-4">
                     <div class="form-floating">
                         <input type="password" class="form-control arredondado sombra" id="senhaCadastro" placeholder="Senha" autocomplete="off" pattern=".{3,}" onkeyup="verificaIgualSen('senhaCadastro','cSenhaCadastro','invalidSenhaCad')" required>
                         <label class="maior" for="senhaCadastro">Senha</label>
@@ -71,7 +71,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="mb-3 col-md-4">
+                <div class="mb-3 col-md-6 col-lg-4">
                     <div class="form-floating">
                         <input type="password" class="form-control arredondado sombra" id="cSenhaCadastro" placeholder="Confirmar Senha" autocomplete="off" onkeyup="verificaIgualSen('senhaCadastro','cSenhaCadastro','invalidSenhaCad')" required>
                         <label class="maior" for="cSenhaCadastro">Confirmar Senha</label>
