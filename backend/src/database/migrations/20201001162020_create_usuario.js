@@ -5,8 +5,9 @@ exports.up = function(knex) {
       table.string('num_matricula').notNullable().unique();
       table.string('senha').notNullable();
       table.string('nome').notNullable();
-      table.integer('tipo',1).notNullable();
+      table.specificType('tipo', 'TINYINT(1)').notNullable();
       table.decimal('frequencia').unsigned();
+      table.boolean('ativo').notNullable();
   })
 };
 
