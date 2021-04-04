@@ -12,7 +12,7 @@ const MensagemController = require('./controllers/MensagemController');
 const AtendimentoController = require('./controllers/AtendimentoController');
 const UrlController = require('./controllers/UrlController');
 
-//Rota de listagem de usuários (usada na pt de pesquisa de usuário).
+//Rota de listagem de usuários
 routes.get('/usuario', UsuarioController.index)
 
 //Rota de registro do usuário

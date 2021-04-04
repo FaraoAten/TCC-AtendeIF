@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="mb-3 col-md-6 col-lg-4">
-                <select class="form-select arredondado sombra" autocomplete="off" required>
+                <select class="form-select arredondado sombra" id="tipoCadastro" autocomplete="off" required>
                     <option selected disabled value="">Tipo</option>
                     <option value="1">Estudante</option>
                     <option value="2">Professor</option>
@@ -86,12 +86,14 @@
                 </div>
             </div>
             <div class="row justify-content-center mt-3 mb-2">
-                <button type="submit" class="btn btn-success btn-lg col-md-3 col-10 arredondado sombra"><strong>CADASTRAR&nbsp;&nbsp;</strong><i class="far fa-check-circle fa-lg"></i></button>
+                <button type="submit" class="btn btn-success btn-lg col-md-3 col-10 arredondado sombra" onclick="cadastrar()"><strong>CADASTRAR&nbsp;&nbsp;</strong><i class="far fa-check-circle fa-lg"></i></button>
             </div>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/c9d38635a3.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../javascript/geral.js"></script>
+    <script src="../javascript/cadastro.js"></script>
 </body>
 </html>

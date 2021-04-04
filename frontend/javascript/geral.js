@@ -52,7 +52,7 @@ function verificaIgualSen(elemento,confirmacao,local){
   }
 }
 
-
+//Ativa validador do Boostrap
 (function () {
     'use strict'
   
@@ -72,3 +72,37 @@ function verificaIgualSen(elemento,confirmacao,local){
         }, false)
       })
   })()
+
+
+//-- AJAX --
+//seta a URL base
+const  BASE_URL = "http://localhost:8080/"
+
+//executa os gets
+async function httpGet(theUrl){
+  const myRequest = BASE_URL+theUrl;
+  return new Promise((resolve,reject) => {
+      $.getJSON(myRequest,  function(data){
+          resolve(data);
+      });
+  });
+}
+
+//executa os posts
+async function httpPost(theUrl, body){
+  const myRequest = BASE_URL+theUrl;
+  jQuery.ajax({
+      type: 'POST',
+      encoding:"UTF-8",
+      dataType: 'json',
+      contentType: 'application/json',
+      url: myRequest,
+      data:JSON.stringify(body),
+      success: function() {
+          if(theUrl == "usuario"){
+            window.alert("Seu cadastro foi feito. Você receberá um E-mail do Departamento de Ensino avisando que sua conta está ativa e pode ser utilizada assim que ela for verificada.")
+          }
+      }
+  });
+}
+

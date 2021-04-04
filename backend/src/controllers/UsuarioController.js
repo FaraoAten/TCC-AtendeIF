@@ -6,13 +6,15 @@ module.exports = {
     async create(request, response){
         const {num_matricula, senha, nome, tipo} = request.body;
         const id_usuario = crypto.randomBytes(4).toString('HEX');
+        const ativo = false;
 
         await connection('usuario').insert({
             id_usuario,
             num_matricula,
             senha, 
             nome, 
-            tipo
+            tipo,
+            ativo
         })
 
         return response.status(204).send(); 
