@@ -76,7 +76,7 @@ function verificaIgualSen(elemento,confirmacao,local){
 
 //-- AJAX --
 //seta a URL base
-const  BASE_URL = "http://localhost:8080/"
+const  BASE_URL = "http://localhost:3333/"
 
 //executa os gets
 async function httpGet(theUrl){
@@ -99,9 +99,18 @@ async function httpPost(theUrl, body){
       url: myRequest,
       data:JSON.stringify(body),
       success: function() {
-          if(theUrl == "usuario"){
-            window.alert("Seu cadastro foi feito. Você receberá um E-mail do Departamento de Ensino avisando que sua conta está ativa e pode ser utilizada assim que ela for verificada.")
-          }
+        var torrada = document.getElementById('torrada')
+        var tst = document.getElementById('toast-place');
+        tst.innerHTML = 'Seu cadastro foi feito. Você receberá um E-mail do Departamento de Ensino avisando que sua conta está ativa e pode ser utilizada assim que ela for verificada.';
+        torrada.show();
+      },
+      statusCode: {
+        400: function() {
+          var torrada = document.getElementById('torrada')
+          var tst = document.getElementById('toast-place');
+          tst.innerHTML = 'Usuário já cadastrado.';
+          torrada.show();
+        }
       }
   });
 }

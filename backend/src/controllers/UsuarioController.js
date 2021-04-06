@@ -5,19 +5,24 @@ module.exports = {
     //Rota de registro do usuário
     async create(request, response){
         const {num_matricula, senha, nome, tipo} = request.body;
-        const id_usuario = crypto.randomBytes(4).toString('HEX');
-        const ativo = false;
+            const matricula = await connection('usuario').select('num_matricula').where('num_matricula', 'like', '%'+num_matricula+'%');
+            if(matricula == null|| matricula == ""){
+                const id_usuario = crypto.randomBytes(4).toString('HEX');
+                const ativo = false;
 
-        await connection('usuario').insert({
-            id_usuario,
-            num_matricula,
-            senha, 
-            nome, 
-            tipo,
-            ativo
-        })
+                await connection('usuario').insert({
+                    id_usuario,
+                    num_matricula,
+                    senha, 
+                    nome, 
+                    tipo,
+                    ativo
+                })
 
-        return response.status(204).send(); 
+                return response.status(204).send(); 
+            }else{
+                return response.status(400).send();
+            }
         },
     
     //Rota de listagem de usuários (usada na pt de pesquisa de usuário).
