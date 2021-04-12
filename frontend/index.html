@@ -11,16 +11,26 @@
 </head>
 <body>
     <div class="container-fluid">
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body maiorMod" id="msg"></div>
+              </div>
+            </div>
+          </div>
         <div class="row justify-content-center">
             <div class="col-md-5">
                 <img class="img-fluid" src="./imagens/logo_full.png">
             </div>
         </div>
-        <form class="needs-validation" novalidate>
+        <form class="needs-validation" id="login" novalidate>
             <div class="row justify-content-center">
                 <div class="mb-3 col-md-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control arredondado sombra maiuscula" id="matriculaLogin" placeholder="Matrícula" autocomplete="off" pattern="[0-9]{6}[A-z]{3}[Qq]|[0-9]{7}" onkeyup="setaErro('matriculaLogin','invalidMatriculaL')" required>
+                        <input type="text" class="form-control arredondado sombra maiuscula" id="matriculaLogin" placeholder="Matrícula" autocomplete="off" pattern="[0-9]{6}[A-z]{3}[Qq]|[0-9]{7}" onkeyup="setaErro('matriculaLogin','invalidMatriculaL')" onblur="maiuscula('matriculaLogin')" required>
                         <label class="maior" for="matriculaLogin">Matrícula</label>
                         <div class="invalid-feedback maior" id="invalidMatriculaL">Digite sua matrícula.</div>
                     </div>

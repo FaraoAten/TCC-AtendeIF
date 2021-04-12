@@ -18,6 +18,9 @@ routes.get('/usuario', UsuarioController.index)
 //Rota de registro do usuário
 routes.post('/usuario', UsuarioController.create);
 
+//Rota de Login
+routes.post('/usuario/login', UsuarioController.login);
+
 //Rota de atualizar usuário
 routes.put('/usuario', UsuarioController.edit)
 

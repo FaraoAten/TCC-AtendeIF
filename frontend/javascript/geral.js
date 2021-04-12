@@ -52,6 +52,10 @@ function verificaIgualSen(elemento,confirmacao,local){
   }
 }
 
+function maiuscula(elemento){
+  document.getElementById(elemento).value = document.getElementById(elemento).value.toUpperCase();
+}
+
 //Ativa validador do Boostrap
 (function () {
     'use strict'
@@ -73,45 +77,25 @@ function verificaIgualSen(elemento,confirmacao,local){
       })
   })()
 
+  function limpar(lista, form){
+    for(var i =0; i<lista.length;i++ ){
+       document.getElementById(lista[i]).value = "";
+    }
+    document.getElementById(form).classList.remove('was-validated');
+  }
 
 //-- AJAX --
 //seta a URL base
-const  BASE_URL = "http://localhost:3333/"
+const  BASE_URL = "http://localhost:3333/";
 
-//executa os gets
-async function httpGet(theUrl){
-  const myRequest = BASE_URL+theUrl;
-  return new Promise((resolve,reject) => {
-      $.getJSON(myRequest,  function(data){
-          resolve(data);
-      });
-  });
+async function showMod(modal, text) {
+  document.getElementById(modal).innerHTML = text;
 }
 
-//executa os posts
-async function httpPost(theUrl, body){
-  const myRequest = BASE_URL+theUrl;
-  jQuery.ajax({
-      type: 'POST',
-      encoding:"UTF-8",
-      dataType: 'json',
-      contentType: 'application/json',
-      url: myRequest,
-      data:JSON.stringify(body),
-      success: function() {
-        var torrada = document.getElementById('torrada')
-        var tst = document.getElementById('toast-place');
-        tst.innerHTML = 'Seu cadastro foi feito. Você receberá um E-mail do Departamento de Ensino avisando que sua conta está ativa e pode ser utilizada assim que ela for verificada.';
-        torrada.show();
-      },
-      statusCode: {
-        400: function() {
-          var torrada = document.getElementById('torrada')
-          var tst = document.getElementById('toast-place');
-          tst.innerHTML = 'Usuário já cadastrado.';
-          torrada.show();
-        }
-      }
-  });
-}
 
+function navActive(listaNavs, nav){
+  for (let i = 0; i < listaNavs.length; i++) {
+    document.getElementById(listaNavs[i]).classList.remove('active');
+  }
+  document.getElementById(nav).classList.add('active');
+}

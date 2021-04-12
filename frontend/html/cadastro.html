@@ -10,28 +10,23 @@
     <link rel="sortcut icon" href="../imagens/logo.png" type="image/png"/>
 </head>
 <body>
-    <div class="position-relative">
-        <div class="bg-dark position-relative">
-            <div class="toast-container position-absolute p-3 top-50 start-50 translate-middle">
-                <div class="toast" role="alert" id="torrada">
-                    <div class="toast-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-                    </div>
-                    <div class="toast-body" id="toast-place"></div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="container-fluid">
-        <div class="row justify-content-center">           
-            <button class="btn btn-lg arredondado border-dark col-md-3 col-10 my-5" onclick="location.href='../index.html'"><i class="far fa-arrow-alt-circle-left fa-lg"></i>&nbsp;&nbsp;<strong>VOLTAR</strong></button>
-        </div>
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body maiorMod" id="msg"></div>
+              </div>
+            </div>
+          </div>
         <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-4 mb-4">
+            <div class="col-md-6 col-lg-4 mt-5 mb-4">
                 <h1>Cadastro</h1>
             </div>
         </div>
-        <form class="row justify-content-center g-2 needs-validation" novalidate>
+        <form class="row justify-content-center g-2 needs-validation" id="cadastro" novalidate>
             <div class="mb-3 col-md-6 col-lg-4">
                 <div class="form-floating">
                     <input type="text" class="form-control arredondado sombra" id="nomeCadastro" placeholder="Nome Completo" pattern="[A-z\u00C0-\u00FF ]{5,}" autocomplete="off" required>
@@ -54,14 +49,14 @@
             <div class="row justify-content-center g-2">
                 <div class="mb-3 col-md-6 col-lg-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control arredondado sombra maiuscula" id="matriculaCadastro" placeholder="Matrícula do IFSul ou do SIAPE" autocomplete="off" pattern="[0-9]{6}[A-z]{3}[Qq]|[0-9]{7}" onkeyup="setaErro('matriculaCadastro','invalidMatriculaCad')" onkeydown="verificaIgualMat('matriculaCadastro', 'cMatriculaCadastro', 'invalidCMatriculaCad')" required>
+                        <input type="text" class="form-control arredondado sombra maiuscula"  id="matriculaCadastro" placeholder="Matrícula do IFSul ou do SIAPE" autocomplete="off" pattern="[0-9]{6}[A-z]{3}[Qq]|[0-9]{7}" onkeyup="setaErro('matriculaCadastro','invalidMatriculaCad')" onkeydown="verificaIgualMat('matriculaCadastro', 'cMatriculaCadastro', 'invalidCMatriculaCad')" onblur="maiuscula('matriculaCadastro')" required>
                         <label class="maior" for="matriculaCadastro">Matrícula do IFSul ou do SIAPE</label>
                         <div class="invalid-feedback maior" id="invalidMatriculaCad">Digite sua matrícula.</div>
                     </div>
                 </div>
                 <div class="mb-3 col-md-6 col-lg-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control arredondado sombra maiuscula" id="cMatriculaCadastro" placeholder="Confirmar Matrícula" autocomplete="off" onkeyup="verificaIgualMat('matriculaCadastro', 'cMatriculaCadastro', 'invalidCMatriculaCad')" required>
+                        <input type="text" class="form-control arredondado sombra maiuscula" id="cMatriculaCadastro" placeholder="Confirmar Matrícula" autocomplete="off" onkeyup="verificaIgualMat('matriculaCadastro', 'cMatriculaCadastro', 'invalidCMatriculaCad')" onblur="maiuscula('cMatriculaCadastro')" required>
                         <label class="maior" for="cMatriculaCadastro">Confirmar Matrícula</label>
                         <div class="invalid-feedback maior" id="invalidCMatriculaCad">Repita sua matrícula.</div>
                     </div>
@@ -96,7 +91,8 @@
                 </div>
             </div>
             <div class="row justify-content-center mt-3 mb-2">
-                <button type="submit" class="btn btn-success btn-lg col-md-3 col-10 arredondado sombra" onclick="cadastrar()"><strong>CADASTRAR&nbsp;&nbsp;</strong><i class="far fa-check-circle fa-lg"></i></button>
+                <button class="btn btn-lg arredondado border-dark col-md-3 col-5 mx-md-2 mx-1" onclick="location.href='../index.html'"><i class="far fa-arrow-alt-circle-left fa-lg"></i>&nbsp;&nbsp;<strong class="some">VOLTAR</strong></button>
+                <button type="submit" class="btn btn-success btn-lg col-md-3 col-5 mx-md-2 mx-1 arredondado sombra" onclick="cadastrar()"><strong class="some">CADASTRAR&nbsp;&nbsp;</strong><i class="far fa-check-circle fa-lg"></i></button>
             </div>
         </form>
     </div>

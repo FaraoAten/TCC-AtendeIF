@@ -1,4 +1,4 @@
-html{
+html,body{
    height: 100%;
    width: 100%;
 }
@@ -15,8 +15,25 @@ html{
    border-radius: 12px;
 }
 
+.maiuscula{
+   text-transform: uppercase;
+}
+
 .maior{
    font-size: 14pt;
+}
+
+.maiorMod{
+   font-size: 28pt;
+   color: black;
+}
+
+.maisMaior{
+   font-size: 28pt;
+}
+
+.maisMaior2{
+   font-size: 20pt;
 }
 
 h1{
@@ -40,27 +57,18 @@ select{
    color: rgba(0, 0, 0, 0.85) !important;
 }
 
-.maiuscula {
-   text-transform: uppercase;
- }
- 
- .maiuscula::-webkit-input-placeholder { /* Chrome, Safari */
-   text-transform: none;
- }
- 
- 
- .maiuscula:-moz-placeholder { /* Firefox 18- */
-   text-transform: none; 
- }
- 
- .maiuscula::-moz-placeholder {  /* Firefox 19+ */
-   text-transform: none;
- }
- 
- .maiuscula:-ms-input-placeholder {  /* IE */
-   text-transform: none; 
- }
-
  input.form-control, select.form-select{
     border-color: black;
  }
+
+ .azul{
+    background-color: #005F97;
+ }
+
+ @media screen and (max-width:800px) {
+    .some{
+       visibility: hidden;
+       display: none;
+    }
+ }
+ 
