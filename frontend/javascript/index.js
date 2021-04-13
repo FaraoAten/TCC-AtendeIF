@@ -21,10 +21,10 @@ function Login(){
         if(p.status == 405){
           showMod('msg', 'Este usuário não existe.');
           myModal.show();
-        }else if(p.status = 403){
+        }else if(p.status == 403){
           showMod('msg', 'Esta conta ainda não está ativa.');
           myModal.show();
-        }else if(p.status = 400){
+        }else if(p.status == 400){
           showMod('msg', 'Senha incorreta.');
           myModal.show();
         }else if(p == {}){

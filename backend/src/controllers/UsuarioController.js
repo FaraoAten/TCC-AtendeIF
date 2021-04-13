@@ -1,20 +1,25 @@
 const connection = require('../database/connection');
 const crypto = require('crypto');
+const bcrypt = require('bcrypt');
 
 module.exports = {
     //Rota de registro do usuário
     async create(request, response){
-        const {num_matricula, senha, nome, tipo} = request.body;
+        const {num_matricula, password, nome, tipo} = request.body;
             if(num_matricula != null && num_matricula != ""){
                 const matricula = await connection('usuario').select('num_matricula').where('num_matricula', num_matricula);
                 if(matricula.length == 0){
                     const id_usuario = crypto.randomBytes(4).toString('HEX');
+                    const salt = bcrypt.genSaltSync(10);
+                    const senha = bcrypt.hashSync(password, salt);
+
                     var ativo;
                     if(tipo == 1){
                         ativo = true;
                     }else{
                         ativo = false;
                     }
+                    
                     await connection('usuario').insert({
                         id_usuario,
                         num_matricula,
@@ -67,8 +72,8 @@ module.exports = {
             if(matricula.length > 0){
                 const ativo = await connection('usuario').select('num_matricula').where('num_matricula', num_matricula).andWhere('ativo', 1);
                 if(ativo.length > 0){
-                    const password = await connection('usuario').select('num_matricula').where('num_matricula', num_matricula).andWhere('senha', senha);
-                    if(password.length > 0){
+                    const password = await connection('usuario').select('senha').where('num_matricula', num_matricula).first();
+                    if(bcrypt.compareSync(senha, password.senha)){
                         return response.status(204).send(); 
                     }else{
                         return response.status(400).send(); 

@@ -17,7 +17,7 @@ function cadastrar(){
     usuario.num_matricula = matriculaCadastro.value;
     
     var senhaCadastro = document.getElementById("senhaCadastro");
-    usuario.senha = senhaCadastro.value;
+    usuario.password = senhaCadastro.value;
 
     var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
       keyboard: false,
