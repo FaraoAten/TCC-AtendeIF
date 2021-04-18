@@ -16,19 +16,32 @@ function Login(){
     });
 
     login("usuario/login", log).then(function(result){
-        window.location.href = './html/depenBase.html';
+        if(result.tipo == 1){
+          window.location.href = './html/estudanteBase.html';
+        }else if(result.tipo == 2){
+          window.location.href = './html/professorBase.html';
+        }else if(result.tipo == 3){
+          window.location.href = './html/profPedagBase.html';
+        }else{
+          window.location.href = './html/pedagogiaBase.html';
+        }
       }).catch(function(p){
         if(p.status == 405){
           showMod('msg', 'Este usuário não existe.');
-          myModal.show();
-        }else if(p.status == 403){
-          showMod('msg', 'Esta conta ainda não está ativa.');
           myModal.show();
         }else if(p.status == 400){
           showMod('msg', 'Senha incorreta.');
           myModal.show();
         }else if(p == {}){
-            window.location.href = './html/depenBase.html';
+          if(p.tipo == 1){
+            window.location.href = './html/estudanteBase.html';
+          }else if(p.tipo == 2){
+            window.location.href = './html/professorBase.html';
+          }else if(p.tipo == 3){
+            window.location.href = './html/profPedagBase.html';
+          }else{
+            window.location.href = './html/pedagogiaBase.html';
+          }
         }
       });
     }

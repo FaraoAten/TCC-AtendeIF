@@ -5,7 +5,6 @@ exports.up = function(knex) {
         table.string('titulo').notNullable();
         table.date('data').defaultTo(knex.raw('CURRENT_DATE')).notNullable();
         table.string('corpo').notNullable();
-        table.integer('tipo_mensagens').notNullable();
         table.string('id_remetente');
         table.integer('id_atendimento').unsigned();
         table.foreign('id_remetente').references('id_usuario').inTable('usuario').onUpdate('CASCADE');

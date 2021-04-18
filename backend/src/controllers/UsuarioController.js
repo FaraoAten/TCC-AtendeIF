@@ -10,23 +10,16 @@ module.exports = {
                 const matricula = await connection('usuario').select('num_matricula').where('num_matricula', num_matricula);
                 if(matricula.length == 0){
                     const id_usuario = crypto.randomBytes(4).toString('HEX');
+                    
                     const salt = bcrypt.genSaltSync(10);
                     const senha = bcrypt.hashSync(password, salt);
-
-                    var ativo;
-                    if(tipo == 1){
-                        ativo = true;
-                    }else{
-                        ativo = false;
-                    }
                     
                     await connection('usuario').insert({
                         id_usuario,
                         num_matricula,
                         senha, 
                         nome, 
-                        tipo,
-                        ativo
+                        tipo
                     });
                     return response.status(204).send();
                 }else{
@@ -37,17 +30,18 @@ module.exports = {
     
     //Rota de listagem de usuários (usada na pt de pesquisa de usuário).
     async index(request,response) {
-        const informacao = request.body.informacao; //PEGA O QUE FOI DIGITADO NA BARRA DE PESQUISA
-
-        const usuario = await connection('usuario').select('*').where('num_matricula', 'like', '%'+informacao+'%').orWhere('nome','like', '%'+informacao+'%').andWhere('tipo',1);//RESULTA O SER PESQUISADO
-        
-        return response.json(usuario);
+        const {informacao} = request.params; //PEGA O QUE FOI DIGITADO NA BARRA DE PESQUISA
+        const usuario = await connection('usuario').select('*').where('num_matricula', 'like', '%'+informacao+'%').andWhere('tipo',1).orWhere('nome','like', '%'+informacao+'%').andWhere('tipo',1);//RESULTA O SER PESQUISADO
+        if(usuario.length>0){
+            return response.json(usuario);
+        }else{
+            return response.status(404).send();
+        }
     },
 
         //Rota de update de usuários (edição de perfil)
         async edit(request,response) {
-            const id_usuario = request.headers.id_usuario
-            const tipo_usuario = request.headers.tipo_usuario;//TIPO DO USUÁRIO
+            const id_usuario = request.headers.id_usuario;
             const {num_matricula, senha, nome, tipo} = request.body;
 
                 if(num_matricula != null && num_matricula != ""){
@@ -70,16 +64,12 @@ module.exports = {
 
             const matricula = await connection('usuario').select('num_matricula').where('num_matricula', num_matricula);
             if(matricula.length > 0){
-                const ativo = await connection('usuario').select('num_matricula').where('num_matricula', num_matricula).andWhere('ativo', 1);
-                if(ativo.length > 0){
-                    const password = await connection('usuario').select('senha').where('num_matricula', num_matricula).first();
-                    if(bcrypt.compareSync(senha, password.senha)){
-                        return response.status(204).send(); 
-                    }else{
-                        return response.status(400).send(); 
-                    }
+                const password = await connection('usuario').select('senha').where('num_matricula', num_matricula).first();
+                if(bcrypt.compareSync(senha, password.senha)){
+                    const tipo = await connection('usuario').select('tipo').where('num_matricula', num_matricula).first();
+                    return response.json(tipo);
                 }else{
-                    return response.status(403).send(); 
+                    return response.status(400).send(); 
                 }
             }else{
                 return response.status(405).send(); 
