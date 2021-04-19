@@ -56,3 +56,33 @@ async function cadastro (theUrl, body){
 
   return ret;
 }
+
+//Valida se as matriculas são iguais, muda o texto de erro e seta o input como inválido(se os campos não forem iguais) ou válido(se os campos forem iguais)
+function verificaIgualMat(elemento,confirmacao,local){
+  verificaE = document.getElementById(elemento).value;
+  verificaC = document.getElementById(confirmacao);
+  erro = document.getElementById(local);
+  if(verificaC.value == null || verificaC.value == ""){
+    erro.innerHTML = 'Repita sua matrícula.'
+  }else if(verificaE.toUpperCase() != verificaC.value.toUpperCase()){
+    erro.innerHTML = 'As matrículas estão diferentes.'
+    verificaC.setCustomValidity("As matrículas estão diferentes.");
+  }else if(verificaE.toUpperCase() == verificaC.value.toUpperCase()){
+    verificaC.setCustomValidity("");
+  }
+}
+
+//Valida se as senhas são iguais, muda o texto de erro e seta o input como inválido(se os campos não forem iguais) ou válido(se os campos forem iguais)
+function verificaIgualSen(elemento,confirmacao,local){
+  verificaE = document.getElementById(elemento).value;
+  verificaC = document.getElementById(confirmacao);
+  erro = document.getElementById(local);
+  if(verificaC.value == null || verificaC.value == ""){
+    erro.innerHTML = 'Repita sua senha.'
+  }else if(verificaE != verificaC.value){
+    erro.innerHTML = 'As senhas estão diferentes.'
+    verificaC.setCustomValidity("As senhas estão diferentes.");
+  }else if(verificaE == verificaC.value){
+    verificaC.setCustomValidity("");
+  }
+}

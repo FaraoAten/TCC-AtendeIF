@@ -1,6 +1,5 @@
 async function pesquisa(){
     var pesquisa = document.getElementById('pesqEstu').value;
-    //var troca = document.getElementById('troca');
     var adiciona = document.getElementById('adiciona');
     if(pesquisa != null && pesquisa != ""){
         await pesquisaEstudante("usuario/"+pesquisa).then(function(result){
@@ -27,7 +26,7 @@ async function pesquisa(){
                 divMiniPai.classList.add("col-11", "col-md-5", "col-lg-6", "border", "border-dark", "arredondado", "p-2", "maior");
                 btn.classList.add("btn", "btn-md", "arredondado", "border-dark", "sombra", "btn-success", "mt-2", "maior");
                 btn.innerHTML += '&nbsp;&nbsp;<i class="fas fa-pencil-alt"></i>';
-                btn.onclick = function(){window.location.href = './html/editarPerfilEstu.html';};
+                btn.onclick = function(){window.location.href = './editarPerfilEstu.html'; localStorage.setItem('id_usuario', result[i].id_usuario);};
                 adiciona.appendChild(divPai);
             }
           }).catch(function(p){

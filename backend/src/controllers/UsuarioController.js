@@ -41,20 +41,24 @@ module.exports = {
 
         //Rota de update de usuários (edição de perfil)
         async edit(request,response) {
-            const id_usuario = request.headers.id_usuario;
-            const {num_matricula, senha, nome, tipo} = request.body;
-
+            const {id_usuario, num_matricula, senha, nome, tipo} = request.body;
+            
                 if(num_matricula != null && num_matricula != ""){
-                    const editar = await connection('usuario').where('id_usuario', id_usuario).update({num_matricula:num_matricula})
+                    const matricula = await connection('usuario').select('num_matricula').where('num_matricula', num_matricula);
+                    if(matricula.length == 0){
+                        const editar = await connection('usuario').where('id_usuario', id_usuario).update({num_matricula:num_matricula});
+                    }else{
+                        return response.status(400).send();
+                    }
                 }
                 if(senha != null && senha != ""){
-                    const editar = await connection('usuario').where('id_usuario', id_usuario).update({senha:senha})
+                    const editar = await connection('usuario').where('id_usuario', id_usuario).update({senha:senha});
                 }
                 if(nome != null && nome != ""){
-                    const editar = await connection('usuario').where('id_usuario', id_usuario).update({nome:nome})
+                    const editar = await connection('usuario').where('id_usuario', id_usuario).update({nome:nome});
                 }  
                 if(tipo != null && tipo != ""){
-                    const editar = await connection('usuario').where('id_usuario', id_usuario).update({tipo:tipo})
+                    const editar = await connection('usuario').where('id_usuario', id_usuario).update({tipo:tipo});
                 }
                 return response.status(204).send();
         },
