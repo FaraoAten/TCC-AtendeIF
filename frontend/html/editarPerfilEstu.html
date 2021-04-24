@@ -14,7 +14,7 @@
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header" id="confirmacao">
                   <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body maiorMod" id="msg"></div>
@@ -95,7 +95,8 @@
                 </div>
             </div>
             <div class="row justify-content-center mt-3 mb-2">
-                <button type="submit" class="btn btn-success btn-lg col-md-3 col-5 mx-md-2 mx-1 arredondado sombra" onclick="editarEstu(localStorage.getItem('id_usuario'))"><strong class="some">Editar Perfil&nbsp;&nbsp;</strong><i class="fas fa-pencil-alt"></i></button>
+                <button type="button" class="btn btn-lg arredondado border-dark col-md-3 col-5 me-md-2 me-1" onclick="location.href='./pedagogiaBase.html'"><i class="far fa-arrow-alt-circle-left fa-lg"></i><strong class="some">&nbsp;&nbsp;VOLTAR</strong></button>
+                <button type="submit" class="btn btn-success btn-lg col-md-3 col-5 ms-md-2 ms-1 arredondado sombra" onclick="editarEstu(localStorage.getItem('id_usuario'))"><strong class="some">EDITAR PERFIL&nbsp;&nbsp;</strong><i class="fas fa-pencil-alt"></i></button>
             </div>
         </form>
     </div>

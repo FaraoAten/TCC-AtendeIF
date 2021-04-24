@@ -31,7 +31,7 @@ module.exports = {
     //Rota de listagem de usuários (usada na pt de pesquisa de usuário).
     async index(request,response) {
         const {informacao} = request.params; //PEGA O QUE FOI DIGITADO NA BARRA DE PESQUISA
-        const usuario = await connection('usuario').select('*').where('num_matricula', 'like', '%'+informacao+'%').andWhere('tipo',1).orWhere('nome','like', '%'+informacao+'%').andWhere('tipo',1);//RESULTA O SER PESQUISADO
+        const usuario = await connection('usuario').select('id_usuario', 'num_matricula', 'nome').where('num_matricula', 'like', '%'+informacao+'%').andWhere('tipo',1).orWhere('nome','like', '%'+informacao+'%').andWhere('tipo',1);//RESULTA O SER PESQUISADO
         if(usuario.length>0){
             return response.json(usuario);
         }else{
@@ -70,8 +70,8 @@ module.exports = {
             if(matricula.length > 0){
                 const password = await connection('usuario').select('senha').where('num_matricula', num_matricula).first();
                 if(bcrypt.compareSync(senha, password.senha)){
-                    const tipo = await connection('usuario').select('tipo').where('num_matricula', num_matricula).first();
-                    return response.json(tipo);
+                    const user = await connection('usuario').select('id_usuario', 'tipo').where('num_matricula', num_matricula).first();
+                    return response.json(user);
                 }else{
                     return response.status(400).send(); 
                 }

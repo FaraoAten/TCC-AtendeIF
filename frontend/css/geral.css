@@ -65,6 +65,18 @@ select{
     background-color: #005F97;
  }
 
+ button{
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+ }
+
+ button:hover{
+   -moz-transform: scale(1.03);
+   -webkit-transform: scale(1.03);
+   transform: scale(1.03);
+}
+
  @media screen and (max-width:800px) {
     .some{
        visibility: hidden;

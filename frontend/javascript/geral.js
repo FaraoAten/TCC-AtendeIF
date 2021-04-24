@@ -29,7 +29,7 @@ function maiuscula(elemento){
 //Ativa validador do Boostrap
 (function () {
     'use strict'
-  
+    
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.querySelectorAll('.needs-validation')
   
@@ -63,9 +63,4 @@ async function showMod(modal, text) {
 }
 
 
-function navActive(listaNavs, nav){
-  for (let i = 0; i < listaNavs.length; i++) {
-    document.getElementById(listaNavs[i]).classList.remove('active');
-  }
-  document.getElementById(nav).classList.add('active');
-}
+

@@ -5,27 +5,40 @@ var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
   focus: true
 });
 
-function editarEstu(header){
+function editarProf(header){
 
-    var form = document.getElementById("editarPerfilEstu");
+    var form = document.getElementById("editarPerfilProf");
     if (form.checkValidity()) {
         function handleForm(event) { event.preventDefault();} 
         form.addEventListener('submit', handleForm);
 
         usuario.id_usuario = header;
 
-        var nomeEditEstu = document.getElementById("nomeEditEstu");
-        usuario.nome = nomeEditEstu.value;
+        var nomeEditProf = document.getElementById("nomeEditProf");
+        usuario.nome = nomeEditProf.value;
 
-        usuario.tipo = 1;
+        var tipoEditProf = document.getElementById("tipoEditProf");
+        usuario.tipo = tipoEditProf.value;
     
-        var matriculaEditEstu = document.getElementById("matriculaEditEstu");
-        usuario.num_matricula = matriculaEditEstu.value;
+        var matriculaEditProf = document.getElementById("matriculaEditProf");
+        usuario.num_matricula = matriculaEditProf.value;
         
-        var senhaEditEstu = document.getElementById("senhaEditEstu");
-        usuario.password = senhaEditEstu.value;
+        var senhaEditProf = document.getElementById("senhaEditProf");
+        usuario.password = senhaEditProf.value;
 
-        showMod('confirmacao',`Por favor confirme os dados, dados em branco não irão gerar alterações.<br/><br/>Nome: ${nomeEditEstu.value}<br/>Matrícula: ${matriculaEditEstu.value}<br/>Senha: ${senhaEditEstu.value}`);
+        var tipoTxt;
+        switch (tipoEditProf.value){
+          case "2": 
+            tipoTxt = "Professor";
+            break;
+          case "3":
+            tipoTxt = "Professor e Pedagogia";
+            break;
+          default:
+            tipoTxt = "";
+        }
+
+        showMod('confirmacao',`Por favor confirme os dados, dados em branco não irão gerar alterações.<br/><br/>Nome: ${nomeEditProf.value}<br/>Tipo: ${tipoTxt}<br/>SIAPE: ${matriculaEditProf.value}<br/>Senha: ${senhaEditProf.value}`);
         showMod('msg', '<button type="button" class="btn btn-danger btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button><button type="button" class="btn btn-success btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(true)">Confirmar</button>')
         myModal.show();
     }
@@ -33,24 +46,25 @@ function editarEstu(header){
 
   function confirmar (confirm) {
     if(confirm){
-      editaEstu("usuario", usuario).then(function(result){
-          showMod('confirmacao','<button type="button" class="btn-close" onclick="location.href = `./pedagogiaBase.html`" data-bs-dismiss="modal"></button>')
+      editaProf("usuario", usuario).then(function(result){
+          showMod('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
           showMod('msg', 'Edição efetuada com sucesso.');
           myModal.show();
-        }).catch(function(p){
-          if(p.status == 400){
+          limpar(["nomeEditProf", "tipoEditProf", "matriculaEditProf", "cMatriculaEditProf", "senhaEditProf", "cSenhaEditProf"], 'editarPerfilProf');
+      }).catch(function(p){
+      if(p.status == 400){
           showMod('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
           showMod('msg', 'Edição não efetuada.<br/><br/> Esta matrícula já está em uso.');
           myModal.show();
-          document.getElementById('editarPerfilEstu').classList.remove('was-validated');
-        }
-      });
+          document.getElementById('editarPerfilProf').classList.remove('was-validated');
+      }
+    });
     }else{
-        document.getElementById('editarPerfilEstu').classList.remove('was-validated');
+        document.getElementById('editarPerfilProf').classList.remove('was-validated');
     }
 }
 
-async function editaEstu (theUrl, body){
+async function editaProf (theUrl, body){
   const myRequest = BASE_URL+theUrl;
   var ret = await jQuery.ajax({
       type: 'PUT',

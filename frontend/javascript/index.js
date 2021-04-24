@@ -18,10 +18,13 @@ function Login(){
     login("usuario/login", log).then(function(result){
         if(result.tipo == 1){
           window.location.href = './html/estudanteBase.html';
+          localStorage.setItem('authorization', result.id_usuario);
         }else if(result.tipo == 2){
           window.location.href = './html/professorBase.html';
+          localStorage.setItem('authorization', result.id_usuario);
         }else if(result.tipo == 3){
           window.location.href = './html/profPedagBase.html';
+          localStorage.setItem('authorization', result.id_usuario);
         }else{
           window.location.href = './html/pedagogiaBase.html';
         }
