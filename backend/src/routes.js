@@ -38,5 +38,8 @@ routes.post('/atendimento', AtendimentoController.create);
 
 //Rota de atualizar atendimento
 routes.put('/atendimento', AtendimentoController.edit);
+
+//Rota de cancelar atendimento
+routes.put('/atendimento/cancelar', AtendimentoController.cancelar);
 module.exports = routes; 
 

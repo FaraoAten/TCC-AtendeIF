@@ -1,8 +1,8 @@
-window.onload = telaAtendimentoProf();
+window.onload = telaAtendimentoEstu();
 
-async function telaAtendimentoProf(){
+async function telaAtendimentoEstu(){
     var main = document.getElementById('main');
-    await listaAtendimentoProf('atendimento/professor').then(function(result){
+    await listaAtendimentoEstu('atendimento/estudante').then(function(result){
         main.innerHTML = "";
         var chaves = Object.keys(result);
         for (let i = 0; i < chaves.length; i++) {
@@ -18,59 +18,44 @@ async function telaAtendimentoProf(){
                 const elemento = result[chave][j];
                 var divCol = document.createElement("div");
                 var divNome = document.createElement("div");
-                var divMat = document.createElement("div");
                 var divDisciplina = document.createElement("div");
                 var divLocal = document.createElement("div");
                 var divHora = document.createElement("div");
-                var btnAdiar = document.createElement("button");
-                var btnCancelar = document.createElement("button");
+                var btnPCancela = document.createElement("button");
                 var strNome = document.createElement("strong");
-                var strMat = document.createElement("strong");
                 var strDisciplina = document.createElement("strong");
                 var strLocal = document.createElement("strong");
                 var strHora = document.createElement("strong");
-                var textoNome = document.createTextNode("Estudante: ");
-                var textoMat = document.createTextNode("Matrícula: ");
+                var textoNome = document.createTextNode("Professor: ");
                 var textoDisciplina = document.createTextNode("Disciplina: ");
                 var textoLocal = document.createTextNode("Onde: ");
                 var textoHora = document.createTextNode("Horas: ");
-                var textoBtnA = document.createTextNode("Adiar");
-                var textoBtnC = document.createTextNode("Cancelar");
+                var textoBtnPC = document.createTextNode("Pedir Cancelamento");
                 strNome.appendChild(textoNome);
-                strMat.appendChild(textoMat);
                 strDisciplina.appendChild(textoDisciplina);
                 strLocal.appendChild(textoLocal);
                 strHora.appendChild(textoHora);
                 divNome.appendChild(strNome);
-                divMat.appendChild(strMat);
                 divDisciplina.appendChild(strDisciplina);
                 divLocal.appendChild(strLocal);
                 divHora.appendChild(strHora);
-                btnAdiar.appendChild(textoBtnA);
-                btnCancelar.appendChild(textoBtnC);
+                btnPCancela.appendChild(textoBtnPC);
                 divCol.appendChild(divNome);
-                divCol.appendChild(divMat);
                 divCol.appendChild(divDisciplina);
                 divCol.appendChild(divLocal);
                 divCol.appendChild(divHora);
-                divCol.appendChild(btnAdiar);
-                divCol.appendChild(btnCancelar);
+                divCol.appendChild(btnPCancela);
                 divLinha.appendChild(divCol);
-                divCol.classList.add("col-11", "col-md-6", "col-lg-4", "border", "border-2", "border-dark", "arredondado", "p-2", "maior", "mt-3", "mx-3");
-                btnAdiar.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "me-1", "maior");
-                btnCancelar.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "ms-1", "maior");
+                divCol.classList.add("col-11", "col-md-6", "col-lg-3", "border", "border-2", "border-dark", "arredondado", "p-2", "maior", "mt-3", "mx-3");
+                btnPCancela.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "ms-1", "maior");
                 divNome.innerHTML+=elemento.nome;
-                divMat.innerHTML+=elemento.matricula;
                 divDisciplina.innerHTML+=elemento.materia;
                 divLocal.innerHTML+=elemento.local;
                 divHora.innerHTML+=elemento.horario;
-                btnAdiar.innerHTML+='&nbsp;&nbsp;<i class="far fa-clock fa-lg"></i>';
-                btnCancelar.innerHTML+='&nbsp;&nbsp;<i class="fas fa-ban fa-lg"></i>';
-                btnAdiar.onclick = function () {window.location.href = './adiarAtendimento.html'; localStorage.setItem('id_atendimento', elemento.id);}
-                btnCancelar.onclick = function(){localStorage.setItem('id_atendimento', elemento.id); montaCancelar()};
+                btnPCancela.innerHTML+='&nbsp;&nbsp;<i class="fas fa-ban fa-lg"></i>';
             }
             divLinha.classList.add("row", "justify-content-center", "mb-3", "maisMaior2");
-            divColuna.classList.add("border-2", "border-bottom", "border-dark", "col-11", "col-md-6", "col-lg-11");
+            divColuna.classList.add("border-2", "border-bottom", "border-dark", "col-11", "col-md-6", "col-lg-9");
             str.classList.add("mx-5");
             main.appendChild(divLinha);
         }
@@ -84,7 +69,7 @@ async function telaAtendimentoProf(){
   });
 }
 
-function listaAtendimentoProf(theUrl){
+function listaAtendimentoEstu(theUrl){
     const myRequest = BASE_URL+theUrl;
     return new Promise((resolve,reject) => {
         $.ajax({
@@ -96,25 +81,3 @@ function listaAtendimentoProf(theUrl){
          });
     });
 }
-
-async function montaCancelar(){
-    atendimento = {};
-    atendimento.id_atendimento = localStorage.getItem('id_atendimento');
-    atendimento.status_cancelamento = 1;
-    await cancelar('atendimento/cancelar', atendimento);
-    await telaAtendimentoProf();
-}
-
-async function cancelar (theUrl, body){
-    const myRequest = BASE_URL+theUrl;
-    var ret = await jQuery.ajax({
-        type: 'PUT',
-        encoding:"UTF-8",
-        dataType: 'json',
-        contentType: 'application/json',
-        url: myRequest,
-        data:JSON.stringify(body),
-    });
-  
-    return ret;
-  }

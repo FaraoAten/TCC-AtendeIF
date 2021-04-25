@@ -1,3 +1,4 @@
+const { response, request } = require('express');
 const connection = require('../database/connection');
 
 module.exports = {
@@ -97,8 +98,37 @@ module.exports = {
     //Rota de listagem de atendimentos de estudante.
     async listaAtendimentoEstu(request,response) {
         const id_usuario = request.headers.authorization;
-        const atendimento = await connection('atendimento').select('*').where('id_aluno', id_usuario).orWhere('id_professor', id_usuario);
-        return response.json(atendimento);
+        var atual = new Date();
+        var atualData = atual.getFullYear()+"-"+(atual.getMonth() + 1)+"-"+atual.getDate();
+        var semana = new Date();
+        semana.setDate(atual.getDate() + 6);
+        var semanaData = semana.getFullYear()+"-"+(semana.getMonth() + 1)+"-"+semana.getDate();
+        const atendimento = await connection('atendimento').join('usuario', 'atendimento.id_professor', '=', 'usuario.id_usuario').select('atendimento.id_atendimento', 'atendimento.data_atendimento', 'atendimento.data_atendimento', 'atendimento.horario', 'atendimento.local', 'atendimento.materia', 'usuario.nome').where('atendimento.id_aluno', id_usuario).andWhereNot('atendimento.status_cancelamento', 1).andWhere('atendimento.data_atendimento', '>=', atualData).andWhere('atendimento.data_atendimento','<=', semanaData);
+        
+        if(atendimento.length > 0){
+            var resultado={};
+            for (let i = 0; i < atendimento.length; i++) {
+                const element = atendimento[i];
+                var atendimentoUnico = {
+                    horario:element.horario, 
+                    local:element.local, 
+                    materia:element.materia,
+                    nome:element.nome
+                }
+                var data = element.data_atendimento;
+                nomeDia = new Array ("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado");
+                let dataFormatada = nomeDia[data.getDay()];
+    
+                if(resultado[dataFormatada] == undefined || resultado[dataFormatada] == null){
+                    resultado[dataFormatada] = [];
+                }
+                resultado[dataFormatada].push(atendimentoUnico); 
+            }
+    
+            return response.json(resultado);
+        }else{
+            return response.status(404).send();
+        }
     },
 
     //Rota de update de atendimento (adiar atendimento)
@@ -114,5 +144,13 @@ module.exports = {
             const adiar = await connection('atendimento').where('id_atendimento', id_atendimento).update({local:local});
         }
         return response.status(204).send();
+    },
+
+    async cancelar(request,response){
+        const {id_atendimento, status_cancelamento} = request.body;
+        const cancela = await connection('atendimento').where('id_atendimento', id_atendimento).update({status_cancelamento:status_cancelamento});
+        return response.status(204).send();
     }
 }
+
+   

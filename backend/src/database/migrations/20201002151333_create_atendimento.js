@@ -6,7 +6,7 @@ exports.up = function(knex) {
         table.time('horario').notNullable();
         table.string('local').notNullable();
         table.string('materia').notNullable();
-        table.boolean('status_cancelamento').notNullable();
+        table.specificType('status_cancelamento', 'TINYINT(1)').notNullable();
         table.string('id_aluno').notNullable();
         table.string('id_professor').notNullable();
         table.foreign('id_aluno').references('id_usuario').inTable('usuario').onUpdate('CASCADE');
