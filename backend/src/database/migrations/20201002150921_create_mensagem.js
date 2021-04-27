@@ -5,7 +5,6 @@ exports.up = function(knex) {
         table.string('titulo').notNullable();
         table.date('data').defaultTo(knex.raw('CURRENT_DATE')).notNullable();
         table.string('corpo').notNullable();
-        table.specificType('interagida', 'TINYINT(1)').notNullable();
         table.string('id_remetente').notNullable();
         table.string('id_destinatario').notNullable();
         table.integer('id_atendimento').unsigned();
