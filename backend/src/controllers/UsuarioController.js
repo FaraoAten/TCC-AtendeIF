@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 module.exports = {
     //Rota de registro do usuário
     async create(request, response){
-        const {num_matricula, password, nome, tipo} = request.body;
+        const {num_matricula, password, nome, tipo, primeiro_login} = request.body;
             if(num_matricula != null && num_matricula != ""){
                 const matricula = await connection('usuario').select('num_matricula').where('num_matricula', num_matricula);
                 if(matricula.length == 0){
@@ -19,7 +19,8 @@ module.exports = {
                         num_matricula,
                         senha, 
                         nome, 
-                        tipo
+                        tipo,
+                        primeiro_login
                     });
                     return response.status(204).send();
                 }else{
@@ -41,7 +42,7 @@ module.exports = {
 
         //Rota de update de usuários (edição de perfil)
         async edit(request,response) {
-            const {id_usuario, num_matricula, senha, nome, tipo} = request.body;
+            const {id_usuario, num_matricula, password, nome, tipo} = request.body;
             
                 if(num_matricula != null && num_matricula != ""){
                     const matricula = await connection('usuario').select('num_matricula').where('num_matricula', num_matricula);
@@ -51,7 +52,10 @@ module.exports = {
                         return response.status(400).send();
                     }
                 }
-                if(senha != null && senha != ""){
+                
+                if(password != null && password != ""){
+                    const salt = bcrypt.genSaltSync(10);
+                    const senha = bcrypt.hashSync(password, salt);
                     const editar = await connection('usuario').where('id_usuario', id_usuario).update({senha:senha});
                 }
                 if(nome != null && nome != ""){
@@ -70,7 +74,7 @@ module.exports = {
             if(matricula.length > 0){
                 const password = await connection('usuario').select('senha').where('num_matricula', num_matricula).first();
                 if(bcrypt.compareSync(senha, password.senha)){
-                    const user = await connection('usuario').select('id_usuario', 'tipo').where('num_matricula', num_matricula).first();
+                    const user = await connection('usuario').select('id_usuario', 'tipo', 'primeiro_login').where('num_matricula', num_matricula).first();
                     return response.json(user);
                 }else{
                     return response.status(400).send(); 
@@ -78,6 +82,14 @@ module.exports = {
             }else{
                 return response.status(405).send(); 
             }   
-        }
+        },
+
+
+    async firstLogin(request,response) {
+        const {id_usuario,primeiro_login} = request.body;
+        
+            const editar = await connection('usuario').where('id_usuario', id_usuario).update({primeiro_login:primeiro_login});
+            return response.status(204).send();
+    }
 }
 

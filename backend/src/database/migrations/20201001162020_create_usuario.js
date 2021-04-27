@@ -6,6 +6,7 @@ exports.up = function(knex) {
       table.string('senha').notNullable();
       table.string('nome').notNullable();
       table.specificType('tipo', 'TINYINT(1)').notNullable();
+      table.boolean('primeiro_login').notNullable();
   })
 };
 

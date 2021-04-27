@@ -19,6 +19,8 @@ function cadastrar(){
     var senhaCadastro = document.getElementById("senhaCadastro");
     usuario.password = senhaCadastro.value;
 
+    usuario.primeiro_login = 0;
+
     var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
       keyboard: false,
       focus: true

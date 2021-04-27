@@ -1,4 +1,19 @@
-window.onload = telaAtendimentoEstu();
+window.onload = function () {
+    if(localStorage.getItem('primeiroLogin')==0){
+
+        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+            keyboard: false,
+            focus: true
+          });
+          myModal.show();
+
+          localStorage.setItem('primeiroLogin', 1);
+          
+          primeiroLogin('usuario/primeiroLogin');
+    }else{
+        telaAtendimentoEstu();
+    }
+}
 
 async function telaAtendimentoEstu(){
     var main = document.getElementById('main');
@@ -47,12 +62,17 @@ async function telaAtendimentoEstu(){
                 divCol.appendChild(btnPCancela);
                 divLinha.appendChild(divCol);
                 divCol.classList.add("col-11", "col-md-6", "col-lg-3", "border", "border-2", "border-dark", "arredondado", "p-2", "maior", "mt-3", "mx-3");
-                btnPCancela.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "ms-1", "maior");
+                if(elemento.status==2){
+                    btnPCancela.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "ms-1", "maior", "disabled");
+                }else{
+                    btnPCancela.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "ms-1", "maior");
+                }
                 divNome.innerHTML+=elemento.nome;
                 divDisciplina.innerHTML+=elemento.materia;
                 divLocal.innerHTML+=elemento.local;
                 divHora.innerHTML+=elemento.horario;
                 btnPCancela.innerHTML+='&nbsp;&nbsp;<i class="fas fa-ban fa-lg"></i>';
+                btnPCancela.onclick = function(){localStorage.setItem('id_atendimento', elemento.id); montaPCancelar()};
             }
             divLinha.classList.add("row", "justify-content-center", "mb-3", "maisMaior2");
             divColuna.classList.add("border-2", "border-bottom", "border-dark", "col-11", "col-md-6", "col-lg-9");
@@ -81,3 +101,39 @@ function listaAtendimentoEstu(theUrl){
          });
     });
 }
+
+async function montaPCancelar(){
+    atendimento = {};
+    atendimento.id_atendimento = localStorage.getItem('id_atendimento');
+    atendimento.status_cancelamento = 2;
+    await cancelar('atendimento/cancelar', atendimento);
+    await telaAtendimentoEstu();
+}
+
+async function cancelar (theUrl, body){
+    const myRequest = BASE_URL+theUrl;
+    var ret = await jQuery.ajax({
+        type: 'PUT',
+        encoding:"UTF-8",
+        dataType: 'json',
+        contentType: 'application/json',
+        url: myRequest,
+        data:JSON.stringify(body),
+    });
+  
+    return ret;
+  }
+
+  async function primeiroLogin (theUrl){
+    const myRequest = BASE_URL+theUrl;
+    var ret = await jQuery.ajax({
+        type: 'PUT',
+        encoding:"UTF-8",
+        dataType: 'json',
+        contentType: 'application/json',
+        url: myRequest,
+        data:JSON.stringify({id_usuario:localStorage.getItem('authorization'),primeiro_login:1}),
+    });
+  
+    return ret;
+  }

@@ -24,7 +24,7 @@ module.exports = {
         const id_usuario = request.headers.authorization;
         var atual = new Date();
         var atualData = atual.getFullYear()+"-"+(atual.getMonth() + 1)+"-"+atual.getDate();
-        const atendimento = await connection('atendimento').join('usuario', 'atendimento.id_aluno', '=', 'usuario.id_usuario').select('atendimento.id_atendimento', 'atendimento.data_atendimento', 'atendimento.horario', 'atendimento.local', 'atendimento.materia', 'usuario.num_matricula', 'usuario.nome').where('atendimento.id_professor', id_usuario).andWhereNot('atendimento.status_cancelamento', 1).andWhere('atendimento.data_atendimento', '>=', atualData);
+        const atendimento = await connection('atendimento').join('usuario', 'atendimento.id_aluno', '=', 'usuario.id_usuario').select('atendimento.id_atendimento', 'atendimento.data_atendimento', 'atendimento.horario', 'atendimento.local', 'atendimento.materia', 'usuario.num_matricula', 'usuario.nome').where('atendimento.id_professor', id_usuario).andWhereNot('atendimento.status_cancelamento', 1).andWhere('atendimento.data_atendimento', '>=', atualData).orderBy('atendimento.data_atendimento');
         
         if(atendimento.length>0){
             var resultado={};
@@ -63,7 +63,7 @@ module.exports = {
         const id_usuario = request.headers.id_usuario;
         var atual = new Date();
         var atualData = atual.getFullYear()+"-"+(atual.getMonth() + 1)+"-"+atual.getDate();
-        const atendimento = await connection('atendimento').join('usuario', 'atendimento.id_professor', '=', 'usuario.id_usuario').select('atendimento.data_atendimento', 'atendimento.horario', 'atendimento.local', 'atendimento.materia', 'usuario.nome').where('atendimento.id_aluno', id_usuario).andWhereNot('atendimento.status_cancelamento', 1).andWhere('atendimento.data_atendimento', '>=', atualData);
+        const atendimento = await connection('atendimento').join('usuario', 'atendimento.id_professor', '=', 'usuario.id_usuario').select('atendimento.data_atendimento', 'atendimento.horario', 'atendimento.local', 'atendimento.materia', 'usuario.nome').where('atendimento.id_aluno', id_usuario).andWhereNot('atendimento.status_cancelamento', 1).andWhere('atendimento.data_atendimento', '>=', atualData).orderBy('atendimento.data_atendimento');
         
         if(atendimento.length > 0){
             var resultado={};
@@ -103,16 +103,18 @@ module.exports = {
         var semana = new Date();
         semana.setDate(atual.getDate() + 6);
         var semanaData = semana.getFullYear()+"-"+(semana.getMonth() + 1)+"-"+semana.getDate();
-        const atendimento = await connection('atendimento').join('usuario', 'atendimento.id_professor', '=', 'usuario.id_usuario').select('atendimento.id_atendimento', 'atendimento.data_atendimento', 'atendimento.data_atendimento', 'atendimento.horario', 'atendimento.local', 'atendimento.materia', 'usuario.nome').where('atendimento.id_aluno', id_usuario).andWhereNot('atendimento.status_cancelamento', 1).andWhere('atendimento.data_atendimento', '>=', atualData).andWhere('atendimento.data_atendimento','<=', semanaData);
+        const atendimento = await connection('atendimento').join('usuario', 'atendimento.id_professor', '=', 'usuario.id_usuario').select('atendimento.id_atendimento', 'atendimento.data_atendimento', 'atendimento.data_atendimento', 'atendimento.horario', 'atendimento.local', 'atendimento.materia', 'atendimento.status_cancelamento', 'usuario.nome').where('atendimento.id_aluno', id_usuario).andWhereNot('atendimento.status_cancelamento', 1).andWhere('atendimento.data_atendimento', '>=', atualData).andWhere('atendimento.data_atendimento','<=', semanaData).orderBy('atendimento.data_atendimento');
         
         if(atendimento.length > 0){
             var resultado={};
             for (let i = 0; i < atendimento.length; i++) {
                 const element = atendimento[i];
                 var atendimentoUnico = {
+                    id:element.id_atendimento,
                     horario:element.horario, 
                     local:element.local, 
                     materia:element.materia,
+                    status:element.status_cancelamento,
                     nome:element.nome
                 }
                 var data = element.data_atendimento;

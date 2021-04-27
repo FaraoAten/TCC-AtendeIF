@@ -16,10 +16,13 @@ routes.post('/usuario', UsuarioController.create);
 routes.post('/usuario/login', UsuarioController.login);
 
 //Rota de atualizar usuário
-routes.put('/usuario', UsuarioController.edit)
+routes.put('/usuario', UsuarioController.edit);
+
+//Rota de atualizar campo primeiro_login
+routes.put('/usuario/primeiroLogin', UsuarioController.firstLogin);
 
 //Rota de listagem de mensagens.
-routes.get('/mensagem', MensagemController.index)
+routes.get('/mensagem', MensagemController.index);
 
 //Rota de postagem de mensagem
 routes.post('/mensagem', MensagemController.create);

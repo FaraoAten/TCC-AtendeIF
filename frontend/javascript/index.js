@@ -19,6 +19,7 @@ function Login(){
         if(result.tipo == 1){
           window.location.href = './html/estudanteBase.html';
           localStorage.setItem('authorization', result.id_usuario);
+          localStorage.setItem('primeiroLogin', result.primeiro_login);
         }else if(result.tipo == 2){
           window.location.href = './html/professorBase.html';
           localStorage.setItem('authorization', result.id_usuario);
