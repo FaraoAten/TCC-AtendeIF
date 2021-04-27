@@ -107,7 +107,7 @@ async function montaCancelar(){
 
 async function cancelar (theUrl, body){
     const myRequest = BASE_URL+theUrl;
-    var ret = await jQuery.ajax({
+    await jQuery.ajax({
         type: 'PUT',
         encoding:"UTF-8",
         dataType: 'json',
@@ -115,6 +115,4 @@ async function cancelar (theUrl, body){
         url: myRequest,
         data:JSON.stringify(body),
     });
-  
-    return ret;
   }

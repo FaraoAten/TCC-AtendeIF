@@ -107,12 +107,19 @@ async function montaPCancelar(){
     atendimento.id_atendimento = localStorage.getItem('id_atendimento');
     atendimento.status_cancelamento = 2;
     await cancelar('atendimento/cancelar', atendimento);
-    await telaAtendimentoEstu();
+    /*mensagem = {};
+    mensagem.titulo = 'Solicitação de cancelamento de atendimento',
+    mensagem.corpo = `Foi solicitado o cancelamento do atendimento do dia ${} com o(a) estudante ${}, matrícula: ${}.`,
+    mensagem.id_remetente = localStorage.getItem('authorization'),
+    mensagem.id_destinatario = ,
+    mensagem.id_atendimento
+    await enviaMensagem('mensagem', mensagem);
+    await telaAtendimentoEstu();*/
 }
 
 async function cancelar (theUrl, body){
     const myRequest = BASE_URL+theUrl;
-    var ret = await jQuery.ajax({
+    await jQuery.ajax({
         type: 'PUT',
         encoding:"UTF-8",
         dataType: 'json',
@@ -120,13 +127,23 @@ async function cancelar (theUrl, body){
         url: myRequest,
         data:JSON.stringify(body),
     });
-  
-    return ret;
   }
+
+  /*async function enviaMensagem (theUrl, body){
+    const myRequest = BASE_URL+theUrl;
+    await jQuery.ajax({
+        type: 'POST',
+        encoding:"UTF-8",
+        dataType: 'json',
+        contentType: 'application/json',
+        url: myRequest,
+        data:JSON.stringify(body),
+    });
+  }*/
 
   async function primeiroLogin (theUrl){
     const myRequest = BASE_URL+theUrl;
-    var ret = await jQuery.ajax({
+    await jQuery.ajax({
         type: 'PUT',
         encoding:"UTF-8",
         dataType: 'json',
@@ -134,6 +151,4 @@ async function cancelar (theUrl, body){
         url: myRequest,
         data:JSON.stringify({id_usuario:localStorage.getItem('authorization'),primeiro_login:1}),
     });
-  
-    return ret;
   }
