@@ -38,6 +38,8 @@ routes.get('/atendimento/estudante', AtendimentoController.listaAtendimentoEstu)
 
 routes.get('/atendimento/mensagem', AtendimentoController.montarMensagem);
 
+routes.get('/atendimento/mensagemEstu', AtendimentoController.montarMensagemEstu);
+
 //Rota de registro do atendimento
 routes.post('/atendimento', AtendimentoController.create);
 

@@ -24,7 +24,7 @@ module.exports = {
         const id_usuario = request.headers.authorization;
         var atual = new Date();
         var atualData = atual.getFullYear()+"-"+(atual.getMonth() + 1)+"-"+atual.getDate();
-        const atendimento = await connection('atendimento').join('usuario', 'atendimento.id_aluno', '=', 'usuario.id_usuario').select('atendimento.id_atendimento', 'atendimento.data_atendimento', 'atendimento.horario', 'atendimento.local', 'atendimento.materia', 'usuario.num_matricula', 'usuario.nome').where('atendimento.id_professor', id_usuario).andWhereNot('atendimento.status_cancelamento', 1).andWhere('atendimento.data_atendimento', '>=', atualData).orderBy('atendimento.data_atendimento');
+        const atendimento = await connection('atendimento').join('usuario', 'atendimento.id_aluno', '=', 'usuario.id_usuario').select('atendimento.id_atendimento', 'atendimento.data_atendimento', 'atendimento.horario', 'atendimento.local', 'atendimento.materia', 'usuario.num_matricula', 'usuario.id_usuario', 'usuario.nome').where('atendimento.id_professor', id_usuario).andWhereNot('atendimento.status_cancelamento', 1).andWhere('atendimento.data_atendimento', '>=', atualData).orderBy('atendimento.data_atendimento');
         
         if(atendimento.length>0){
             var resultado={};
@@ -35,7 +35,8 @@ module.exports = {
                     horario:element.horario, 
                     local:element.local, 
                     materia:element.materia, 
-                    matricula:element.num_matricula, 
+                    matricula:element.num_matricula,
+                    id_usuario:element.id_usuario, 
                     nome:element.nome
                 }
                 var data = element.data_atendimento;
@@ -173,6 +174,23 @@ module.exports = {
                 dataMsg:dataFormatada, 
                 nomeMsg:element.nome, 
                 matriculaMsg:element.num_matricula
+            }
+        }
+        return response.json(atendimentoUnico);
+    },
+
+    async montarMensagemEstu(request,response){
+        const id_atend = request.headers.id_atendimento;
+        const mensagemMontada = await connection('atendimento').select('data_atendimento').where('id_atendimento', id_atend);
+        for (let i = 0; i < mensagemMontada.length; i++) {
+            const element = mensagemMontada[i];
+
+            var data = element.data_atendimento;
+            nomeDia = new Array ("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado");
+            let dataFormatada = nomeDia[data.getDay()];
+
+            var atendimentoUnico = {
+                dataMsg:dataFormatada
             }
         }
         return response.json(atendimentoUnico);

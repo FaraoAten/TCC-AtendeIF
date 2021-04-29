@@ -127,7 +127,6 @@ async function montaPCancelar(){
         mensagem.id_remetente = localStorage.getItem('authorization');
         mensagem.id_destinatario = localStorage.getItem('id_usuario');
         mensagem.id_atendimento = localStorage.getItem('id_atendimento');
-        console.log(JSON.stringify(mensagem));
         await enviaMensagem('mensagem', mensagem);
 
         await telaAtendimentoEstu();
