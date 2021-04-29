@@ -62,6 +62,11 @@ async function telaAtendimentoProf(){
                 divCol.appendChild(btnCancelar);
                 divLinha.appendChild(divCol);
                 divCol.classList.add("col-11", "col-md-6", "col-lg-4", "border", "border-2", "border-dark", "arredondado", "p-2", "maior14", "mt-3", "mx-3");
+                divNome.classList.add("maior16");
+                divMat.classList.add("maior16");
+                divDisciplina.classList.add("maior16");
+                divHora.classList.add("maior16");
+                divLocal.classList.add("maior16");
                 btnAdiar.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "me-1", "maior14");
                 btnCancelar.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "ms-1", "maior14");
                 divNome.innerHTML+=elemento.nome;

@@ -23,7 +23,9 @@ async function pesquisa(){
                 divMiniPai.appendChild(btn);
                 divPai.appendChild(divMiniPai);
                 divPai.classList.add("row", "justify-content-center", "my-5");
-                divMiniPai.classList.add("col-11", "col-md-5", "col-lg-3", "border", "border-dark", "arredondado", "p-2", "maior14");
+                divMiniPai.classList.add("col-11", "col-md-5", "col-lg-4", "border", "border-dark", "arredondado", "p-2", "maior14");
+                divNome.classList.add("maior16");
+                divMat.classList.add("maior16");
                 btn.classList.add("col-9", "btn", "btn-md", "arredondado", "border-dark", "sombra", "btn-success", "mt-2", "maior14");
                 btn.innerHTML += '&nbsp;&nbsp;<i class="fas fa-pencil-alt"></i>';
                 btn.onclick = function(){window.location.href = './editarPerfilEstu.html'; localStorage.setItem('id_usuario', result[i].id_usuario); localStorage.setItem('nome', result[i].nome); localStorage.setItem('num_matricula', result[i].num_matricula);};

@@ -63,6 +63,10 @@ async function telaAtendimentoEstu(){
                 divCol.appendChild(btnPCancela);
                 divLinha.appendChild(divCol);
                 divCol.classList.add("col-12", "col-md-6", "col-lg-4", "border", "border-2", "border-dark", "arredondado", "p-2", "maior14", "mt-3", "mx-3");
+                divNome.classList.add("maior16");
+                divDisciplina.classList.add("maior16");
+                divHora.classList.add("maior16");
+                divLocal.classList.add("maior16");
                 if(elemento.status==2){
                     btnPCancela.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "ms-1", "maior14", "disabled");
                 }else{
