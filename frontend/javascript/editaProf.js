@@ -39,7 +39,7 @@ function editarProf(header){
         }
 
         showMod('confirmacao',`Por favor confirme os dados, dados em branco não irão gerar alterações.<br/><br/>Nome: ${nomeEditProf.value}<br/>Tipo: ${tipoTxt}<br/>SIAPE: ${matriculaEditProf.value}<br/>Senha: ${senhaEditProf.value}`);
-        showMod('msg', '<button type="button" class="btn btn-danger btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button><button type="button" class="btn btn-success btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(true)">Confirmar</button>')
+        showMod('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(true)">Confirmar</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button>')
         myModal.show();
     }
   }

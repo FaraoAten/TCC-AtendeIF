@@ -1,3 +1,8 @@
+var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+    keyboard: false,
+    focus: true
+  }); 
+  
 window.onload = telaAtendimentoProf();
 
 async function telaAtendimentoProf(){
@@ -56,9 +61,9 @@ async function telaAtendimentoProf(){
                 divCol.appendChild(btnAdiar);
                 divCol.appendChild(btnCancelar);
                 divLinha.appendChild(divCol);
-                divCol.classList.add("col-11", "col-md-6", "col-lg-4", "border", "border-2", "border-dark", "arredondado", "p-2", "maior", "mt-3", "mx-3");
-                btnAdiar.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "me-1", "maior");
-                btnCancelar.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "ms-1", "maior");
+                divCol.classList.add("col-11", "col-md-6", "col-lg-4", "border", "border-2", "border-dark", "arredondado", "p-2", "maior14", "mt-3", "mx-3");
+                btnAdiar.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "me-1", "maior14");
+                btnCancelar.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "ms-1", "maior14");
                 divNome.innerHTML+=elemento.nome;
                 divMat.innerHTML+=elemento.matricula;
                 divDisciplina.innerHTML+=elemento.materia;
@@ -66,12 +71,16 @@ async function telaAtendimentoProf(){
                 divHora.innerHTML+=elemento.horario;
                 btnAdiar.innerHTML+='&nbsp;&nbsp;<i class="far fa-clock fa-lg"></i>';
                 btnCancelar.innerHTML+='&nbsp;&nbsp;<i class="fas fa-ban fa-lg"></i>';
-                btnAdiar.onclick = function () {window.location.href = './adiarAtendimento.html'; localStorage.setItem('id_atendimento', elemento.id);}
-                btnCancelar.onclick = function(){localStorage.setItem('id_atendimento', elemento.id); montaCancelar()};
+                btnAdiar.onclick = function () {window.location.href = './adiarAtendimento.html'; localStorage.setItem('id_atendimento', elemento.id); localStorage.setItem('horario', elemento.horario); localStorage.setItem('local', elemento.local); localStorage.setItem('nome', elemento.nome);}
+                btnCancelar.onclick = function(){
+                    localStorage.setItem('id_atendimento', elemento.id);
+                    showMod('confirmacao','Por favor confirme o cancelamento.');
+                    showMod('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(true)" data-bs-dismiss="modal">Confirmar</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button>');
+                    myModal.show();
+                };
             }
-            divLinha.classList.add("row", "justify-content-center", "mb-3", "maisMaior2");
-            divColuna.classList.add("border-2", "border-bottom", "border-dark", "col-11", "col-md-6", "col-lg-11");
-            str.classList.add("mx-5");
+            divLinha.classList.add("row", "justify-content-center", "mb-3", "maior28");
+            divColuna.classList.add("border-2", "border-bottom", "border-dark", "col-11", "col-md-6", "col-lg-11", "text-center");
             main.appendChild(divLinha);
         }
     }).catch(function(p){
@@ -95,6 +104,12 @@ function listaAtendimentoProf(theUrl){
             error: function(erro) {reject(erro)}
          });
     });
+}
+
+function confirmar (confirm) {
+    if(confirm){ 
+        montaCancelar();
+    }
 }
 
 async function montaCancelar(){

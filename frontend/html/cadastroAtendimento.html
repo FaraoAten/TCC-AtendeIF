@@ -12,9 +12,9 @@
 <body>
     <div class="container-fluid">
         <header class="row">
-            <nav class="navbar navbar-dark azul maisMaior2">
+            <nav class="navbar navbar-dark azul maior20">
                 <div class="container-fluid">
-                  <button class="navbar-toggler text-white text-center maisMaior" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" id='navDepen'>
+                  <button class="navbar-toggler text-white text-center maior28" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" id='navDepen'>
                     <i class="fas fa-bars"></i> Menu
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -40,32 +40,37 @@
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
-                    <div class="modal-header" id="confirmacao">
+                    <div class="modal-header maiorMod20" id="confirmacao">
                       <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
-                    <div class="modal-body maiorMod" id="msg"></div>
+                    <div class="modal-body maiorMod28" id="msg"></div>
                   </div>
                 </div>
               </div>
             <div class="row justify-content-center">
-                <div class="col-md-6 col-lg-4 mt-5 mb-4">
+                <div class="col-md-8 col-lg-6 mt-5 mb-2">
                     <h1>Cadastrar Atendimento</h1>
                 </div>
             </div>
+            <div class="row justify-content-center">
+              <div class="col-md-6 col-lg-4 mb-4 text-center">
+                  <u><h1 id="nome"></h1></u>
+              </div>
+          </div>
             <form class="row justify-content-center g-2 needs-validation" id="cadastroAtendimento" novalidate>
                 <div class="row justify-content-center g-2">
                     <div class="mb-3 col-md-6 col-lg-4">
                         <div class="form-floating">
                             <input type="date" class="form-control arredondado sombra" id="dataCadastro" placeholder="Data" autocomplete="off" required>
-                            <label class="maior" for="dataCadastro">Data</label>
-                            <div class="invalid-feedback maior">Digite a data em que será o atendimento.</div>
+                            <label class="maior14" for="dataCadastro">Data</label>
+                            <div class="invalid-feedback maior14">Digite a data em que será o atendimento.</div>
                         </div>
                     </div>
                     <div class="mb-3 col-md-6 col-lg-4">
                         <div class="form-floating">
                             <input type="time" class="form-control arredondado sombra" id="horaCadastro" placeholder="Horário" autocomplete="off" required>
-                            <label class="maior" for="horaCadastro">Horário</label>
-                            <div class="invalid-feedback maior">Digite o horário em que será o atendimento.</div>
+                            <label class="maior14" for="horaCadastro">Horário</label>
+                            <div class="invalid-feedback maior14">Digite o horário em que será o atendimento.</div>
                         </div>
                     </div>
                 </div>
@@ -73,15 +78,15 @@
                     <div class="mb-3 col-md-6 col-lg-4">
                         <div class="form-floating">
                             <input type="text" class="form-control arredondado sombra" id="localCadastro" placeholder="Local" autocomplete="off" required>
-                            <label class="maior" for="localCadastro">Local</label>
-                            <div class="invalid-feedback maior">Digite o local onde será o atendimento.</div>
+                            <label class="maior14" for="localCadastro">Local</label>
+                            <div class="invalid-feedback maior14">Digite o local onde será o atendimento.</div>
                         </div>
                     </div>
                     <div class="mb-3 col-md-6 col-lg-4">
                         <div class="form-floating">
                             <input type="text" class="form-control arredondado sombra" id="disciplinaCadastro" placeholder="Disciplina" autocomplete="off" required>
-                            <label class="maior" for="disciplinaCadastro">Disciplina</label>
-                            <div class="invalid-feedback maior">Digite a disciplina que será lecionada no atendimento.</div>
+                            <label class="maior14" for="disciplinaCadastro">Disciplina</label>
+                            <div class="invalid-feedback maior14">Digite a disciplina que será lecionada no atendimento.</div>
                         </div>
                     </div>
                 </div>

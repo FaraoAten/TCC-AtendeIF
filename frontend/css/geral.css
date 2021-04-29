@@ -19,21 +19,26 @@ html,body{
    text-transform: uppercase;
 }
 
-.maior{
-   font-size: 14pt;
-}
-
-.maiorMod{
+.maiorMod28{
    font-size: 28pt;
    color: black;
 }
 
-.maisMaior{
-   font-size: 28pt;
+.maiorMod20{
+   font-size: 20pt;
+   color: black;
 }
 
-.maisMaior2{
+.maior14{
+   font-size: 14pt;
+}
+
+.maior20{
    font-size: 20pt;
+}
+
+.maior28{
+   font-size: 28pt;
 }
 
 h1{

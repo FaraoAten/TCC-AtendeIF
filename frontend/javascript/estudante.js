@@ -1,10 +1,11 @@
+var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+    keyboard: false,
+    focus: true
+  });
+
 window.onload = function () {
     if(localStorage.getItem('primeiroLogin')==0){
 
-        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
-            keyboard: false,
-            focus: true
-          });
           myModal.show();
 
           localStorage.setItem('primeiroLogin', 1);
@@ -61,22 +62,26 @@ async function telaAtendimentoEstu(){
                 divCol.appendChild(divHora);
                 divCol.appendChild(btnPCancela);
                 divLinha.appendChild(divCol);
-                divCol.classList.add("col-11", "col-md-6", "col-lg-3", "border", "border-2", "border-dark", "arredondado", "p-2", "maior", "mt-3", "mx-3");
+                divCol.classList.add("col-12", "col-md-6", "col-lg-4", "border", "border-2", "border-dark", "arredondado", "p-2", "maior14", "mt-3", "mx-3");
                 if(elemento.status==2){
-                    btnPCancela.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "ms-1", "maior", "disabled");
+                    btnPCancela.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "ms-1", "maior14", "disabled");
                 }else{
-                    btnPCancela.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "ms-1", "maior");
+                    btnPCancela.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "ms-1", "maior14");
                 }
                 divNome.innerHTML+=elemento.nome;
                 divDisciplina.innerHTML+=elemento.materia;
                 divLocal.innerHTML+=elemento.local;
                 divHora.innerHTML+=elemento.horario;
                 btnPCancela.innerHTML+='&nbsp;&nbsp;<i class="fas fa-ban fa-lg"></i>';
-                btnPCancela.onclick = function(){localStorage.setItem('id_atendimento', elemento.id); montaPCancelar()};
+                btnPCancela.onclick = function(){
+                    localStorage.setItem('id_atendimento', elemento.id); 
+                    showMod('confirmacao','Por favor confirme o pedido de cancelamento.');
+                    showMod('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(true)" data-bs-dismiss="modal">Confirmar</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button>');
+                    myModal.show();
+                };
             }
-            divLinha.classList.add("row", "justify-content-center", "mb-3", "maisMaior2");
-            divColuna.classList.add("border-2", "border-bottom", "border-dark", "col-11", "col-md-6", "col-lg-9");
-            str.classList.add("mx-5");
+            divLinha.classList.add("row", "justify-content-center", "mb-3", "maior28");
+            divColuna.classList.add("border-2", "border-bottom", "border-dark", "col-12", "col-md-6", "col-lg-9", "text-center");
             main.appendChild(divLinha);
         }
     }).catch(function(p){
@@ -102,6 +107,12 @@ function listaAtendimentoEstu(theUrl){
     });
 }
 
+function confirmar (confirm) {
+    if(confirm){ 
+        montaPCancelar();
+    }
+}
+
 async function montaPCancelar(){
     atendimento = {};
     atendimento.id_atendimento = localStorage.getItem('id_atendimento');
@@ -113,8 +124,8 @@ async function montaPCancelar(){
     mensagem.id_remetente = localStorage.getItem('authorization'),
     mensagem.id_destinatario = ,
     mensagem.id_atendimento
-    await enviaMensagem('mensagem', mensagem);
-    await telaAtendimentoEstu();*/
+    await enviaMensagem('mensagem', mensagem);*/
+    await telaAtendimentoEstu();
 }
 
 async function cancelar (theUrl, body){

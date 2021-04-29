@@ -31,17 +31,17 @@ async function pesquisa(){
                 divMiniPai.appendChild(btnC);
                 divPai.appendChild(divMiniPai);
                 divPai.classList.add("row", "justify-content-center", "my-5");
-                divMiniPai.classList.add("col-11", "col-md-5", "col-lg-6", "border", "border-dark", "arredondado", "p-2", "maior");
-                btn.classList.add("col-md-6", "col-5", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "me-1", "maior");
-                btnC.classList.add("col-md-5", "col-5", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "ms-1", "maior");
+                divMiniPai.classList.add("col-11", "col-md-5", "col-lg-6", "border", "border-dark", "arredondado", "p-2", "maior14");
+                btn.classList.add("col-md-6", "col-5", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "me-1", "maior14");
+                btnC.classList.add("col-md-5", "col-5", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "ms-1", "maior14");
                 spn.classList.add("some");
                 spnC.classList.add("some");
                 spn.innerHTML += '&nbsp;&nbsp;';
                 spnC.innerHTML += '&nbsp;&nbsp;';
                 btn.innerHTML += '<i class="far fa-address-book fa-lg"></i></i>';
                 btnC.innerHTML += '<i class="far fa-calendar-check fa-lg"></i>';
-                btn.onclick = function () {window.location.href = './atendimentosEstuProf.html'; localStorage.setItem('id_usuario', result[i].id_usuario);}
-                btnC.onclick = function(){window.location.href = './cadastroAtendimento.html'; localStorage.setItem('id_usuario', result[i].id_usuario);};
+                btn.onclick = function () {window.location.href = './atendimentosEstuProf.html'; localStorage.setItem('id_usuario', result[i].id_usuario); localStorage.setItem('nome', nome);}
+                btnC.onclick = function(){window.location.href = './cadastroAtendimento.html'; localStorage.setItem('id_usuario', result[i].id_usuario); localStorage.setItem('nome', nome);};
                 adiciona.appendChild(divPai);
             }
           }).catch(function(p){

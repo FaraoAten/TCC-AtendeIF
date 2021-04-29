@@ -14,17 +14,17 @@
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
-                <div class="modal-header" id="confirmacao">
+                <div class="modal-header maiorMod20" id="confirmacao">
                   <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body maiorMod" id="msg"></div>
+                <div class="modal-body maiorMod28" id="msg"></div>
               </div>
             </div>
           </div>
           <header class="row">
-            <nav class="navbar navbar-dark azul maisMaior2">
+            <nav class="navbar navbar-dark azul maior20">
                 <div class="container-fluid">
-                  <button class="navbar-toggler text-white text-center maisMaior" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" id='navDepen'>
+                  <button class="navbar-toggler text-white text-center maior28" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" id='navDepen'>
                     <i class="fas fa-bars"></i> Menu
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -55,8 +55,8 @@
             <div class="mb-3 col-md-6 col-lg-4">
                 <div class="form-floating">
                     <input type="text" class="form-control arredondado sombra" id="nomeEditProf" placeholder="Nome Completo" pattern="[A-z\u00C0-\u00FF ]{5,}" autocomplete="off" >
-                    <label class="maior" for="nomeEditProf">Nome Completo</label>
-                    <div class="invalid-feedback maior">Digite seu nome completo.</div>
+                    <label class="maior14" for="nomeEditProf">Nome Completo</label>
+                    <div class="invalid-feedback maior14">Digite seu nome completo.</div>
                 </div>
             </div>
             <div class="mb-3 col-md-6 col-lg-4">
@@ -65,21 +65,21 @@
                     <option value="2">Professor</option>
                     <option value="3">Professor e Pedagogia</option>
                 </select>
-                <div class="invalid-feedback maior">Escolha um tipo de usuário.</div>
+                <div class="invalid-feedback maior14">Escolha um tipo de usuário.</div>
             </div>
             <div class="row justify-content-center g-2">
                 <div class="mb-3 col-md-6 col-lg-4">
                     <div class="form-floating">
                         <input type="text" class="form-control arredondado sombra maiuscula"  id="matriculaEditProf" placeholder="Matrícula do SIAPE" autocomplete="off" pattern="[0-9]{7}" onkeyup="setaErro('matriculaEditProf','invalidMatriculaEditProf'); verificaIgualMatEdit('matriculaEditProf', 'cMatriculaEditProf', 'invalidCMatriculaEditProf')" onblur="maiuscula('matriculaEditProf')" >
-                        <label class="maior" for="matriculaEditProf">Matrícula do SIAPE</label>
-                        <div class="invalid-feedback maior" id="invalidMatriculaEditProf">Digite sua matrícula.</div>
+                        <label class="maior14" for="matriculaEditProf">Matrícula do SIAPE</label>
+                        <div class="invalid-feedback maior14" id="invalidMatriculaEditProf">Digite sua matrícula.</div>
                     </div>
                 </div>
                 <div class="mb-3 col-md-6 col-lg-4">
                     <div class="form-floating">
                         <input type="text" class="form-control arredondado sombra maiuscula" id="cMatriculaEditProf" placeholder="Confirmar Matrícula" autocomplete="off" pattern="[0-9]{7}" onkeyup="setaErro('cMatriculaEditProf','invalidCMatriculaEditProf'); verificaIgualMatEdit('matriculaEditProf', 'cMatriculaEditProf', 'invalidCMatriculaEditProf')" onblur="maiuscula('cMatriculaEditProf')" >
-                        <label class="maior" for="cMatriculaEditProf">Confirmar Matrícula</label>
-                        <div class="invalid-feedback maior" id="invalidCMatriculaEditProf">Repita sua matrícula.</div>
+                        <label class="maior14" for="cMatriculaEditProf">Confirmar Matrícula</label>
+                        <div class="invalid-feedback maior14" id="invalidCMatriculaEditProf">Repita sua matrícula.</div>
                     </div>
                 </div>
             </div>
@@ -87,12 +87,12 @@
                 <div class="mb-3 col-md-6 col-lg-4">
                     <div class="form-floating">
                         <input type="password" class="form-control arredondado sombra" id="senhaEditProf" placeholder="Senha" autocomplete="off" pattern=".{3,}" onkeyup="verificaIgualSenEdit('senhaEditProf','cSenhaEditProf','invalidSenhaEditProf')" >
-                        <label class="maior" for="senhaEditProf">Senha</label>
-                        <div class="invalid-feedback maior">Digite uma senha com, no mínimo, 3 caracteres.</div>
+                        <label class="maior14" for="senhaEditProf">Senha</label>
+                        <div class="invalid-feedback maior14">Digite uma senha com, no mínimo, 3 caracteres.</div>
                     </div>
                     <div class="form-check mt-2">
                         <input class="form-check-input" type="checkbox" value="" id="cbSenhaEditProf" onchange="mostrarSenha('senhaEditProf','labelCbSenhaEditProf')">
-                        <label class="form-check-label maior" for="cbSenhaEditProf" id="labelCbSenhaEditProf">
+                        <label class="form-check-label maior14" for="cbSenhaEditProf" id="labelCbSenhaEditProf">
                             Ver senha <i class="far fa-eye" id="olho"></i>
                         </label>
                     </div>
@@ -100,12 +100,12 @@
                 <div class="mb-3 col-md-6 col-lg-4">
                     <div class="form-floating">
                         <input type="password" class="form-control arredondado sombra" id="cSenhaEditProf" placeholder="Confirmar Senha" autocomplete="off" onkeyup="verificaIgualSenEdit('senhaEditProf','cSenhaEditProf','invalidSenhaEditProf')" >
-                        <label class="maior" for="cSenhaEditProf">Confirmar Senha</label>
-                        <div class="invalid-feedback maior" id="invalidSenhaEditProf">Repita sua senha.</div>
+                        <label class="maior14" for="cSenhaEditProf">Confirmar Senha</label>
+                        <div class="invalid-feedback maior14" id="invalidSenhaEditProf">Repita sua senha.</div>
                     </div>
                     <div class="form-check mt-2">
                         <input class="form-check-input" type="checkbox" value="" id="cbCSenhaEditProf" onchange="mostrarSenha('cSenhaEditProf','labelCbCSenhaEditProf')">
-                        <label class="form-check-label maior" for="cbCSenhaEditProf" id="labelCbCSenhaEditProf">
+                        <label class="form-check-label maior14" for="cbCSenhaEditProf" id="labelCbCSenhaEditProf">
                             Ver senha <i class="far fa-eye" id="olho"></i>
                         </label>
                     </div>

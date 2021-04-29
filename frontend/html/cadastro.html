@@ -17,7 +17,7 @@
                 <div class="modal-header">
                   <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body maiorMod" id="msg"></div>
+                <div class="modal-body maiorMod28" id="msg"></div>
               </div>
             </div>
           </div>
@@ -30,23 +30,23 @@
             <div class="mb-3 col-md-6 col-lg-8">
                 <div class="form-floating">
                     <input type="text" class="form-control arredondado sombra" id="nomeCadastro" placeholder="Nome Completo" pattern="[A-z\u00C0-\u00FF ]{5,}" autocomplete="off" required>
-                    <label class="maior" for="nomeCadastro">Nome Completo</label>
-                    <div class="invalid-feedback maior">Digite seu nome completo.</div>
+                    <label class="maior14" for="nomeCadastro">Nome Completo</label>
+                    <div class="invalid-feedback maior14">Digite seu nome completo.</div>
                 </div>
             </div>
             <div class="row justify-content-center g-2">
                 <div class="mb-3 col-md-6 col-lg-4">
                     <div class="form-floating">
                         <input type="text" class="form-control arredondado sombra maiuscula"  id="matriculaCadastro" placeholder="Matrícula do IFSul" autocomplete="off" pattern="[0-9]{6}[A-z]{3}[Qq]" onkeyup="setaErro('matriculaCadastro','invalidMatriculaCad'); verificaIgualMat('matriculaCadastro', 'cMatriculaCadastro', 'invalidCMatriculaCad');" onblur="maiuscula('matriculaCadastro')" required>
-                        <label class="maior" for="matriculaCadastro">Matrícula do IFSul</label>
-                        <div class="invalid-feedback maior" id="invalidMatriculaCad">Digite sua matrícula.</div>
+                        <label class="maior14" for="matriculaCadastro">Matrícula do IFSul</label>
+                        <div class="invalid-feedback maior14" id="invalidMatriculaCad">Digite sua matrícula.</div>
                     </div>
                 </div>
                 <div class="mb-3 col-md-6 col-lg-4">
                     <div class="form-floating">
                         <input type="text" class="form-control arredondado sombra maiuscula" id="cMatriculaCadastro" placeholder="Confirmar Matrícula" autocomplete="off" pattern="[0-9]{6}[A-z]{3}[Qq]" onkeyup="setaErro('cMatriculaCadastro','invalidCMatriculaCad'); verificaIgualMat('matriculaCadastro', 'cMatriculaCadastro', 'invalidCMatriculaCad');" onblur="maiuscula('cMatriculaCadastro')" required>
-                        <label class="maior" for="cMatriculaCadastro">Confirmar Matrícula</label>
-                        <div class="invalid-feedback maior" id="invalidCMatriculaCad">Repita sua matrícula.</div>
+                        <label class="maior14" for="cMatriculaCadastro">Confirmar Matrícula</label>
+                        <div class="invalid-feedback maior14" id="invalidCMatriculaCad">Repita sua matrícula.</div>
                     </div>
                 </div>
             </div>
@@ -54,12 +54,12 @@
                 <div class="mb-3 col-md-6 col-lg-4">
                     <div class="form-floating">
                         <input type="password" class="form-control arredondado sombra" id="senhaCadastro" placeholder="Senha" autocomplete="off" pattern=".{3,}" onkeyup="verificaIgualSen('senhaCadastro','cSenhaCadastro','invalidSenhaCad')" required>
-                        <label class="maior" for="senhaCadastro">Senha</label>
-                        <div class="invalid-feedback maior">Digite uma senha com, no mínimo, 3 caracteres.</div>
+                        <label class="maior14" for="senhaCadastro">Senha</label>
+                        <div class="invalid-feedback maior14">Digite uma senha com, no mínimo, 3 caracteres.</div>
                     </div>
                     <div class="form-check mt-2">
                         <input class="form-check-input" type="checkbox" value="" id="cbSenhaCad" onchange="mostrarSenha('senhaCadastro','labelCbSenhaCadastro')">
-                        <label class="form-check-label maior" for="cbSenhaCad" id="labelCbSenhaCadastro">
+                        <label class="form-check-label maior14" for="cbSenhaCad" id="labelCbSenhaCadastro">
                             Ver senha <i class="far fa-eye" id="olho"></i>
                         </label>
                     </div>
@@ -67,12 +67,12 @@
                 <div class="mb-3 col-md-6 col-lg-4">
                     <div class="form-floating">
                         <input type="password" class="form-control arredondado sombra" id="cSenhaCadastro" placeholder="Confirmar Senha" autocomplete="off" onkeyup="verificaIgualSen('senhaCadastro','cSenhaCadastro','invalidSenhaCad')" required>
-                        <label class="maior" for="cSenhaCadastro">Confirmar Senha</label>
-                        <div class="invalid-feedback maior" id="invalidSenhaCad">Repita sua senha.</div>
+                        <label class="maior14" for="cSenhaCadastro">Confirmar Senha</label>
+                        <div class="invalid-feedback maior14" id="invalidSenhaCad">Repita sua senha.</div>
                     </div>
                     <div class="form-check mt-2">
                         <input class="form-check-input" type="checkbox" value="" id="cbCSenhaCad" onchange="mostrarSenha('cSenhaCadastro','labelCbCSenhaCadastro')">
-                        <label class="form-check-label maior" for="cbCSenhaCad" id="labelCbCSenhaCadastro">
+                        <label class="form-check-label maior14" for="cbCSenhaCad" id="labelCbCSenhaCadastro">
                             Ver senha <i class="far fa-eye" id="olho"></i>
                         </label>
                     </div>

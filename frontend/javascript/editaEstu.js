@@ -5,6 +5,12 @@ var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
   focus: true
 });
 
+window.onload = function(){
+  document.getElementById('nomeEditEstu').value = localStorage.getItem('nome');
+  document.getElementById('matriculaEditEstu').value = localStorage.getItem('num_matricula');
+  document.getElementById('cMatriculaEditEstu').value = localStorage.getItem('num_matricula');
+}
+
 function editarEstu(header){
 
     var form = document.getElementById("editarPerfilEstu");
@@ -26,7 +32,7 @@ function editarEstu(header){
         usuario.password = senhaEditEstu.value;
 
         showMod('confirmacao',`Por favor confirme os dados, dados em branco não irão gerar alterações.<br/><br/>Nome: ${nomeEditEstu.value}<br/>Matrícula: ${matriculaEditEstu.value}<br/>Senha: ${senhaEditEstu.value}`);
-        showMod('msg', '<button type="button" class="btn btn-danger btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button><button type="button" class="btn btn-success btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(true)">Confirmar</button>')
+        showMod('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(true)">Confirmar</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button>')
         myModal.show();
     }
   }

@@ -5,6 +5,10 @@ var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
     focus: true
     });
 
+window.onload = function(){
+  document.getElementById('nome').innerHTML = localStorage.getItem('nome');
+}
+
 function cadastrarAtendimento(id_aluno, id_professor){
 
     var form = document.getElementById("cadastroAtendimento");
@@ -29,7 +33,7 @@ function cadastrarAtendimento(id_aluno, id_professor){
         atendimento.id_professor = id_professor;
         
         showMod('confirmacao',`Por favor confirme os dados.<br/><br/>Data: ${dataCadastro.value}<br/>Horário: ${horaCadastro.value}<br/>Local: ${localCadastro.value}<br/>Disciplina: ${disciplinaCadastro.value}`);
-        showMod('msg', '<button type="button" class="btn btn-danger btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button><button type="button" class="btn btn-success btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(true)">Confirmar</button>')
+        showMod('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(true)">Confirmar</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button>')
         myModal.show();
     }
   }
