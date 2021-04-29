@@ -103,7 +103,7 @@ module.exports = {
         var semana = new Date();
         semana.setDate(atual.getDate() + 6);
         var semanaData = semana.getFullYear()+"-"+(semana.getMonth() + 1)+"-"+semana.getDate();
-        const atendimento = await connection('atendimento').join('usuario', 'atendimento.id_professor', '=', 'usuario.id_usuario').select('atendimento.id_atendimento', 'atendimento.data_atendimento', 'atendimento.data_atendimento', 'atendimento.horario', 'atendimento.local', 'atendimento.materia', 'atendimento.status_cancelamento', 'usuario.nome').where('atendimento.id_aluno', id_usuario).andWhereNot('atendimento.status_cancelamento', 1).andWhere('atendimento.data_atendimento', '>=', atualData).andWhere('atendimento.data_atendimento','<=', semanaData).orderBy('atendimento.data_atendimento');
+        const atendimento = await connection('atendimento').join('usuario', 'atendimento.id_professor', '=', 'usuario.id_usuario').select('atendimento.id_atendimento', 'atendimento.data_atendimento', 'atendimento.data_atendimento', 'atendimento.horario', 'atendimento.local', 'atendimento.materia', 'atendimento.status_cancelamento', 'usuario.id_usuario', 'usuario.nome').where('atendimento.id_aluno', id_usuario).andWhereNot('atendimento.status_cancelamento', 1).andWhere('atendimento.data_atendimento', '>=', atualData).andWhere('atendimento.data_atendimento','<=', semanaData).orderBy('atendimento.data_atendimento');
         
         if(atendimento.length > 0){
             var resultado={};
@@ -115,6 +115,7 @@ module.exports = {
                     local:element.local, 
                     materia:element.materia,
                     status:element.status_cancelamento,
+                    id_usuario:element.id_usuario,
                     nome:element.nome
                 }
                 var data = element.data_atendimento;
@@ -152,7 +153,28 @@ module.exports = {
         const {id_atendimento, status_cancelamento} = request.body;
         const cancela = await connection('atendimento').where('id_atendimento', id_atendimento).update({status_cancelamento:status_cancelamento});
         return response.status(204).send();
+    },
+
+    async montarMensagem(request,response){
+        const id_atend = request.headers.id_atendimento;
+        const mensagemMontada = await connection('atendimento').join('usuario', 'atendimento.id_aluno', '=', 'usuario.id_usuario').select('atendimento.data_atendimento','usuario.nome','usuario.num_matricula').where('atendimento.id_atendimento', id_atend);
+        for (let i = 0; i < mensagemMontada.length; i++) {
+            const element = mensagemMontada[i];
+
+            var data = element.data_atendimento;
+            let dataFormatada;
+            if((data.getMonth() + 1) < 10){
+                dataFormatada = ((data.getDate() )) + "/0" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
+            }else{
+                dataFormatada = ((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
+            }
+
+            var atendimentoUnico = {
+                dataMsg:dataFormatada, 
+                nomeMsg:element.nome, 
+                matriculaMsg:element.num_matricula
+            }
+        }
+        return response.json(atendimentoUnico);
     }
 }
-
-   

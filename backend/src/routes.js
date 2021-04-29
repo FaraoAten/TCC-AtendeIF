@@ -36,6 +36,8 @@ routes.get('/atendimento/professorEstudante', AtendimentoController.listaAtendim
 //Rota de listagem de atendimentos de estudante.
 routes.get('/atendimento/estudante', AtendimentoController.listaAtendimentoEstu);
 
+routes.get('/atendimento/mensagem', AtendimentoController.montarMensagem);
+
 //Rota de registro do atendimento
 routes.post('/atendimento', AtendimentoController.create);
 

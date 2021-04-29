@@ -74,7 +74,8 @@ async function telaAtendimentoEstu(){
                 divHora.innerHTML+=elemento.horario;
                 btnPCancela.innerHTML+='&nbsp;&nbsp;<i class="fas fa-ban fa-lg"></i>';
                 btnPCancela.onclick = function(){
-                    localStorage.setItem('id_atendimento', elemento.id); 
+                    localStorage.setItem('id_atendimento', elemento.id);
+                    localStorage.setItem('id_usuario', elemento.id_usuario); 
                     showMod('confirmacao','Por favor confirme o pedido de cancelamento.');
                     showMod('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(true)" data-bs-dismiss="modal">Confirmar</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button>');
                     myModal.show();
@@ -114,18 +115,36 @@ function confirmar (confirm) {
 }
 
 async function montaPCancelar(){
-    atendimento = {};
-    atendimento.id_atendimento = localStorage.getItem('id_atendimento');
-    atendimento.status_cancelamento = 2;
-    await cancelar('atendimento/cancelar', atendimento);
-    /*mensagem = {};
-    mensagem.titulo = 'Solicitação de cancelamento de atendimento',
-    mensagem.corpo = `Foi solicitado o cancelamento do atendimento do dia ${} com o(a) estudante ${}, matrícula: ${}.`,
-    mensagem.id_remetente = localStorage.getItem('authorization'),
-    mensagem.id_destinatario = ,
-    mensagem.id_atendimento
-    await enviaMensagem('mensagem', mensagem);*/
-    await telaAtendimentoEstu();
+    await montarMsg("atendimento/mensagem").then(async function(result){
+        atendimento = {};
+        atendimento.id_atendimento = localStorage.getItem('id_atendimento');
+        atendimento.status_cancelamento = 2;
+        await cancelar('atendimento/cancelar', atendimento);
+
+        var mensagem = {};
+        mensagem.titulo = 'Solicitação de cancelamento de atendimento';
+        mensagem.corpo = `Foi solicitado o cancelamento do atendimento do dia ${result.dataMsg} com o(a) estudante ${result.nomeMsg}, matrícula: ${result.matriculaMsg}.`;
+        mensagem.id_remetente = localStorage.getItem('authorization');
+        mensagem.id_destinatario = localStorage.getItem('id_usuario');
+        mensagem.id_atendimento = localStorage.getItem('id_atendimento');
+        console.log(JSON.stringify(mensagem));
+        await enviaMensagem('mensagem', mensagem);
+
+        await telaAtendimentoEstu();
+    });
+}
+
+function montarMsg(theUrl){
+    const myRequest = BASE_URL+theUrl;
+    return new Promise((resolve,reject) => {
+        $.ajax({
+            url: myRequest,
+            type: "GET",
+            beforeSend: function(xhr){xhr.setRequestHeader('id_atendimento', localStorage.getItem('id_atendimento'));},
+            success: function(result) {resolve(result)},
+            error: function(erro) {reject(erro)}
+         });
+    });
 }
 
 async function cancelar (theUrl, body){
@@ -140,7 +159,7 @@ async function cancelar (theUrl, body){
     });
   }
 
-  /*async function enviaMensagem (theUrl, body){
+  async function enviaMensagem (theUrl, body){
     const myRequest = BASE_URL+theUrl;
     await jQuery.ajax({
         type: 'POST',
@@ -150,7 +169,7 @@ async function cancelar (theUrl, body){
         url: myRequest,
         data:JSON.stringify(body),
     });
-  }*/
+  }
 
   async function primeiroLogin (theUrl){
     const myRequest = BASE_URL+theUrl;

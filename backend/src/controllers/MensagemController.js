@@ -20,10 +20,14 @@ module.exports = {
     //Rota de listagem de mensagens
     async index(request, response) {
         const authorization = request.headers.authorization;
-        let mensagem = [];
 
-        mensagem = await connection('mensagem').select('titulo','corpo').where('id_destinatario', authorization).orderBy("data");
-
-        return response.json(mensagem);
+        var atual = new Date();
+        var atualData = atual.getFullYear()+"-"+(atual.getMonth() + 1)+"-"+atual.getDate();
+        const mensagem = await connection('mensagem').join('atendimento', 'mensagem.id_atendimento', '=', 'atendimento.id_atendimento').select('mensagem.titulo','mensagem.corpo').where('id_destinatario', authorization).andWhere('atendimento.data_atendimento', '>=', atualData).orderBy('data', 'desc');
+        if(mensagem.length > 0){
+            return response.json(mensagem);
+        }else{
+            return response.status(404).send();
+        }
     }
 }
