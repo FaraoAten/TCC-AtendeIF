@@ -18,7 +18,7 @@ window.onload = async function(){
             divPai.appendChild(divMiniPai);
             divPai.classList.add("row", "justify-content-center");
             divMiniPai.classList.add("col-12", "col-md-8", "col-lg-6", "border", "border-dark", "arredondado", "p-3", "maior14", "mb-3", "mb-md-4");
-            divTitulo.classList.add("mb-md-2", "mb-3","fw-bold", "maior20");
+            divTitulo.classList.add("mb-md-2", "mb-3","fw-bold", "maior20", "border-bottom", "border-secundary", "border-2");
             main.appendChild(divPai);
         }
     }).catch(function(p){
