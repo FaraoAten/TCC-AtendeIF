@@ -41,10 +41,16 @@ module.exports = {
                 }
                 var data = element.data_atendimento;
                 let dataFormatada;
-                if((data.getMonth() + 1) < 10){
-                    dataFormatada = ((data.getDate() )) + "/0" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
+                if(((data.getDate() ))<10){
+                    dataFormatada = "0" + ((data.getDate() ));
                 }else{
-                    dataFormatada = ((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
+                    dataFormatada = ((data.getDate() ));
+                }
+    
+                if((data.getMonth() + 1) < 10){
+                    dataFormatada += "/0" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
+                }else{
+                    dataFormatada += "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
                 }
 
                 if(resultado[dataFormatada] == undefined || resultado[dataFormatada] == null){
@@ -78,10 +84,16 @@ module.exports = {
                 }
                 var data = element.data_atendimento;
                 let dataFormatada;
-                if((data.getMonth() + 1) < 10){
-                    dataFormatada = ((data.getDate() )) + "/0" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
+                if(((data.getDate() ))<10){
+                    dataFormatada = "0" + ((data.getDate() ));
                 }else{
-                    dataFormatada = ((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
+                    dataFormatada = ((data.getDate() ));
+                }
+    
+                if((data.getMonth() + 1) < 10){
+                    dataFormatada += "/0" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
+                }else{
+                    dataFormatada += "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
                 }
     
                 if(resultado[dataFormatada] == undefined || resultado[dataFormatada] == null){
@@ -164,10 +176,17 @@ module.exports = {
 
             var data = element.data_atendimento;
             let dataFormatada;
-            if((data.getMonth() + 1) < 10){
-                dataFormatada = ((data.getDate() )) + "/0" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
+            
+            if(((data.getDate() ))<10){
+                dataFormatada = "0" + ((data.getDate() ));
             }else{
-                dataFormatada = ((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
+                dataFormatada = ((data.getDate() ));
+            }
+
+            if((data.getMonth() + 1) < 10){
+                dataFormatada += "/0" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
+            }else{
+                dataFormatada += "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
             }
 
             var atendimentoUnico = {
