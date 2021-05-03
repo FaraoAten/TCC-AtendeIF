@@ -10,7 +10,7 @@ var localAdiar = document.getElementById("localAdiar");
 
 window.onload = function(){
   document.getElementById('nome').innerHTML = localStorage.getItem('nome');
-  //dataAdiar.value = localStorage.getItem('data');
+  dataAdiar.value = localStorage.getItem('data');
   horaAdiar.value = localStorage.getItem('horario');
   localAdiar.value = localStorage.getItem('local');
 }

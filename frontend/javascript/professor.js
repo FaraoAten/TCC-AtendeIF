@@ -76,7 +76,25 @@ async function telaAtendimentoProf(){
                 divHora.innerHTML+=elemento.horario;
                 btnAdiar.innerHTML+='&nbsp;&nbsp;<i class="far fa-clock fa-lg"></i>';
                 btnCancelar.innerHTML+='&nbsp;&nbsp;<i class="fas fa-ban fa-lg"></i>';
-                btnAdiar.onclick = function () {window.location.href = './adiarAtendimento.html'; localStorage.setItem('id_atendimento', elemento.id); localStorage.setItem('horario', elemento.horario); localStorage.setItem('local', elemento.local); localStorage.setItem('nome', elemento.nome);}
+                
+                btnAdiar.onclick = function () {
+                    var dataLista = chave.split('/');
+                    var dataFormatada = "";
+                    for (let i = (dataLista.length - 1); i >= 0; i--) {
+                        if(i==0){
+                            dataFormatada += dataLista[i];
+                        }else{
+                            dataFormatada += dataLista[i]+"-"
+                        }               
+                    }
+                    window.location.href = './adiarAtendimento.html'; 
+                    localStorage.setItem('id_atendimento', elemento.id); 
+                    localStorage.setItem('horario', elemento.horario); 
+                    localStorage.setItem('local', elemento.local); 
+                    localStorage.setItem('nome', elemento.nome);
+                    localStorage.setItem('data', dataFormatada);
+                }
+
                 btnCancelar.onclick = function(){
                     localStorage.setItem('id_atendimento', elemento.id);
                     localStorage.setItem('id_usuario', elemento.id_usuario); 

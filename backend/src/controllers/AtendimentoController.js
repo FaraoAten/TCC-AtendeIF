@@ -30,9 +30,10 @@ module.exports = {
             var resultado={};
             for (let i = 0; i < atendimento.length; i++) {
                 const element = atendimento[i];
+                var hora = element.horario.substring(0,5);
                 var atendimentoUnico = {
                     id:element.id_atendimento,
-                    horario:element.horario, 
+                    horario:hora, 
                     local:element.local, 
                     materia:element.materia, 
                     matricula:element.num_matricula,
@@ -76,8 +77,9 @@ module.exports = {
             var resultado={};
             for (let i = 0; i < atendimento.length; i++) {
                 const element = atendimento[i];
+                var hora = element.horario.substring(0,5);
                 var atendimentoUnico = {
-                    horario:element.horario, 
+                    horario:hora, 
                     local:element.local, 
                     materia:element.materia,
                     nome:element.nome
@@ -122,9 +124,10 @@ module.exports = {
             var resultado={};
             for (let i = 0; i < atendimento.length; i++) {
                 const element = atendimento[i];
+                var hora = element.horario.substring(0,5);
                 var atendimentoUnico = {
                     id:element.id_atendimento,
-                    horario:element.horario, 
+                    horario:hora, 
                     local:element.local, 
                     materia:element.materia,
                     status:element.status_cancelamento,
