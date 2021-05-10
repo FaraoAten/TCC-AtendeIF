@@ -134,9 +134,18 @@ module.exports = {
                     id_usuario:element.id_usuario,
                     nome:element.nome
                 }
+
                 var data = element.data_atendimento;
-                nomeDia = new Array ("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado");
-                let dataFormatada = nomeDia[data.getDay()];
+                var amanhaData = atual.getFullYear()+"-"+(atual.getMonth() + 1)+"-"+(atual.getDate()+1);
+                let dataFormatada;
+                if(data == atualData){
+                    dataFormatada = "Hoje";
+                }else if(data == amanhaData){
+                    dataFormatada = "Amanhã";
+                }else{
+                    nomeDia = new Array ("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado");
+                    dataFormatada = nomeDia[data.getDay()];
+                }
     
                 if(resultado[dataFormatada] == undefined || resultado[dataFormatada] == null){
                     resultado[dataFormatada] = [];
