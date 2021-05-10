@@ -6,9 +6,9 @@ var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
 });
 
 window.onload = function(){
-  document.getElementById('nomeEditEstu').value = localStorage.getItem('nome');
-  document.getElementById('matriculaEditEstu').value = localStorage.getItem('num_matricula');
-  document.getElementById('cMatriculaEditEstu').value = localStorage.getItem('num_matricula');
+  document.getElementById('nomeEditEstu').value = sessionStorage.getItem('nome');
+  document.getElementById('matriculaEditEstu').value = sessionStorage.getItem('num_matricula');
+  document.getElementById('cMatriculaEditEstu').value = sessionStorage.getItem('num_matricula');
 }
 
 function editarEstu(header){

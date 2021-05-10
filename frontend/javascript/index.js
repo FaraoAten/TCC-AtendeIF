@@ -16,16 +16,14 @@ function Login(){
     });
 
     login("usuario/login", log).then(function(result){
+        sessionStorage.setItem('authorization', result.id_usuario);
         if(result.tipo == 1){
           window.location.href = './html/estudanteBase.html';
-          localStorage.setItem('authorization', result.id_usuario);
-          localStorage.setItem('primeiroLogin', result.primeiro_login);
+          sessionStorage.setItem('primeiroLogin', result.primeiro_login);
         }else if(result.tipo == 2){
           window.location.href = './html/professorBase.html';
-          localStorage.setItem('authorization', result.id_usuario);
         }else if(result.tipo == 3){
           window.location.href = './html/profPedagBase.html';
-          localStorage.setItem('authorization', result.id_usuario);
         }else{
           window.location.href = './html/pedagogiaBase.html';
         }
@@ -62,3 +60,12 @@ async function login(theUrl, body){
     });
     return ret;
   }
+
+  function limpaSession(){
+    var infos = ['horario','id_atendimento','authorization','local','data','nome','id_usuario','primeiroLogin','num_matricula'];
+    for(var info of infos){
+      sessionStorage.removeItem(info);
+    }
+  }
+
+  limpaSession();

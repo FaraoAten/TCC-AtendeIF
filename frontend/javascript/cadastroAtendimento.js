@@ -6,7 +6,7 @@ var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
     });
 
 window.onload = function(){
-  document.getElementById('nome').innerHTML = localStorage.getItem('nome');
+  document.getElementById('nome').innerHTML = sessionStorage.getItem('nome');
 }
 
 function cadastrarAtendimento(id_aluno, id_professor){

@@ -9,10 +9,10 @@ var horaAdiar = document.getElementById("horaAdiar");
 var localAdiar = document.getElementById("localAdiar");
 
 window.onload = function(){
-  document.getElementById('nome').innerHTML = localStorage.getItem('nome');
-  dataAdiar.value = localStorage.getItem('data');
-  horaAdiar.value = localStorage.getItem('horario');
-  localAdiar.value = localStorage.getItem('local');
+  document.getElementById('nome').innerHTML = sessionStorage.getItem('nome');
+  dataAdiar.value = sessionStorage.getItem('data');
+  horaAdiar.value = sessionStorage.getItem('horario');
+  localAdiar.value = sessionStorage.getItem('local');
 }
 
 function adiarAtendimento(header){

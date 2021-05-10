@@ -37,7 +37,7 @@ function listaNotificacoes(theUrl){
         $.ajax({
             url: myRequest,
             type: "GET",
-            beforeSend: function(xhr){xhr.setRequestHeader('authorization', localStorage.getItem('authorization'));},
+            beforeSend: function(xhr){xhr.setRequestHeader('authorization', sessionStorage.getItem('authorization'));},
             success: function(result) {resolve(result)},
             error: function(erro) {reject(erro)}
          });

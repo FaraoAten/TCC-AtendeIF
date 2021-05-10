@@ -2,7 +2,7 @@ window.onload = async function (){
     var main = document.getElementById('main');
     var topo = document.getElementById('topo');
     var colTopo = document.createElement('div');
-    var textoNome = document.createTextNode(localStorage.getItem('nome'));
+    var textoNome = document.createTextNode(sessionStorage.getItem('nome'));
     colTopo.appendChild(textoNome);
     topo.appendChild(colTopo);
     colTopo.classList.add("text-center", "fw-bold", "col-md-5", "col-lg-7", "col-12", "ms-lg-4", "maior28");
@@ -76,7 +76,7 @@ function listaAtendimentoEstuProf(theUrl){
         $.ajax({
             url: myRequest,
             type: "GET",
-            beforeSend: function(xhr){xhr.setRequestHeader('id_usuario', localStorage.getItem('id_usuario'));},
+            beforeSend: function(xhr){xhr.setRequestHeader('id_usuario', sessionStorage.getItem('id_usuario'));},
             success: function(result) {resolve(result)},
             error: function(erro) {reject(erro)}
          });

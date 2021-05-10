@@ -88,16 +88,16 @@ async function telaAtendimentoProf(){
                         }               
                     }
                     window.location.href = './adiarAtendimento.html'; 
-                    localStorage.setItem('id_atendimento', elemento.id); 
-                    localStorage.setItem('horario', elemento.horario); 
-                    localStorage.setItem('local', elemento.local); 
-                    localStorage.setItem('nome', elemento.nome);
-                    localStorage.setItem('data', dataFormatada);
+                    sessionStorage.setItem('id_atendimento', elemento.id); 
+                    sessionStorage.setItem('horario', elemento.horario); 
+                    sessionStorage.setItem('local', elemento.local); 
+                    sessionStorage.setItem('nome', elemento.nome);
+                    sessionStorage.setItem('data', dataFormatada);
                 }
 
                 btnCancelar.onclick = function(){
-                    localStorage.setItem('id_atendimento', elemento.id);
-                    localStorage.setItem('id_usuario', elemento.id_usuario); 
+                    sessionStorage.setItem('id_atendimento', elemento.id);
+                    sessionStorage.setItem('id_usuario', elemento.id_usuario); 
                     showMod('confirmacao','Por favor confirme o cancelamento.');
                     showMod('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(true)" data-bs-dismiss="modal">Confirmar</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button>');
                     myModal.show();
@@ -123,7 +123,7 @@ function listaAtendimentoProf(theUrl){
         $.ajax({
             url: myRequest,
             type: "GET",
-            beforeSend: function(xhr){xhr.setRequestHeader('authorization', localStorage.getItem('authorization'));},
+            beforeSend: function(xhr){xhr.setRequestHeader('authorization', sessionStorage.getItem('authorization'));},
             success: function(result) {resolve(result)},
             error: function(erro) {reject(erro)}
          });
@@ -139,16 +139,16 @@ function confirmar (confirm) {
 async function montaCancelar(){
     await montarMsgEstu("atendimento/mensagemEstu").then(async function(result){
         atendimento = {};
-        atendimento.id_atendimento = localStorage.getItem('id_atendimento');
+        atendimento.id_atendimento = sessionStorage.getItem('id_atendimento');
         atendimento.status_cancelamento = 1;
         await cancelar('atendimento/cancelar', atendimento);
 
         var mensagem = {};
         mensagem.titulo = 'Atendimento cancelado';
         mensagem.corpo = `O seu atendimento de ${result.dataMsg} foi cancelado.`;
-        mensagem.id_remetente = localStorage.getItem('authorization');
-        mensagem.id_destinatario = localStorage.getItem('id_usuario');
-        mensagem.id_atendimento = localStorage.getItem('id_atendimento');
+        mensagem.id_remetente = sessionStorage.getItem('authorization');
+        mensagem.id_destinatario = sessionStorage.getItem('id_usuario');
+        mensagem.id_atendimento = sessionStorage.getItem('id_atendimento');
         await enviaMensagem('mensagem', mensagem);
 
         await telaAtendimentoProf();
@@ -161,7 +161,7 @@ function montarMsgEstu(theUrl){
         $.ajax({
             url: myRequest,
             type: "GET",
-            beforeSend: function(xhr){xhr.setRequestHeader('id_atendimento', localStorage.getItem('id_atendimento'));},
+            beforeSend: function(xhr){xhr.setRequestHeader('id_atendimento', sessionStorage.getItem('id_atendimento'));},
             success: function(result) {resolve(result)},
             error: function(erro) {reject(erro)}
          });

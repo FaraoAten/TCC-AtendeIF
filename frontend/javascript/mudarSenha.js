@@ -55,8 +55,8 @@ async function mudaSenha (theUrl, body){
   return ret;
 }
 
-function voltar(){
+function voltarConfirmacao(){
     showMod('confirmacao', 'Você quer realmente voltar?<br/>Se você fizer isso não vai poder mudar sua senha depois.');
-    showMod('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="location.href=`./estudanteBase.html`">Sim</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" data-bs-dismiss="modal">Não</button>')
+    showMod('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="voltar()">Sim</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" data-bs-dismiss="modal">Não</button>')
     myModal.show();
 }

@@ -52,9 +52,9 @@ async function pesquisa(){
                 btn.innerHTML += '<i class="far fa-address-book fa-lg"></i></i>';
                 btnC.innerHTML += '<i class="far fa-calendar-check fa-lg"></i>';
                 btnE.innerHTML += '<i class="fas fa-pencil-alt"></i>';
-                btn.onclick = function () {window.location.href = './atendimentosEstuProfPedag.html'; localStorage.setItem('id_usuario', result[i].id_usuario); localStorage.setItem('nome', nome);}
-                btnC.onclick = function(){window.location.href = './cadastroAtendimentoPP.html'; localStorage.setItem('id_usuario', result[i].id_usuario); localStorage.setItem('nome', nome);};
-                btnE.onclick = function(){window.location.href = './editarPerfilEstuPP.html'; localStorage.setItem('id_usuario', result[i].id_usuario); localStorage.setItem('nome', nome); localStorage.setItem('num_matricula', matricula);};
+                btn.onclick = function () {window.location.href = './atendimentosEstuProfPedag.html'; sessionStorage.setItem('id_usuario', result[i].id_usuario); sessionStorage.setItem('nome', nome);}
+                btnC.onclick = function(){window.location.href = './cadastroAtendimentoPP.html'; sessionStorage.setItem('id_usuario', result[i].id_usuario); sessionStorage.setItem('nome', nome);};
+                btnE.onclick = function(){window.location.href = './editarPerfilEstuPP.html'; sessionStorage.setItem('id_usuario', result[i].id_usuario); sessionStorage.setItem('nome', nome); sessionStorage.setItem('num_matricula', matricula);};
                 adiciona.appendChild(divPai);
             }
           }).catch(function(p){

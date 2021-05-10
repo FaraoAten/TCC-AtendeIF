@@ -28,7 +28,7 @@ async function pesquisa(){
                 divMat.classList.add("maior16");
                 btn.classList.add("col-9", "btn", "btn-md", "arredondado", "border-dark", "sombra", "btn-success", "mt-2", "maior14");
                 btn.innerHTML += '&nbsp;&nbsp;<i class="fas fa-pencil-alt"></i>';
-                btn.onclick = function(){window.location.href = './editarPerfilEstu.html'; localStorage.setItem('id_usuario', result[i].id_usuario); localStorage.setItem('nome', result[i].nome); localStorage.setItem('num_matricula', result[i].num_matricula);};
+                btn.onclick = function(){window.location.href = './editarPerfilEstu.html'; sessionStorage.setItem('id_usuario', result[i].id_usuario); sessionStorage.setItem('nome', result[i].nome); sessionStorage.setItem('num_matricula', result[i].num_matricula);};
                 adiciona.appendChild(divPai);
             }
           }).catch(function(p){

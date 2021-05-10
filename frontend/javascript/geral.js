@@ -80,6 +80,19 @@ function verificaIgualSenEdit(elemento,confirmacao,local){
     document.getElementById(form).classList.remove('was-validated');
   }
 
+  function voltar() {
+    window.history.back()
+  }
+
+  function impedeReentrada(){
+    var location = window.location.href.split("/");
+    location = location[location.length-1];
+    if(sessionStorage.getItem('authorization')==undefined && location !='index.html' && location !='cadastro.html'){
+      window.location.href = '../index.html'
+    }
+  }
+  impedeReentrada();
+
 //-- AJAX --
 //seta a URL base
 const  BASE_URL = "http://localhost:3333/";

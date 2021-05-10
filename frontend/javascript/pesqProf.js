@@ -42,8 +42,8 @@ async function pesquisa(){
                 spnC.innerHTML += '&nbsp;&nbsp;';
                 btn.innerHTML += '<i class="far fa-address-book fa-lg"></i></i>';
                 btnC.innerHTML += '<i class="far fa-calendar-check fa-lg"></i>';
-                btn.onclick = function () {window.location.href = './atendimentosEstuProf.html'; localStorage.setItem('id_usuario', result[i].id_usuario); localStorage.setItem('nome', nome);}
-                btnC.onclick = function(){window.location.href = './cadastroAtendimento.html'; localStorage.setItem('id_usuario', result[i].id_usuario); localStorage.setItem('nome', nome);};
+                btn.onclick = function () {window.location.href = './atendimentosEstuProf.html'; sessionStorage.setItem('id_usuario', result[i].id_usuario); sessionStorage.setItem('nome', nome);}
+                btnC.onclick = function(){window.location.href = './cadastroAtendimento.html'; sessionStorage.setItem('id_usuario', result[i].id_usuario); sessionStorage.setItem('nome', nome);};
                 adiciona.appendChild(divPai);
             }
           }).catch(function(p){
