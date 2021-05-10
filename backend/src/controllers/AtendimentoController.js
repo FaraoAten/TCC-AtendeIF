@@ -136,11 +136,13 @@ module.exports = {
                 }
 
                 var data = element.data_atendimento;
-                var amanhaData = atual.getFullYear()+"-"+(atual.getMonth() + 1)+"-"+(atual.getDate()+1);
+                var amanhaData = new Date();
+                amanhaData.setDate(amanhaData.getDate() + 1);
+                var amanhaDataComparacao = amanhaData.getFullYear()+"-"+(amanhaData.getMonth() + 1)+"-"+amanhaData.getDate();
                 let dataFormatada;
-                if(data == atualData){
+                if((data.getFullYear()+"-"+(data.getMonth() + 1)+"-"+(data.getDate())) == atualData){
                     dataFormatada = "Hoje";
-                }else if(data == amanhaData){
+                }else if((data.getFullYear()+"-"+(data.getMonth() + 1)+"-"+(data.getDate())) == amanhaDataComparacao){
                     dataFormatada = "Amanhã";
                 }else{
                     nomeDia = new Array ("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado");
