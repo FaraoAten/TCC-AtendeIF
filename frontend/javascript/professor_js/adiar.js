@@ -39,7 +39,7 @@ function adiarAtendimento(header){
   function confirmar (confirm) {
     if(confirm){
         adiaAtendimento("atendimento", atendimento).then(function(result){
-          showMod('confirmacao','<button type="button" class="btn-close" onclick="location.href = `./professorBase.html`" data-bs-dismiss="modal"></button>')
+          showMod('confirmacao','<button type="button" class="btn-close" onclick="voltar()" data-bs-dismiss="modal"></button>')
           showMod('msg', 'Atendimento adiado com sucesso.');
           myModal.show();
         });

@@ -32,7 +32,7 @@ function mudarSenha(header){
   function confirmar (confirm) {
     if(confirm){
       mudaSenha("usuario", usuario).then(function(result){
-          showMod('confirmacao','<button type="button" class="btn-close" onclick="location.href = `./estudanteBase.html`" data-bs-dismiss="modal"></button>')
+          showMod('confirmacao','<button type="button" class="btn-close" onclick="voltar()" data-bs-dismiss="modal"></button>')
           showMod('msg', 'Senha mudada com sucesso.');
           myModal.show();
         });

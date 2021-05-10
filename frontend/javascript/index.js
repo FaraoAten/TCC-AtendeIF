@@ -18,14 +18,14 @@ function Login(){
     login("usuario/login", log).then(function(result){
         sessionStorage.setItem('authorization', result.id_usuario);
         if(result.tipo == 1){
-          window.location.href = './html/estudanteBase.html';
+          window.location.href = './html/estudante_html/estudanteBase.html';
           sessionStorage.setItem('primeiroLogin', result.primeiro_login);
         }else if(result.tipo == 2){
-          window.location.href = './html/professorBase.html';
+          window.location.href = './html/professor_html/professorBase.html';
         }else if(result.tipo == 3){
-          window.location.href = './html/profPedagBase.html';
+          window.location.href = './html/profPedag_html/profPedagBase.html';
         }else{
-          window.location.href = './html/pedagogiaBase.html';
+          window.location.href = './html/pedagogia_html/pedagogiaBase.html';
         }
       }).catch(function(p){
         if(p.status == 405){
@@ -36,13 +36,14 @@ function Login(){
           myModal.show();
         }else if(p == {}){
           if(p.tipo == 1){
-            window.location.href = './html/estudanteBase.html';
+            window.location.href = './html/estudante_html/estudanteBase.html';
+            sessionStorage.setItem('primeiroLogin', p.primeiro_login);
           }else if(p.tipo == 2){
-            window.location.href = './html/professorBase.html';
+            window.location.href = './html/professor_html/professorBase.html';
           }else if(p.tipo == 3){
-            window.location.href = './html/profPedagBase.html';
+            window.location.href = './html/profPedag_html/profPedagBase.html';
           }else{
-            window.location.href = './html/pedagogiaBase.html';
+            window.location.href = './html/pedagogia_html/pedagogiaBase.html';
           }
         }
       });

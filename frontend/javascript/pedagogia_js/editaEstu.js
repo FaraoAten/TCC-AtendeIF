@@ -40,7 +40,7 @@ function editarEstu(header){
   function confirmar (confirm) {
     if(confirm){
       editaEstu("usuario", usuario).then(function(result){
-          showMod('confirmacao','<button type="button" class="btn-close" onclick="location.href = `./pedagogiaBase.html`" data-bs-dismiss="modal"></button>')
+          showMod('confirmacao','<button type="button" class="btn-close" onclick="voltar()" data-bs-dismiss="modal"></button>')
           showMod('msg', 'Edição efetuada com sucesso.');
           myModal.show();
         }).catch(function(p){
