@@ -4,6 +4,8 @@ var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
   });
 
 window.onload = function () {
+    telaAtendimentoEstu();
+
     if(sessionStorage.getItem('primeiroLogin')==0){
 
           myModal.show();
@@ -11,8 +13,6 @@ window.onload = function () {
           sessionStorage.setItem('primeiroLogin', 1);
           
           primeiroLogin('usuario/primeiroLogin');
-    }else{
-        telaAtendimentoEstu();
     }
 }
 
