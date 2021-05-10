@@ -31,7 +31,7 @@ async function pesquisa(){
                 divMiniPai.appendChild(btnC);
                 divPai.appendChild(divMiniPai);
                 divPai.classList.add("row", "justify-content-center", "my-5");
-                divMiniPai.classList.add("col-11", "col-md-5", "col-lg-6", "border", "border-dark", "arredondado", "p-2", "maior14");
+                divMiniPai.classList.add("col-11", "col-md-10", "col-lg-6", "border", "border-dark", "arredondado", "p-2", "maior14");
                 divNome.classList.add("maior16");
                 divMat.classList.add("maior16");
                 btn.classList.add("col-md-6", "col-5", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "me-1", "maior14");
