@@ -104,15 +104,19 @@ async function telaAtendimentoProf(){
                 };
             }
             divLinha.classList.add("row", "justify-content-center", "mb-3", "maior28");
-            divColuna.classList.add("border-2", "border-bottom", "border-dark", "col-11", "col-md-6", "col-lg-11", "text-center");
+            divColuna.classList.add("border-2", "border-bottom", "border-dark", "col-11", "col-md-6", "col-lg-11", "text-center", "cinza");
             main.appendChild(divLinha);
         }
     }).catch(function(p){
         main.innerHTML = "";
+        var div = document.createElement("div");
         var h1 = document.createElement ("h1");
         var textoH1 = document.createTextNode("Sem Atendimentos Marcados");
         h1.appendChild(textoH1);
-        h1.classList.add("text-secondary", "row", "justify-content-center", "mt-5");
+        div.innerHTML = '<i class="fas fa-chalkboard-teacher fa-7x"></i>';
+        div.classList.add("text-secondary", "row", "justify-content-center", "mt-5", "text-center");
+        h1.classList.add("text-secondary", "row", "justify-content-center", "mt-3");
+        main.appendChild(div);
         main.appendChild(h1);
   });
 }

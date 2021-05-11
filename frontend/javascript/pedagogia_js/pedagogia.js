@@ -32,19 +32,27 @@ async function pesquisa(){
                 adiciona.appendChild(divPai);
             }
           }).catch(function(p){
-                adiciona.innerHTML = "";
-                var h1 = document.createElement ("h1");
-                var textoH1 = document.createTextNode("Sem Resultados");
-                h1.appendChild(textoH1);
-                h1.classList.add("text-secondary", "row", "justify-content-center", "mt-5");
-                adiciona.appendChild(h1);
+            adiciona.innerHTML = "";
+            var div = document.createElement("div");
+            var h1 = document.createElement ("h1");
+            var textoH1 = document.createTextNode("Sem Resultados");
+            h1.appendChild(textoH1);
+            div.innerHTML = '<i class="fas fa-search fa-7x"></i>';
+            div.classList.add("text-secondary", "row", "justify-content-center", "mt-5", "text-center");
+            h1.classList.add("text-secondary", "row", "justify-content-center", "mt-3");
+            adiciona.appendChild(div);
+            adiciona.appendChild(h1);
           });
     }else{
         adiciona.innerHTML = "";
+        var div = document.createElement("div");
         var h1 = document.createElement ("h1");
         var textoH1 = document.createTextNode("Sem Resultados");
         h1.appendChild(textoH1);
-        h1.classList.add("text-secondary", "row", "justify-content-center", "mt-5");
+        div.innerHTML = '<i class="fas fa-search fa-7x"></i>';
+        div.classList.add("text-secondary", "row", "justify-content-center", "mt-5", "text-center");
+        h1.classList.add("text-secondary", "row", "justify-content-center", "mt-3");
+        adiciona.appendChild(div);
         adiciona.appendChild(h1);
     }
 }

@@ -1,10 +1,16 @@
 const express = require('express');
 
+const multer = require('multer');
+const uploadConfig = require('./config/upload');
+
 const routes = express.Router();
+
+const upload = multer(uploadConfig);
 
 const UsuarioController = require('./controllers/UsuarioController');
 const MensagemController = require('./controllers/MensagemController');
 const AtendimentoController = require('./controllers/AtendimentoController');
+const UrlsController = require('./controllers/UrlsController');
 
 //Rota de listagem de usuários
 routes.get('/usuario/:informacao', UsuarioController.index)
@@ -48,5 +54,15 @@ routes.put('/atendimento', AtendimentoController.edit);
 
 //Rota de cancelar atendimento
 routes.put('/atendimento/cancelar', AtendimentoController.cancelar);
+
+//Rota de listagem de arquivos
+routes.get('/urls', UrlsController.index);
+
+//Rota de upload de arquivos
+routes.post('/urls', upload.single('URL'), UrlsController.create);
+
+//Rota de delete de arquivos
+routes.delete('/urls', UrlsController.delete);
+
 module.exports = routes; 
 

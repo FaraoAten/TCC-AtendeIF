@@ -40,7 +40,7 @@ async function pesquisa(){
                 spnC.classList.add("some");
                 spn.innerHTML += '&nbsp;&nbsp;';
                 spnC.innerHTML += '&nbsp;&nbsp;';
-                btn.innerHTML += '<i class="far fa-address-book fa-lg"></i></i>';
+                btn.innerHTML += '<i class="fas fa-chalkboard-teacher fa-lg"></i>';
                 btnC.innerHTML += '<i class="far fa-calendar-check fa-lg"></i>';
                 btn.onclick = function () {window.location.href = './atendimentosEstuProf.html'; sessionStorage.setItem('id_usuario', result[i].id_usuario); sessionStorage.setItem('nome', nome);}
                 btnC.onclick = function(){window.location.href = './cadastroAtendimento.html'; sessionStorage.setItem('id_usuario', result[i].id_usuario); sessionStorage.setItem('nome', nome);};
@@ -48,18 +48,26 @@ async function pesquisa(){
             }
           }).catch(function(p){
                 adiciona.innerHTML = "";
+                var div = document.createElement("div");
                 var h1 = document.createElement ("h1");
                 var textoH1 = document.createTextNode("Sem Resultados");
                 h1.appendChild(textoH1);
-                h1.classList.add("text-secondary", "row", "justify-content-center", "mt-5");
+                div.innerHTML = '<i class="fas fa-search fa-7x"></i>';
+                div.classList.add("text-secondary", "row", "justify-content-center", "mt-5", "text-center");
+                h1.classList.add("text-secondary", "row", "justify-content-center", "mt-3");
+                adiciona.appendChild(div);
                 adiciona.appendChild(h1);
           });
     }else{
         adiciona.innerHTML = "";
+        var div = document.createElement("div");
         var h1 = document.createElement ("h1");
         var textoH1 = document.createTextNode("Sem Resultados");
         h1.appendChild(textoH1);
-        h1.classList.add("text-secondary", "row", "justify-content-center", "mt-5");
+        div.innerHTML = '<i class="fas fa-search fa-7x"></i>';
+        div.classList.add("text-secondary", "row", "justify-content-center", "mt-5", "text-center");
+        h1.classList.add("text-secondary", "row", "justify-content-center", "mt-3");
+        adiciona.appendChild(div);
         adiciona.appendChild(h1);
     }
 }

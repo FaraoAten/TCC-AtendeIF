@@ -23,10 +23,14 @@ window.onload = async function(){
         }
     }).catch(function(p){
         main.innerHTML = "";
-        var h1 = document.createElement ("h1");
+        var div = document.createElement("div");
+        var h1 = document.createElement("h1");
         var textoH1 = document.createTextNode("Sem Notificações");
         h1.appendChild(textoH1);
-        h1.classList.add("text-secondary", "row", "justify-content-center", "mt-5");
+        div.innerHTML = '<i class="fas fa-bell fa-7x"></i>';
+        div.classList.add("text-secondary", "row", "justify-content-center", "mt-5", "text-center");
+        h1.classList.add("text-secondary", "row", "justify-content-center", "mt-3");
+        main.appendChild(div);
         main.appendChild(h1);
   });
 }

@@ -74,6 +74,10 @@ select{
     background-color: #005F97;
  }
 
+ .cinza{
+    background-color: #D1D1CC;
+ }
+
  button{
     -moz-transition: all 0.5s;
     -webkit-transition: all 0.5s;

@@ -6,6 +6,7 @@ module.exports = {
     //Rota de registro do usuário
     async create(request, response){
         const {num_matricula, password, nome, tipo, primeiro_login} = request.body;
+        
             if(num_matricula != null && num_matricula != ""){
                 const matricula = await connection('usuario').select('num_matricula').where('num_matricula', num_matricula);
                 if(matricula.length == 0){
@@ -43,7 +44,7 @@ module.exports = {
         //Rota de update de usuários (edição de perfil)
         async edit(request,response) {
             const {id_usuario, num_matricula, password, nome, tipo} = request.body;
-            
+
                 if(num_matricula != null && num_matricula != ""){
                     const matricula = await connection('usuario').select('num_matricula').where('num_matricula', num_matricula);
                     if(matricula.length == 0){
@@ -64,6 +65,7 @@ module.exports = {
                 if(tipo != null && tipo != ""){
                     const editar = await connection('usuario').where('id_usuario', id_usuario).update({tipo:tipo});
                 }
+
                 return response.status(204).send();
         },
 
