@@ -215,15 +215,62 @@ module.exports = {
     async montarMensagemEstu(request,response){
         const id_atend = request.headers.id_atendimento;
         const mensagemMontada = await connection('atendimento').select('data_atendimento').where('id_atendimento', id_atend);
+        
+        var atual = new Date();
+        var atualData = atual.getFullYear()+"-"+(atual.getMonth() + 1)+"-"+atual.getDate();
+
         for (let i = 0; i < mensagemMontada.length; i++) {
             const element = mensagemMontada[i];
-
+            
             var data = element.data_atendimento;
-            nomeDia = new Array ("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado");
-            let dataFormatada = nomeDia[data.getDay()];
+            let dataFormatada;
+            if((data.getFullYear()+"-"+(data.getMonth() + 1)+"-"+(data.getDate())) == atualData){
+                dataFormatada = "Hoje";
+            }else{
+                nomeDia = new Array ("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado");
+                dataFormatada = nomeDia[data.getDay()];
+            }
+
+            nomeMes = new Array ("Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro");
+            let mesFormatado = nomeMes[data.getMonth()];
 
             var atendimentoUnico = {
-                dataMsg:dataFormatada
+                dataMsg:dataFormatada,
+                diaMsg:(data.getDate()),
+                mesMsg:mesFormatado
+            }
+        }
+        return response.json(atendimentoUnico);
+    },
+
+    async montarMensagemAlterar(request,response){
+        const id_atend = request.headers.id_atendimento;
+        const mensagemMontada = await connection('atendimento').select('data_atendimento', 'horario').where('id_atendimento', id_atend);
+        
+        var atual = new Date();
+        var atualData = atual.getFullYear()+"-"+(atual.getMonth() + 1)+"-"+atual.getDate();
+
+        for (let i = 0; i < mensagemMontada.length; i++) {
+            const element = mensagemMontada[i];
+            
+            var data = element.data_atendimento;
+            let dataFormatada;
+            if((data.getFullYear()+"-"+(data.getMonth() + 1)+"-"+(data.getDate())) == atualData){
+                dataFormatada = "Hoje";
+            }else{
+                nomeDia = new Array ("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado");
+                dataFormatada = nomeDia[data.getDay()];
+            }
+
+            nomeMes = new Array ("Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro");
+            let mesFormatado = nomeMes[data.getMonth()];
+
+            var hora = element.horario.substring(0,5);
+            var atendimentoUnico = {
+                dataMsg:dataFormatada,
+                diaMsg:(data.getDate()),
+                mesMsg:mesFormatado,
+                horaMsg:hora
             }
         }
         return response.json(atendimentoUnico);

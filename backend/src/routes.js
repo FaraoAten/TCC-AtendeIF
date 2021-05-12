@@ -46,6 +46,8 @@ routes.get('/atendimento/mensagem', AtendimentoController.montarMensagem);
 
 routes.get('/atendimento/mensagemEstu', AtendimentoController.montarMensagemEstu);
 
+routes.get('/atendimento/mensagemAlterar', AtendimentoController.montarMensagemAlterar);
+
 //Rota de registro do atendimento
 routes.post('/atendimento', AtendimentoController.create);
 

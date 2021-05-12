@@ -2,7 +2,7 @@ var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
     keyboard: false,
     focus: true
   }); 
-  
+
 window.onload = telaAtendimentoProf();
 
 async function telaAtendimentoProf(){
@@ -88,7 +88,8 @@ async function telaAtendimentoProf(){
                         }               
                     }
                     window.location.href = './alterarAtendimento.html'; 
-                    sessionStorage.setItem('id_atendimento', elemento.id); 
+                    sessionStorage.setItem('id_atendimento', elemento.id);
+                    sessionStorage.setItem('id_usuario', elemento.id_usuario); 
                     sessionStorage.setItem('horario', elemento.horario); 
                     sessionStorage.setItem('local', elemento.local); 
                     sessionStorage.setItem('nome', elemento.nome);
@@ -96,8 +97,18 @@ async function telaAtendimentoProf(){
                 }
 
                 btnCancelar.onclick = function(){
+                    var dataLista = chave.split('/');
+                    var dataFormatada = "";
+                    for (let i = (dataLista.length - 1); i >= 0; i--) {
+                        if(i==0){
+                            dataFormatada += dataLista[i];
+                        }else{
+                            dataFormatada += dataLista[i]+"-"
+                        }               
+                    }
                     sessionStorage.setItem('id_atendimento', elemento.id);
-                    sessionStorage.setItem('id_usuario', elemento.id_usuario); 
+                    sessionStorage.setItem('id_usuario', elemento.id_usuario);
+                    sessionStorage.setItem('data', dataFormatada);
                     showMod('confirmacao','Por favor confirme o cancelamento.');
                     showMod('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(true)" data-bs-dismiss="modal">Confirmar</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button>');
                     myModal.show();
@@ -141,35 +152,32 @@ function confirmar (confirm) {
 }
 
 async function montaCancelar(){
-    await montarMsgEstu("atendimento/mensagemEstu").then(async function(result){
+    var dataComparacao = new Date();
+    dataComparacao.setDate(dataComparacao.getDate()+6);
+    if((sessionStorage.getItem('data'))>dataComparacao){
         atendimento = {};
         atendimento.id_atendimento = sessionStorage.getItem('id_atendimento');
         atendimento.status_cancelamento = 1;
         await cancelar('atendimento/cancelar', atendimento);
-
-        var mensagem = {};
-        mensagem.titulo = 'Atendimento cancelado';
-        mensagem.corpo = `O seu atendimento de ${result.dataMsg} foi cancelado.`;
-        mensagem.id_remetente = sessionStorage.getItem('authorization');
-        mensagem.id_destinatario = sessionStorage.getItem('id_usuario');
-        mensagem.id_atendimento = sessionStorage.getItem('id_atendimento');
-        await enviaMensagem('mensagem', mensagem);
-
         await telaAtendimentoProf();
-    });
-}
-
-function montarMsgEstu(theUrl){
-    const myRequest = BASE_URL+theUrl;
-    return new Promise((resolve,reject) => {
-        $.ajax({
-            url: myRequest,
-            type: "GET",
-            beforeSend: function(xhr){xhr.setRequestHeader('id_atendimento', sessionStorage.getItem('id_atendimento'));},
-            success: function(result) {resolve(result)},
-            error: function(erro) {reject(erro)}
-         });
-    });
+    }else{
+        await montarMsg("atendimento/mensagemEstu").then(async function(result){
+            atendimento = {};
+            atendimento.id_atendimento = sessionStorage.getItem('id_atendimento');
+            atendimento.status_cancelamento = 1;
+            await cancelar('atendimento/cancelar', atendimento);
+    
+            var mensagem = {};
+            mensagem.titulo = 'Atendimento cancelado';
+            mensagem.corpo = `O seu atendimento de ${result.dataMsg}, dia ${result.diaMsg} de ${result.mesMsg}, foi cancelado.`;
+            mensagem.id_remetente = sessionStorage.getItem('authorization');
+            mensagem.id_destinatario = sessionStorage.getItem('id_usuario');
+            mensagem.id_atendimento = sessionStorage.getItem('id_atendimento');
+            await enviaMensagem('mensagem', mensagem);
+    
+            await telaAtendimentoProf();
+        });
+    }
 }
 
 async function cancelar (theUrl, body){
@@ -184,14 +192,5 @@ async function cancelar (theUrl, body){
     });
   }
 
-  async function enviaMensagem (theUrl, body){
-    const myRequest = BASE_URL+theUrl;
-    await jQuery.ajax({
-        type: 'POST',
-        encoding:"UTF-8",
-        dataType: 'json',
-        contentType: 'application/json',
-        url: myRequest,
-        data:JSON.stringify(body),
-    });
-  }
+  
+

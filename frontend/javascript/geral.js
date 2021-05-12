@@ -81,14 +81,14 @@ function verificaIgualSenEdit(elemento,confirmacao,local){
   }
 
   function voltar() {
-    window.history.back()
+    window.history.back();
   }
 
   function impedeReentrada(){
     var location = window.location.href.split("/");
     location = location[location.length-1];
     if(sessionStorage.getItem('authorization')==undefined && location !='index.html' && location !='cadastro.html'){
-      window.location.href = '../index.html'
+      window.location.replace('../../index.html')
     }
   }
   impedeReentrada();
@@ -96,6 +96,31 @@ function verificaIgualSenEdit(elemento,confirmacao,local){
 //-- AJAX --
 //seta a URL base
 const  BASE_URL = "http://localhost:3333/";
+
+function montarMsg(theUrl){
+  const myRequest = BASE_URL+theUrl;
+  return new Promise((resolve,reject) => {
+      $.ajax({
+          url: myRequest,
+          type: "GET",
+          beforeSend: function(xhr){xhr.setRequestHeader('id_atendimento', sessionStorage.getItem('id_atendimento'));},
+          success: function(result) {resolve(result)},
+          error: function(erro) {reject(erro)}
+       });
+  });
+}
+
+async function enviaMensagem (theUrl, body){
+  const myRequest = BASE_URL+theUrl;
+  await jQuery.ajax({
+      type: 'POST',
+      encoding:"UTF-8",
+      dataType: 'json',
+      contentType: 'application/json',
+      url: myRequest,
+      data:JSON.stringify(body),
+  });
+}
 
 async function showMod(modal, text) {
   document.getElementById(modal).innerHTML = text;

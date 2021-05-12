@@ -141,35 +141,10 @@ async function montaPCancelar(){
     });
 }
 
-function montarMsg(theUrl){
-    const myRequest = BASE_URL+theUrl;
-    return new Promise((resolve,reject) => {
-        $.ajax({
-            url: myRequest,
-            type: "GET",
-            beforeSend: function(xhr){xhr.setRequestHeader('id_atendimento', sessionStorage.getItem('id_atendimento'));},
-            success: function(result) {resolve(result)},
-            error: function(erro) {reject(erro)}
-         });
-    });
-}
-
 async function cancelar (theUrl, body){
     const myRequest = BASE_URL+theUrl;
     await jQuery.ajax({
         type: 'PUT',
-        encoding:"UTF-8",
-        dataType: 'json',
-        contentType: 'application/json',
-        url: myRequest,
-        data:JSON.stringify(body),
-    });
-  }
-
-  async function enviaMensagem (theUrl, body){
-    const myRequest = BASE_URL+theUrl;
-    await jQuery.ajax({
-        type: 'POST',
         encoding:"UTF-8",
         dataType: 'json',
         contentType: 'application/json',
