@@ -27,7 +27,7 @@ async function telaAtendimentoProf(){
                 var divDisciplina = document.createElement("div");
                 var divLocal = document.createElement("div");
                 var divHora = document.createElement("div");
-                var btnAdiar = document.createElement("button");
+                var btnAlterar = document.createElement("button");
                 var btnCancelar = document.createElement("button");
                 var strNome = document.createElement("strong");
                 var strMat = document.createElement("strong");
@@ -39,7 +39,7 @@ async function telaAtendimentoProf(){
                 var textoDisciplina = document.createTextNode("Disciplina: ");
                 var textoLocal = document.createTextNode("Onde: ");
                 var textoHora = document.createTextNode("Horas: ");
-                var textoBtnA = document.createTextNode("Adiar");
+                var textoBtnA = document.createTextNode("Alterar");
                 var textoBtnC = document.createTextNode("Cancelar");
                 strNome.appendChild(textoNome);
                 strMat.appendChild(textoMat);
@@ -51,14 +51,14 @@ async function telaAtendimentoProf(){
                 divDisciplina.appendChild(strDisciplina);
                 divLocal.appendChild(strLocal);
                 divHora.appendChild(strHora);
-                btnAdiar.appendChild(textoBtnA);
+                btnAlterar.appendChild(textoBtnA);
                 btnCancelar.appendChild(textoBtnC);
                 divCol.appendChild(divNome);
                 divCol.appendChild(divMat);
                 divCol.appendChild(divDisciplina);
                 divCol.appendChild(divLocal);
                 divCol.appendChild(divHora);
-                divCol.appendChild(btnAdiar);
+                divCol.appendChild(btnAlterar);
                 divCol.appendChild(btnCancelar);
                 divLinha.appendChild(divCol);
                 divCol.classList.add("col-11", "col-md-6", "col-lg-4", "border", "border-2", "border-dark", "arredondado", "p-2", "maior14", "mt-3", "mx-3");
@@ -67,17 +67,17 @@ async function telaAtendimentoProf(){
                 divDisciplina.classList.add("maior16");
                 divHora.classList.add("maior16");
                 divLocal.classList.add("maior16");
-                btnAdiar.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "me-1", "maior14");
+                btnAlterar.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "me-1", "maior14");
                 btnCancelar.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "ms-1", "maior14");
                 divNome.innerHTML+=elemento.nome;
                 divMat.innerHTML+=elemento.matricula;
                 divDisciplina.innerHTML+=elemento.materia;
                 divLocal.innerHTML+=elemento.local;
                 divHora.innerHTML+=elemento.horario;
-                btnAdiar.innerHTML+='&nbsp;&nbsp;<i class="far fa-clock fa-lg"></i>';
+                btnAlterar.innerHTML+='&nbsp;&nbsp;<i class="far fa-clock fa-lg"></i>';
                 btnCancelar.innerHTML+='&nbsp;&nbsp;<i class="fas fa-ban fa-lg"></i>';
                 
-                btnAdiar.onclick = function () {
+                btnAlterar.onclick = function () {
                     var dataLista = chave.split('/');
                     var dataFormatada = "";
                     for (let i = (dataLista.length - 1); i >= 0; i--) {
@@ -87,7 +87,7 @@ async function telaAtendimentoProf(){
                             dataFormatada += dataLista[i]+"-"
                         }               
                     }
-                    window.location.href = './adiarAtendimento.html'; 
+                    window.location.href = './alterarAtendimento.html'; 
                     sessionStorage.setItem('id_atendimento', elemento.id); 
                     sessionStorage.setItem('horario', elemento.horario); 
                     sessionStorage.setItem('local', elemento.local); 

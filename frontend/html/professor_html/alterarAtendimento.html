@@ -54,7 +54,7 @@
               </div>
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6 mt-5 mb-2">
-                    <h1>Adiar Atendimento</h1>
+                    <h1>Alterar Atendimento</h1>
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -62,12 +62,12 @@
                   <u><h1 id="nome"></h1></u>
               </div>
             </div>
-            <form class="row justify-content-center g-2 needs-validation" id="adiarAtendimento" novalidate>
+            <form class="row justify-content-center g-2 needs-validation" id="alterarAtendimento" novalidate>
                 <div class="row justify-content-center g-2">
                     <div class="mb-3 col-md-6 col-lg-4">
                         <div class="form-floating">
-                            <input type="date" class="form-control arredondado sombra" id="dataAdiar" placeholder="Data" autocomplete="off">
-                            <label class="maior14" for="dataAdiar">Data</label>
+                            <input type="date" class="form-control arredondado sombra" id="dataAlterar" placeholder="Data" autocomplete="off">
+                            <label class="maior14" for="dataAlterar">Data</label>
                             <div class="invalid-feedback maior14">Digite a data em que será o atendimento.</div>
                         </div>
                     </div>
@@ -75,8 +75,8 @@
                 <div class="row justify-content-center g-2">
                     <div class="mb-3 col-md-6 col-lg-4">
                         <div class="form-floating">
-                            <input type="time" class="form-control arredondado sombra" id="horaAdiar" placeholder="Horário" autocomplete="off">
-                            <label class="maior14" for="horaAdiar">Horário</label>
+                            <input type="time" class="form-control arredondado sombra" id="horaAlterar" placeholder="Horário" autocomplete="off">
+                            <label class="maior14" for="horaAlterar">Horário</label>
                             <div class="invalid-feedback maior14">Digite o horário em que será o atendimento.</div>
                         </div>
                     </div>
@@ -84,15 +84,15 @@
                 <div class="row justify-content-center g-2">
                     <div class="mb-3 col-md-6 col-lg-4">
                         <div class="form-floating">
-                            <input type="text" class="form-control arredondado sombra" id="localAdiar" placeholder="Local" autocomplete="off">
-                            <label class="maior14" for="localAdiar">Local</label>
+                            <input type="text" class="form-control arredondado sombra" id="localAlterar" placeholder="Local" autocomplete="off">
+                            <label class="maior14" for="localAlterar">Local</label>
                             <div class="invalid-feedback maior14">Digite o local onde será o atendimento.</div>
                         </div>
                     </div>
                 </div>
                 <div class="row justify-content-center mt-3 mb-2">
                     <button type="button" class="btn btn-lg arredondado border-dark col-md-3 col-lg-2 col-5 me-md-2 me-1" onclick="voltar()"><i class="far fa-arrow-alt-circle-left fa-lg"></i><strong class="some">&nbsp;&nbsp;VOLTAR</strong></button>
-                    <button type="submit" class="btn azul text-white btn-lg col-md-3 col-lg-2 col-5 ms-md-2 ms-1 arredondado sombra" onclick="adiarAtendimento(sessionStorage.getItem('id_atendimento'))"><strong class="some">ADIAR&nbsp;&nbsp;</strong><i class="far fa-clock fa-lg"></i></button>
+                    <button type="submit" class="btn azul text-white btn-lg col-md-3 col-lg-2 col-5 ms-md-2 ms-1 arredondado sombra" onclick="alterarAtendimento(sessionStorage.getItem('id_atendimento'))"><strong class="some">ALTERAR&nbsp;&nbsp;</strong><i class="far fa-clock fa-lg"></i></button>
                 </div>
             </form>
         </div>
@@ -101,6 +101,6 @@
     <script src="https://kit.fontawesome.com/c9d38635a3.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../../javascript/geral.js"></script>
-    <script src="../../javascript/professor_js/adiar.js"></script>
+    <script src="../../javascript/professor_js/alterar.js"></script>
 </body>
 </html>

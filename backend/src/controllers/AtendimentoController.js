@@ -161,17 +161,17 @@ module.exports = {
         }
     },
 
-    //Rota de update de atendimento (adiar atendimento)
+    //Rota de update de atendimento (alterar atendimento)
     async edit(request,response){
         const {id_atendimento, data_atendimento, horario, local} = request.body;
         if(data_atendimento!=null && data_atendimento!=""){
-            const adiar = await connection('atendimento').where('id_atendimento', id_atendimento).update({data_atendimento:data_atendimento});
+            const alterar = await connection('atendimento').where('id_atendimento', id_atendimento).update({data_atendimento:data_atendimento});
         }
         if(horario!=null && horario!=""){
-            const adiar = await connection('atendimento').where('id_atendimento', id_atendimento).update({horario:horario});
+            const alterar = await connection('atendimento').where('id_atendimento', id_atendimento).update({horario:horario});
         }
         if(local!=null && local!=""){
-            const adiar = await connection('atendimento').where('id_atendimento', id_atendimento).update({local:local});
+            const alterar = await connection('atendimento').where('id_atendimento', id_atendimento).update({local:local});
         }
         return response.status(204).send();
     },
