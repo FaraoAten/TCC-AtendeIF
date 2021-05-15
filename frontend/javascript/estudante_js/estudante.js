@@ -33,6 +33,7 @@ async function telaAtendimentoEstu(){
             for (let j = 0; j < result[chave].length; j++) {
                 const elemento = result[chave][j];
                 var divCol = document.createElement("div");
+                var divImg = document.createElement("div");
                 var divNome = document.createElement("div");
                 var divDisciplina = document.createElement("div");
                 var divLocal = document.createElement("div");
@@ -56,22 +57,25 @@ async function telaAtendimentoEstu(){
                 divLocal.appendChild(strLocal);
                 divHora.appendChild(strHora);
                 btnPCancela.appendChild(textoBtnPC);
+                divCol.appendChild(divImg);
                 divCol.appendChild(divNome);
                 divCol.appendChild(divDisciplina);
                 divCol.appendChild(divLocal);
                 divCol.appendChild(divHora);
                 divCol.appendChild(btnPCancela);
                 divLinha.appendChild(divCol);
-                divCol.classList.add("col-12", "col-md-6", "col-lg-4", "border", "border-2", "border-dark", "arredondado", "p-2", "maior14", "mt-3", "mx-3");
-                divNome.classList.add("maior16");
-                divDisciplina.classList.add("maior16");
-                divHora.classList.add("maior16");
-                divLocal.classList.add("maior16");
+                divCol.classList.add("col-12", "col-md-8", "col-lg-6", "col-xl-4", "border", "border-2", "border-dark", "arredondado", "p-2", "maior14", "mt-3", "mx-3");
+                divImg.classList.add("col-6", "col-md-5", "col-lg-4", "mx-auto", "mb-2");
+                divNome.classList.add("maior16", "offset-md-3");
+                divDisciplina.classList.add("maior16", "offset-md-3");
+                divHora.classList.add("maior16", "offset-md-3");
+                divLocal.classList.add("maior16", "offset-md-3");
                 if(elemento.status==2){
-                    btnPCancela.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "ms-1", "maior14", "disabled");
+                    btnPCancela.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "offset-md-3",  "maior14", "disabled");
                 }else{
-                    btnPCancela.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "ms-1", "maior14");
+                    btnPCancela.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "offset-md-3", "maior14");
                 }
+                divImg.innerHTML = `<img class="img-fluid" src='${elemento.url}'>`
                 divNome.innerHTML+=elemento.nome;
                 divDisciplina.innerHTML+=elemento.materia;
                 divLocal.innerHTML+=elemento.local;
@@ -85,8 +89,8 @@ async function telaAtendimentoEstu(){
                     myModal.show();
                 };
             }
-            divLinha.classList.add("row", "justify-content-center", "mb-3", "maior28");
-            divColuna.classList.add("border-2", "border-bottom", "border-dark", "col-12", "col-md-6", "col-lg-9", "text-center", "cinza");
+            divLinha.classList.add("row", "justify-content-center", "mb-3", "maiorDatasEstudante");
+            divColuna.classList.add("border-2", "border-bottom", "border-dark", "col-12", "col-lg-9", "text-center", "cinza");
             main.appendChild(divLinha);
         }
     }).catch(function(p){

@@ -5,7 +5,7 @@ exports.up = function(knex) {
         table.string('url').notNullable();
         table.specificType('tipo', 'TINYINT(1)').notNullable();
         table.string('id_usuario');
-        table.foreign('id_usuario').references('id_usuario').inTable('usuario').onUpdate('CASCADE');
+        table.foreign('id_usuario').references('id_usuario').inTable('usuario').onUpdate('CASCADE').onDelete('CASCADE');
     })
   };
 

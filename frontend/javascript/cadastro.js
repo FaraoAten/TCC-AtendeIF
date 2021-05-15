@@ -1,12 +1,17 @@
+var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+  keyboard: false,
+  focus: true
+});
+
+var usuario = {};
+
 //Pega as infos do cadastro
 function cadastrar(){
 
     var form = document.getElementById("cadastro");
     if (form.checkValidity()) {
     function handleForm(event) { event.preventDefault();} 
-    form.addEventListener('submit', handleForm);
-  
-    var usuario = {}
+    form.addEventListener('submit', handleForm);    
   
     var nomeCadastro = document.getElementById("nomeCadastro");
     usuario.nome = nomeCadastro.value;
@@ -21,28 +26,36 @@ function cadastrar(){
 
     usuario.primeiro_login = 0;
 
-    var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
-      keyboard: false,
-      focus: true
-    });
-  
-    cadastro("usuario", usuario).then(function(result){
-      showMod('msg','Seu cadastro foi feito com sucesso.<br/><br/> Volte para a tela inicial para entrar no site.');
-      myModal.show();
-      limpar(["nomeCadastro", "matriculaCadastro", "cMatriculaCadastro", "senhaCadastro", "cSenhaCadastro"], 'cadastro');
-    }).catch(function(p){
-      if(p.status == 400){
-        showMod('msg', 'Cadastro não efetuado.<br/><br/> Este usuário já existe.');
-        myModal.show();
-        document.getElementById('cadastro').classList.remove('was-validated');
-      }else if(p == {}){
+    showMod('confirmacao',`Por favor confirme os dados.<br/><br/>Nome: ${nomeCadastro.value}<br/>Matrícula: ${matriculaCadastro.value}<br/>Senha: ${senhaCadastro.value}`);
+    showMod('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(true)">Confirmar</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button>')
+    myModal.show();
+  }
+  }
+
+  function confirmar (confirm) {
+    if(confirm){
+      cadastro("usuario", usuario).then(function(result){
+        showMod('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
         showMod('msg','Seu cadastro foi feito com sucesso.<br/><br/> Volte para a tela inicial para entrar no site.');
         myModal.show();
         limpar(["nomeCadastro", "matriculaCadastro", "cMatriculaCadastro", "senhaCadastro", "cSenhaCadastro"], 'cadastro');
-      }
-    });
-  }
-  }
+      }).catch(function(p){
+        if(p.status == 400){
+          showMod('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
+          showMod('msg', 'Cadastro não efetuado.<br/><br/> Este usuário já existe.');
+          myModal.show();
+          document.getElementById('cadastro').classList.remove('was-validated');
+        }else if(p == {}){
+          showMod('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
+          showMod('msg','Seu cadastro foi feito com sucesso.<br/><br/> Volte para a tela inicial para entrar no site.');
+          myModal.show();
+          limpar(["nomeCadastro", "matriculaCadastro", "cMatriculaCadastro", "senhaCadastro", "cSenhaCadastro"], 'cadastro');
+        }
+      });
+    }else{
+      document.getElementById('cadastro').classList.remove('was-validated');
+    }
+}
 
   //executa os posts
 async function cadastro (theUrl, body){

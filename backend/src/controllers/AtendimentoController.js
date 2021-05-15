@@ -118,7 +118,7 @@ module.exports = {
         var semana = new Date();
         semana.setDate(atual.getDate() + 6);
         var semanaData = semana.getFullYear()+"-"+(semana.getMonth() + 1)+"-"+semana.getDate();
-        const atendimento = await connection('atendimento').join('usuario', 'atendimento.id_professor', '=', 'usuario.id_usuario').select('atendimento.id_atendimento', 'atendimento.data_atendimento', 'atendimento.data_atendimento', 'atendimento.horario', 'atendimento.local', 'atendimento.materia', 'atendimento.status_cancelamento', 'usuario.id_usuario', 'usuario.nome').where('atendimento.id_aluno', id_usuario).andWhereNot('atendimento.status_cancelamento', 1).andWhere('atendimento.data_atendimento', '>=', atualData).andWhere('atendimento.data_atendimento','<=', semanaData).orderBy('atendimento.data_atendimento');
+        const atendimento = await connection('atendimento').join('usuario', 'atendimento.id_professor', '=', 'usuario.id_usuario').join('urls', 'usuario.id_usuario', '=', 'urls.id_usuario').select('atendimento.id_atendimento', 'atendimento.data_atendimento', 'atendimento.data_atendimento', 'atendimento.horario', 'atendimento.local', 'atendimento.materia', 'atendimento.status_cancelamento', 'usuario.id_usuario', 'usuario.nome', 'urls.url').where('atendimento.id_aluno', id_usuario).andWhereNot('atendimento.status_cancelamento', 1).andWhere('atendimento.data_atendimento', '>=', atualData).andWhere('atendimento.data_atendimento','<=', semanaData).orderBy('atendimento.data_atendimento');
         
         if(atendimento.length > 0){
             var resultado={};
@@ -132,7 +132,8 @@ module.exports = {
                     materia:element.materia,
                     status:element.status_cancelamento,
                     id_usuario:element.id_usuario,
-                    nome:element.nome
+                    nome:element.nome,
+                    url:element.url
                 }
 
                 var data = element.data_atendimento;

@@ -1,14 +1,18 @@
 // Tive q add a lib multer pra fazer isso, pq o express ñ lida com formatos multipartform
 const connection = require('../database/connection');
 
-module.exports = { //problema salva, mas ñ manda pro banco, nome não tá setando
+const path = require('path'); //usados para não dar erro na sintaxe do S.O.
+
+module.exports = { 
     //rota de upload de arquivo
     async create(request, response){
         const filename = request.file.filename;
-        const id_usuario = request.headers.authorization;
-
-            await connection('documentos').insert({
-                url:filename,
+        const tipo = request.body.tipo;
+        const id_usuario = request.body.id_usuario;
+        const url = path.resolve(__dirname,'..','..','uploads', filename) ;
+            await connection('urls').insert({
+                url:url,
+                tipo,
                 id_usuario
             })
 
@@ -17,7 +21,7 @@ module.exports = { //problema salva, mas ñ manda pro banco, nome não tá setan
 
      //Rota de listagem de arquivo
      async index(request,response) {
-        const arquivo = await connection('urls').select('*');
+        const arquivo = await connection('urls').select('url').where('tipo', 2);
 
         return response.json(arquivo);
     },
