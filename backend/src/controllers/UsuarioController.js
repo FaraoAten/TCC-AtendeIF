@@ -47,7 +47,7 @@ module.exports = {
 
                 if(num_matricula != null && num_matricula != ""){
                     const matricula = await connection('usuario').select('num_matricula').where('num_matricula', num_matricula);
-                    if(matricula.length == 0){
+                    if(matricula.length == 0||matricula[0].num_matricula == num_matricula){
                         const editar = await connection('usuario').where('id_usuario', id_usuario).update({num_matricula:num_matricula});
                     }else{
                         return response.status(400).send();
