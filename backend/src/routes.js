@@ -60,6 +60,8 @@ routes.put('/atendimento/cancelar', AtendimentoController.cancelar);
 //Rota de listagem de arquivos
 routes.get('/urls', UrlsController.index);
 
+routes.get('/urls/foto', UrlsController.fotoCadastrada);
+
 //Rota de upload de arquivos
 routes.post('/urls', upload.single('URL'), UrlsController.create);
 

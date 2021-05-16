@@ -5,7 +5,7 @@ window.onload = async function (){
     var textoNome = document.createTextNode(sessionStorage.getItem('nome'));
     colTopo.appendChild(textoNome);
     topo.appendChild(colTopo);
-    colTopo.classList.add("text-center", "fw-bold", "col-md-5", "col-lg-7", "col-12", "ms-lg-4", "maior28");
+    colTopo.classList.add("text-center", "fw-bold", "col-md-7", "col-12", "ms-lg-4", "maior28");
     await listaAtendimentoEstuProf('atendimento/professorEstudante').then(function(result){
         main.innerHTML = "";
         var chaves = Object.keys(result);
@@ -46,7 +46,7 @@ window.onload = async function (){
                 divCol.appendChild(divLocal);
                 divCol.appendChild(divHora);
                 divLinha.appendChild(divCol);
-                divCol.classList.add("col-11", "col-md-6", "col-lg-3", "border", "border-2", "border-dark", "arredondado", "p-2", "maior14", "mt-3", "mx-3");
+                divCol.classList.add("col-11", "col-md-7", "col-lg-4", "border", "border-2", "border-dark", "arredondado", "p-2", "maior14", "mt-3", "mx-3");
                 divNome.classList.add("maior16");
                 divDisciplina.classList.add("maior16");
                 divHora.classList.add("maior16");
@@ -57,7 +57,7 @@ window.onload = async function (){
                 divHora.innerHTML+=elemento.horario;
             }
             divLinha.classList.add("row", "justify-content-center", "mb-3", "maior28");
-            divColuna.classList.add("border-2", "border-bottom", "border-dark", "col-11", "col-md-6", "col-lg-9", "text-center", "cinza");
+            divColuna.classList.add("border-2", "border-bottom", "border-dark", "col-11", "col-md-10", "col-lg-9", "text-center", "cinza");
             main.appendChild(divLinha);
         }
     }).catch(function(p){

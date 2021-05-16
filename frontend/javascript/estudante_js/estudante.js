@@ -65,15 +65,15 @@ async function telaAtendimentoEstu(){
                 divCol.appendChild(btnPCancela);
                 divLinha.appendChild(divCol);
                 divCol.classList.add("col-12", "col-md-8", "col-lg-6", "col-xl-4", "border", "border-2", "border-dark", "arredondado", "p-2", "maior14", "mt-3", "mx-3");
-                divImg.classList.add("col-6", "col-md-5", "col-lg-4", "mx-auto", "mb-2");
-                divNome.classList.add("maior16", "offset-md-3");
-                divDisciplina.classList.add("maior16", "offset-md-3");
-                divHora.classList.add("maior16", "offset-md-3");
-                divLocal.classList.add("maior16", "offset-md-3");
+                divImg.classList.add("col-6", "col-md-5", "col-lg-4", "mx-auto", "mb-3");
+                divNome.classList.add("maior16", "ms-1");
+                divDisciplina.classList.add("maior16", "ms-1");
+                divHora.classList.add("maior16", "ms-1");
+                divLocal.classList.add("maior16", "ms-1");
                 if(elemento.status==2){
-                    btnPCancela.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "offset-md-3",  "maior14", "disabled");
+                    btnPCancela.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-3", "offset-md-3",  "maior14", "disabled");
                 }else{
-                    btnPCancela.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-2", "offset-md-3", "maior14");
+                    btnPCancela.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-3", "offset-md-3", "maior14");
                 }
                 divImg.innerHTML = `<img class="img-fluid" src='${elemento.url}'>`
                 divNome.innerHTML+=elemento.nome;
