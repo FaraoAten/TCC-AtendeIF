@@ -11,7 +11,17 @@
 </head>
 <body>
     <div class="container-fluid">
-        <header class="row">
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header maiorMod16" id="confirmacao">
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body maiorMod28" id="msg"></div>
+          </div>
+        </div>
+      </div>
+        <header class="row azul">
             <nav class="navbar navbar-dark azul maior20">
                 <div class="container-fluid">
                   <button class="navbar-toggler text-white text-center maior28" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" id='navDepen'>
@@ -25,37 +35,33 @@
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li class="nav-item">
-                        <a class="nav-link" href="./professorBase.html" id="navAten">Atendimentos&nbsp;&nbsp;<i class="fas fa-chalkboard-teacher"></i></a>
+                        <a class="nav-link" href="./pedagogiaBase.html" id="navPesq">Pesquisar Estudante&nbsp;&nbsp;<i class="fas fa-search"></i></a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="./notProfessor.html" id="navNot">Notificações&nbsp;&nbsp;<i class="far fa-bell"></i></a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="./documentosProfessor.html" id="navDoc">Documentos&nbsp;&nbsp;<i class="far fa-file-alt"></i></a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link active" href="./pesqProfessor.html" id="navPesq">Pesquisar Estudante&nbsp;&nbsp;<i class="fas fa-search"></i></a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="./editarPerfilProfessor.html" id="navEdit">Editar Perfil&nbsp;&nbsp;<i class="fas fa-pencil-alt"></i></a>
+                        <a class="nav-link active" href="./documentosPedagogia.html" id="navDoc">Documentos&nbsp;&nbsp;<i class="far fa-file-alt"></i></a>
                       </li>
                     </ul>
                   </div>
                 </div>
               </nav>
         </header>
-        <div id="topo" class="row my-3">
-          <button type="button" class="btn btn-lg arredondado border-dark col-md-3 col-lg-2 col-10 ms-4" onclick="window.location.replace('./pesqProfessor.html')"><i class="far fa-arrow-alt-circle-left fa-lg"></i><strong>&nbsp;&nbsp;VOLTAR</strong></button>
+        <div id="main" class="row justify-content-center mt-3">
+          <form class="row justify-content-center g-2" id="documentos">
+            <div class="row justify-content-center">
+              <div class="col-12 col-md-7 col-lg-6 col-xl-4 mb-4">
+                  <label class="offset-1 offset-md-3 maior16" for="insereDocumento"><strong>Adicionar Documento</strong></label>
+                  <input type="file" class="form-control arredondado sombra" id="insereDocumento" name="URL" onchange="cadastrarDocumento()">
+              </div>
+            </div>
+          </form>
         </div>
-        <div id="main" class="row justify-content-center mt-3"></div>
-        <div id="fundo" class="row justify-content-center">
-          <button type="button" class="btn btn-lg col-xl-5 col-lg-7 col-md-8 col-10 my-3 arredondado border-dark sombra azul text-white" onclick="window.location.href = './cadastroAtendimento.html';"><strong class="some">MARCAR ATENDIMENTO&nbsp;&nbsp;</strong><i class="far fa-plus-square fa-lg"></i></button>
+          <div id="adiciona" class="row justify-content-center my-2"></div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/c9d38635a3.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../../javascript/geral.js"></script>
-    <script src="../../javascript/professor_js/atendimentosEstuProf.js"></script>
+    <script src="../../javascript/pedagogia_js/documentosPedagogia.js"></script>
 </body>
 </html>

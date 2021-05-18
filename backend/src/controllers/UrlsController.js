@@ -24,9 +24,12 @@ module.exports = {
 
      //Rota de listagem de arquivo
      async index(request,response) {
-        const arquivo = await connection('urls').select('url').where('tipo', 2);
-
-        return response.json(arquivo);
+        const arquivo = await connection('urls').select('id_urls', 'url', 'nome_arquivo').where('tipo', 2);
+        if(arquivo.length>0){
+            return response.json(arquivo);
+        }else{
+            return response.status(404).send();
+        }
     },
 
     //Rota de verificar se há foto cadastrada

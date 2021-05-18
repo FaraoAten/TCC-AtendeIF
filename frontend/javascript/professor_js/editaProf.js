@@ -1,4 +1,3 @@
-var foto = {};
 var usuario = {};
 
 var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {

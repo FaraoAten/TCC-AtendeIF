@@ -94,6 +94,13 @@ select{
    transform: scale(1.03);
 }
 
+.documeto{
+   display: inline-block;
+   white-space: nowrap;
+   overflow: hidden !important;
+   text-overflow: ellipsis;
+}
+
  @media screen and (max-width:767px) {
     .some{
        visibility: hidden;
