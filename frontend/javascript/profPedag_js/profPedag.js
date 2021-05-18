@@ -3,7 +3,20 @@ var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
     focus: true
   }); 
   
-window.onload = telaAtendimentoProf();
+window.onload = function () { 
+    telaAtendimentoProf();
+
+    if(sessionStorage.getItem('primeiroLogin')==0){
+
+        showMod('confirmacao','Por favor insira uma foto sua no sistema.');
+        showMod('msg', '<button type="button" class="btn btn-primary btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="window.location.href=`./editarPerfilProfPedag.html`" data-bs-dismiss="modal">Ok</button>');
+        myModal.show();
+
+        sessionStorage.setItem('primeiroLogin', 1);
+        
+        primeiroLogin('usuario/primeiroLogin');
+  }
+}
 
 async function telaAtendimentoProf(){
     var main = document.getElementById('main');
@@ -191,5 +204,17 @@ async function cancelar (theUrl, body){
         contentType: 'application/json',
         url: myRequest,
         data:JSON.stringify(body),
+    });
+  }
+
+  async function primeiroLogin (theUrl){
+    const myRequest = BASE_URL+theUrl;
+    await jQuery.ajax({
+        type: 'PUT',
+        encoding:"UTF-8",
+        dataType: 'json',
+        contentType: 'application/json',
+        url: myRequest,
+        data:JSON.stringify({id_usuario:sessionStorage.getItem('authorization'),primeiro_login:1}),
     });
   }

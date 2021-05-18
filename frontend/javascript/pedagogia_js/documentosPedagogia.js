@@ -67,7 +67,7 @@ async function confirmar (confirm) {
     if(confirm){
         await insereDoc("urls").then(function(result){
             limpar(["insereDocumento"], 'documentos');
-            telaDocumentos();
+            window.location.reload();
           });
     }else{
         limpar(["insereDocumento"], 'documentos');

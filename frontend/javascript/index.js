@@ -22,8 +22,10 @@ function Login(){
           sessionStorage.setItem('primeiroLogin', result.primeiro_login);
         }else if(result.tipo == 2){
           window.location.href = './html/professor_html/professorBase.html';
+          sessionStorage.setItem('primeiroLogin', result.primeiro_login);
         }else if(result.tipo == 3){
           window.location.href = './html/profPedag_html/profPedagBase.html';
+          sessionStorage.setItem('primeiroLogin', result.primeiro_login);
         }else{
           window.location.href = './html/pedagogia_html/pedagogiaBase.html';
         }
@@ -40,8 +42,10 @@ function Login(){
             sessionStorage.setItem('primeiroLogin', p.primeiro_login);
           }else if(p.tipo == 2){
             window.location.href = './html/professor_html/professorBase.html';
+            sessionStorage.setItem('primeiroLogin', p.primeiro_login);
           }else if(p.tipo == 3){
             window.location.href = './html/profPedag_html/profPedagBase.html';
+            sessionStorage.setItem('primeiroLogin', p.primeiro_login);
           }else{
             window.location.href = './html/pedagogia_html/pedagogiaBase.html';
           }
