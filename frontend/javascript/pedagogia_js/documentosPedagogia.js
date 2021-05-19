@@ -10,6 +10,7 @@ window.onload = function () {
 async function telaDocumentos(){
     var adiciona = document.getElementById('adiciona');
     await listaDocumentos('urls').then(function(result){
+        console.log(JSON.stringify(result))
         adiciona.innerHTML = "";
         for (let i = 0; i < result.length; i++) {
             const nomeDocumento = result[i].nome_arquivo;
@@ -65,9 +66,10 @@ function deletarDocumento(){
 
 async function confirmar (confirm) {
     if(confirm){
-        await insereDoc("urls").then(function(result){
-            limpar(["insereDocumento"], 'documentos');
-            window.location.reload();
+        await insereDoc("urls").then(async function(result){
+            await limpar(["insereDocumento"], 'documentos');
+            await sleep(200);
+            telaDocumentos();
           });
     }else{
         limpar(["insereDocumento"], 'documentos');
@@ -125,5 +127,8 @@ async function deletaDoc (theUrl, body){
     return ret;
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 
