@@ -1,3 +1,5 @@
+// arquivo onde são definidas as rotas de conexão do front com o back, para que o programa seja RESTful e saiba o que fazer ao receber cada path.
+
 const express = require('express');
 
 const multer = require('multer');
@@ -13,60 +15,64 @@ const AtendimentoController = require('./controllers/AtendimentoController');
 const UrlsController = require('./controllers/UrlsController');
 
 //Rota de listagem de usuários
-routes.get('/usuario/:informacao', UsuarioController.index)
+routes.get('/usuario/:informacao', UsuarioController.listarUsuarios)
 
 //Rota de registro do usuário
-routes.post('/usuario', UsuarioController.create);
+routes.post('/usuario', UsuarioController.cadastrarUsuarios);
 
 //Rota de Login
 routes.post('/usuario/login', UsuarioController.login);
 
 //Rota de atualizar usuário
-routes.put('/usuario', UsuarioController.edit);
+routes.put('/usuario', UsuarioController.editarUsuarios);
 
 //Rota de atualizar campo primeiro_login
-routes.put('/usuario/primeiroLogin', UsuarioController.firstLogin);
+routes.put('/usuario/primeiroLogin', UsuarioController.primeiroLogin);
 
 //Rota de listagem de mensagens.
-routes.get('/mensagem', MensagemController.index);
+routes.get('/mensagem', MensagemController.listarMensagem);
 
-//Rota de postagem de mensagem
-routes.post('/mensagem', MensagemController.create);
+//Rota de registro de mensagem
+routes.post('/mensagem', MensagemController.cadastrarMensagem);
 
 //Rota de listagem de atendimentos de professor.
-routes.get('/atendimento/professor', AtendimentoController.listaAtendimentoProf);
+routes.get('/atendimento/professor', AtendimentoController.listarAtendimentoProf);
 
-//Rota de listagem de atendimentos de pedagogia.
-routes.get('/atendimento/professorEstudante', AtendimentoController.listaAtendimentoEstuProf);
+//Rota de listagem de atendimentos de estudante (visualização do professor ao pesquisar aluno).
+routes.get('/atendimento/professorEstudante', AtendimentoController.listarAtendimentoEstuProf);
 
 //Rota de listagem de atendimentos de estudante.
-routes.get('/atendimento/estudante', AtendimentoController.listaAtendimentoEstu);
+routes.get('/atendimento/estudante', AtendimentoController.listarAtendimentoEstu);
 
-routes.get('/atendimento/mensagem', AtendimentoController.montarMensagem);
+//Rota de criação das mensagens de pedido de cancelamento de atendimento
+routes.get('/atendimento/mensagemPedidoCancelamento', AtendimentoController.montarMensagemPedidoCancelamento);
 
-routes.get('/atendimento/mensagemEstu', AtendimentoController.montarMensagemEstu);
+//Rota de criação das mensagens de cancelamento de atendimento
+routes.get('/atendimento/mensagemCancelamento', AtendimentoController.montarMensagemCancelamento);
 
-routes.get('/atendimento/mensagemAlterar', AtendimentoController.montarMensagemAlterar);
+//Rota de criação das mensagens de alteração de atendimento
+routes.get('/atendimento/mensagemAlteraracao', AtendimentoController.montarMensagemAlteraracao);
 
 //Rota de registro do atendimento
-routes.post('/atendimento', AtendimentoController.create);
+routes.post('/atendimento', AtendimentoController.cadastrarAtendimentos);
 
 //Rota de atualizar atendimento
-routes.put('/atendimento', AtendimentoController.edit);
+routes.put('/atendimento', AtendimentoController.editarAtendimentos);
 
 //Rota de cancelar atendimento
-routes.put('/atendimento/cancelar', AtendimentoController.cancelar);
+routes.put('/atendimento/cancelar', AtendimentoController.cancelarAtendimentos);
 
 //Rota de listagem de arquivos
-routes.get('/urls', UrlsController.index);
+routes.get('/urls', UrlsController.listarUrls);
 
-routes.get('/urls/foto', UrlsController.fotoCadastrada);
+//Rota de verificação de existencia de foto vinculada ao usuário
+routes.get('/urls/foto', UrlsController.verificarFotoCadastrada);
 
-//Rota de upload de arquivos
-routes.post('/urls', upload.single('URL'), UrlsController.create);
+//Rota de registro de urls (upload de arquivos)
+routes.post('/urls', upload.single('URL'), UrlsController.cadastrarUrls);
 
-//Rota de delete de arquivos
-routes.delete('/urls', UrlsController.delete);
+//Rota de deletar urls
+routes.delete('/urls', UrlsController.deletarUrls);
 
 module.exports = routes; 
 

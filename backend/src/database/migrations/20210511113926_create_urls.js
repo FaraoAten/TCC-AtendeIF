@@ -1,3 +1,4 @@
+//arquivo de criação da tabela urls no banco
 
 exports.up = function(knex) {
     return knex.schema.createTable('urls', function(table){

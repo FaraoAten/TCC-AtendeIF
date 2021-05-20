@@ -1,3 +1,5 @@
+// Funções da tela de mudança de senha dos usuários do tipo estudante
+
 var usuario = {};
 
 var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
@@ -23,17 +25,18 @@ function mudarSenha(header){
         var senhaMudarSenha = document.getElementById("senhaMudarSenha");
         usuario.password = senhaMudarSenha.value;
 
-        showMod('confirmacao',`Por favor confirme sua senha, se não digitou nada a senha padrão não será mudada.<br/><br/>Senha: ${senhaMudarSenha.value}`);
-        showMod('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(true)">Confirmar</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button>')
+        AlterarModal('confirmacao',`Por favor confirme sua senha, se não digitou nada a senha padrão não será mudada.<br/><br/>Senha: ${senhaMudarSenha.value}`);
+        AlterarModal('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(true)">Confirmar</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button>')
         myModal.show();
     }
   }
 
   function confirmar (confirm) {
+
     if(confirm){
       mudaSenha("usuario", usuario).then(function(result){
-          showMod('confirmacao','<button type="button" class="btn-close" onclick="voltar()" data-bs-dismiss="modal"></button>')
-          showMod('msg', 'Senha mudada com sucesso.');
+          AlterarModal('confirmacao','<button type="button" class="btn-close" onclick="voltar()" data-bs-dismiss="modal"></button>')
+          AlterarModal('msg', 'Senha mudada com sucesso.');
           myModal.show();
         });
     }else{
@@ -41,6 +44,13 @@ function mudarSenha(header){
     }
 }
 
+function voltarConfirmacao(){
+  AlterarModal('confirmacao', 'Você quer realmente voltar?<br/>Se você fizer isso não vai poder mudar sua senha depois.');
+  AlterarModal('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="voltar()">Sim</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" data-bs-dismiss="modal">Não</button>')
+  myModal.show();
+}
+
+//AJAX
 async function mudaSenha (theUrl, body){
   const myRequest = BASE_URL+theUrl;
   var ret = await jQuery.ajax({
@@ -53,10 +63,4 @@ async function mudaSenha (theUrl, body){
   });
 
   return ret;
-}
-
-function voltarConfirmacao(){
-    showMod('confirmacao', 'Você quer realmente voltar?<br/>Se você fizer isso não vai poder mudar sua senha depois.');
-    showMod('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="voltar()">Sim</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" data-bs-dismiss="modal">Não</button>')
-    myModal.show();
 }

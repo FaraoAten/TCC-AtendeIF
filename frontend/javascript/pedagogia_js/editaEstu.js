@@ -1,3 +1,5 @@
+// Funções da tela de edição de perfis de estudantes dos usuários do tipo pedagogia
+
 var usuario = {};
 
 var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
@@ -6,9 +8,11 @@ var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
 });
 
 window.onload = function(){
+
   document.getElementById('nomeEditEstu').value = sessionStorage.getItem('nome');
   document.getElementById('matriculaEditEstu').value = sessionStorage.getItem('num_matricula');
   document.getElementById('cMatriculaEditEstu').value = sessionStorage.getItem('num_matricula');
+
 }
 
 function editarEstu(header){
@@ -31,23 +35,28 @@ function editarEstu(header){
         var senhaEditEstu = document.getElementById("senhaEditEstu");
         usuario.password = senhaEditEstu.value;
 
-        showMod('confirmacao',`Por favor confirme os dados, dados em branco não irão gerar alterações.<br/><br/>Nome: ${nomeEditEstu.value}<br/>Matrícula: ${matriculaEditEstu.value}<br/>Senha: ${senhaEditEstu.value}`);
-        showMod('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(true)">Confirmar</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button>')
+        AlterarModal('confirmacao',`Por favor confirme os dados, dados em branco não irão gerar alterações.<br/><br/>Nome: ${nomeEditEstu.value}<br/>Matrícula: ${matriculaEditEstu.value}<br/>Senha: ${senhaEditEstu.value}`);
+        AlterarModal('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(true)">Confirmar</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button>')
         myModal.show();
     }
   }
 
   function confirmar (confirm) {
+
     if(confirm){
-      editaEstu("usuario", usuario).then(function(result){
-          showMod('confirmacao','<button type="button" class="btn-close" onclick="voltar()" data-bs-dismiss="modal"></button>')
-          showMod('msg', 'Edição efetuada com sucesso.');
+      enviaEdicao("usuario", usuario).then(function(result){
+
+          AlterarModal('confirmacao','<button type="button" class="btn-close" onclick="voltar()" data-bs-dismiss="modal"></button>')
+          AlterarModal('msg', 'Edição efetuada com sucesso.');
           myModal.show();
+
         }).catch(function(p){
+
           if(p.status == 400){
-          showMod('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
-          showMod('msg', 'Edição não efetuada.<br/><br/> Esta matrícula já está em uso.');
+          AlterarModal('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
+          AlterarModal('msg', 'Edição não efetuada.<br/><br/> Esta matrícula já está em uso.');
           myModal.show();
+
           document.getElementById('editarPerfilEstu').classList.remove('was-validated');
         }
       });
@@ -56,7 +65,8 @@ function editarEstu(header){
     }
 }
 
-async function editaEstu (theUrl, body){
+//AJAX
+async function enviaEdicao (theUrl, body){
   const myRequest = BASE_URL+theUrl;
   var ret = await jQuery.ajax({
       type: 'PUT',

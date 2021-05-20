@@ -1,3 +1,4 @@
+//arquivo de criação da tabela atendimento no banco
 
 exports.up = function(knex) {
     return knex.schema.createTable('atendimento', function(table){

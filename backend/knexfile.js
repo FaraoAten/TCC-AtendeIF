@@ -1,4 +1,4 @@
-// Update with your config settings.
+// Arquivo de configuração do knex (gerador de banco de dados e construtor de querys)
 
 module.exports = {
 

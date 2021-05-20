@@ -1,8 +1,13 @@
+/* único arquivo de css, pois a maior parte das formatações são feitas com bootstrap 
+e as que são feitas aqui se repetem em vários arquivos */
+
+/* tamanho de tela ocupada */
 html,body{
    height: 100%;
    width: 100%;
 }
 
+/* Formulários, inputs, selects e botões */
 .form-control:focus, .btn:focus, select:focus, .sombra {
    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
 }
@@ -11,14 +16,39 @@ html,body{
    box-shadow: none;
 }
 
-.arredondado{
-   border-radius: 12px;
+.form-check-input{
+   width: 22px;
+   height: 22px;
+   transition: 0.5s;
+   border-color: black !important;
+   box-shadow: none !important;
 }
 
-.maiuscula{
-   text-transform: uppercase;
+.form-check-label{
+   color: rgba(0, 0, 0, 0.85) !important;
 }
 
+ input.form-control, select.form-select{
+    border-color: black;
+ }
+
+ select{
+   height: calc(3.5rem + 2px);
+}
+
+ button{
+   -moz-transition: all 0.5s;
+   -webkit-transition: all 0.5s;
+   transition: all 0.5s;
+}
+
+button:hover{
+  -moz-transform: scale(1.03);
+  -webkit-transform: scale(1.03);
+  transform: scale(1.03);
+}
+
+/* Tamanhos de fonte */
 .maiorMod28{
    font-size: 28pt;
    color: black;
@@ -45,34 +75,24 @@ html,body{
    font-size: 28pt;
 }
 
+
 .maiorDatasEstudante{
    font-size: 30pt;
 }
 
+/* miscelânea */
 h1{
    color: black;
    text-align: center;
 }
 
-select{
-   height: calc(3.5rem + 2px);
+.arredondado{
+   border-radius: 12px;
 }
 
-.form-check-input{
-   width: 22px;
-   height: 22px;
-   transition: 0.5s;
-   border-color: black !important;
-   box-shadow: none !important;
+.maiuscula{
+   text-transform: uppercase;
 }
-
-.form-check-label{
-   color: rgba(0, 0, 0, 0.85) !important;
-}
-
- input.form-control, select.form-select{
-    border-color: black;
- }
 
  .azul{
     background-color: #005F97;
@@ -82,18 +102,9 @@ select{
     background-color: #D1D1CC;
  }
 
- button{
-    -moz-transition: all 0.5s;
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
- }
+ 
 
- button:hover{
-   -moz-transform: scale(1.03);
-   -webkit-transform: scale(1.03);
-   transform: scale(1.03);
-}
-
+/* Específica para tela de documentos (esconde texto) */
 .documeto{
    display: inline-block;
    white-space: nowrap;
@@ -101,6 +112,7 @@ select{
    text-overflow: ellipsis;
 }
 
+/* Responsividade */
  @media screen and (max-width:767px) {
     .some{
        visibility: hidden;

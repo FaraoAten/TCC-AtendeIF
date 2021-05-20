@@ -54,7 +54,7 @@
             <div class="row justify-content-center g-2">
                 <div class="mb-3 col-md-6 col-lg-4">
                     <div class="form-floating">
-                        <input type="password" class="form-control arredondado sombra" id="senhaMudarSenha" placeholder="Senha" autocomplete="off" pattern=".{3,}" onkeyup="verificaIgualSenEdit('senhaMudarSenha','cSenhaMudarSenha','invalidSenhaMudarSenha')" >
+                        <input type="password" class="form-control arredondado sombra" id="senhaMudarSenha" placeholder="Senha" autocomplete="off" pattern=".{3,}" onkeyup="verificaIgualSenhaEdicao('senhaMudarSenha','cSenhaMudarSenha','invalidSenhaMudarSenha')" >
                         <label class="maior14" for="senhaMudarSenha">Senha</label>
                         <div class="invalid-feedback maior14">Digite uma senha com, no mínimo, 3 caracteres.</div>
                     </div>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="mb-3 col-md-6 col-lg-4">
                     <div class="form-floating">
-                        <input type="password" class="form-control arredondado sombra" id="cSenhaMudarSenha" placeholder="Confirmar Senha" autocomplete="off" onkeyup="verificaIgualSenEdit('senhaMudarSenha','cSenhaMudarSenha','invalidSenhaMudarSenha')" >
+                        <input type="password" class="form-control arredondado sombra" id="cSenhaMudarSenha" placeholder="Confirmar Senha" autocomplete="off" onkeyup="verificaIgualSenhaEdicao('senhaMudarSenha','cSenhaMudarSenha','invalidSenhaMudarSenha')" >
                         <label class="maior14" for="cSenhaMudarSenha">Confirmar Senha</label>
                         <div class="invalid-feedback maior14" id="invalidSenhaMudarSenha">Repita sua senha.</div>
                     </div>

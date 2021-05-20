@@ -1,3 +1,4 @@
+//arquivo de criação da tabela mensagem no banco
 
 exports.up = function(knex) {
     return knex.schema.createTable('mensagem', function(table){

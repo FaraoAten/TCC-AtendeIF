@@ -84,14 +84,14 @@
             <div class="row justify-content-center g-2">
                 <div class="mb-3 col-md-6 col-lg-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control arredondado sombra maiuscula"  id="matriculaEditProf" placeholder="Matrícula do SIAPE" autocomplete="off" pattern="[0-9]{7}" onkeyup="setaErro('matriculaEditProf','invalidMatriculaEditProf'); verificaIgualMatEdit('matriculaEditProf', 'cMatriculaEditProf', 'invalidCMatriculaEditProf')" onblur="maiuscula('matriculaEditProf')" >
+                        <input type="text" class="form-control arredondado sombra maiuscula"  id="matriculaEditProf" placeholder="Matrícula do SIAPE" autocomplete="off" pattern="[0-9]{7}" onkeyup="setaErro('matriculaEditProf','invalidMatriculaEditProf'); verificaIgualMatriculaEdicao('matriculaEditProf', 'cMatriculaEditProf', 'invalidCMatriculaEditProf')" onblur="maiuscula('matriculaEditProf')" >
                         <label class="maior14" for="matriculaEditProf">Matrícula do SIAPE</label>
                         <div class="invalid-feedback maior14" id="invalidMatriculaEditProf">Digite sua matrícula.</div>
                     </div>
                 </div>
                 <div class="mb-3 col-md-6 col-lg-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control arredondado sombra maiuscula" id="cMatriculaEditProf" placeholder="Confirmar Matrícula" autocomplete="off" pattern="[0-9]{7}" onkeyup="setaErro('cMatriculaEditProf','invalidCMatriculaEditProf'); verificaIgualMatEdit('matriculaEditProf', 'cMatriculaEditProf', 'invalidCMatriculaEditProf')" onblur="maiuscula('cMatriculaEditProf')" >
+                        <input type="text" class="form-control arredondado sombra maiuscula" id="cMatriculaEditProf" placeholder="Confirmar Matrícula" autocomplete="off" pattern="[0-9]{7}" onkeyup="setaErro('cMatriculaEditProf','invalidCMatriculaEditProf'); verificaIgualMatriculaEdicao('matriculaEditProf', 'cMatriculaEditProf', 'invalidCMatriculaEditProf')" onblur="maiuscula('cMatriculaEditProf')" >
                         <label class="maior14" for="cMatriculaEditProf">Confirmar Matrícula</label>
                         <div class="invalid-feedback maior14" id="invalidCMatriculaEditProf">Repita sua matrícula.</div>
                     </div>
@@ -100,7 +100,7 @@
             <div class="row justify-content-center g-2">
                 <div class="mb-3 col-md-6 col-lg-4">
                     <div class="form-floating">
-                        <input type="password" class="form-control arredondado sombra" id="senhaEditProf" placeholder="Senha" autocomplete="off" pattern=".{3,}" onkeyup="verificaIgualSenEdit('senhaEditProf','cSenhaEditProf','invalidSenhaEditProf')" >
+                        <input type="password" class="form-control arredondado sombra" id="senhaEditProf" placeholder="Senha" autocomplete="off" pattern=".{3,}" onkeyup="verificaIgualSenhaEdicao('senhaEditProf','cSenhaEditProf','invalidSenhaEditProf')" >
                         <label class="maior14" for="senhaEditProf">Senha</label>
                         <div class="invalid-feedback maior14">Digite uma senha com, no mínimo, 3 caracteres.</div>
                     </div>
@@ -113,7 +113,7 @@
                 </div>
                 <div class="mb-3 col-md-6 col-lg-4">
                     <div class="form-floating">
-                        <input type="password" class="form-control arredondado sombra" id="cSenhaEditProf" placeholder="Confirmar Senha" autocomplete="off" onkeyup="verificaIgualSenEdit('senhaEditProf','cSenhaEditProf','invalidSenhaEditProf')" >
+                        <input type="password" class="form-control arredondado sombra" id="cSenhaEditProf" placeholder="Confirmar Senha" autocomplete="off" onkeyup="verificaIgualSenhaEdicao('senhaEditProf','cSenhaEditProf','invalidSenhaEditProf')" >
                         <label class="maior14" for="cSenhaEditProf">Confirmar Senha</label>
                         <div class="invalid-feedback maior14" id="invalidSenhaEditProf">Repita sua senha.</div>
                     </div>

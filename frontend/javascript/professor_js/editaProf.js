@@ -1,3 +1,5 @@
+// Funções da tela de edição de perfil dos usuários do tipo professor
+
 var usuario = {};
 
 var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
@@ -39,22 +41,27 @@ function editarProf(header){
             tipoTxt = "";
         }
 
-        showMod('confirmacao',`Por favor confirme os dados, dados em branco não irão gerar alterações.<br/><br/>Foto: ${fotoEditProf.value}<br/>Nome: ${nomeEditProf.value}<br/>Tipo: ${tipoTxt}<br/>SIAPE: ${matriculaEditProf.value}<br/>Senha: ${senhaEditProf.value}`);
-        showMod('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(true)">Confirmar</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button>')
+        AlterarModal('confirmacao',`Por favor confirme os dados, dados em branco não irão gerar alterações.<br/><br/>Foto: ${fotoEditProf.value}<br/>Nome: ${nomeEditProf.value}<br/>Tipo: ${tipoTxt}<br/>SIAPE: ${matriculaEditProf.value}<br/>Senha: ${senhaEditProf.value}`);
+        AlterarModal('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(true)">Confirmar</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button>')
         myModal.show();
     }
   }
 
   async function confirmar (confirm) {
+
     if(confirm){
       await editaProf("usuario", usuario).then(async function(result){
         
         await fotoCadastrada("urls/foto").then(async function(result){
+    
           await deletaFoto("urls",result[0]);
+
           await insereFoto("urls", foto).then(function(result){
             limpar(["fotoEditProf"], 'editarPerfilProf');
           });
+
         }).catch(function(p){
+
           if(p.status == 404){
               insereFoto("urls").then(function(result){
               limpar(["fotoEditProf"], 'editarPerfilProf');
@@ -62,15 +69,19 @@ function editarProf(header){
           }
         });
 
-          showMod('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
-          showMod('msg', 'Edição efetuada com sucesso.');
+          AlterarModal('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
+          AlterarModal('msg', 'Edição efetuada com sucesso.');
           myModal.show();
+
           limpar(["nomeEditProf", "tipoEditProf", "matriculaEditProf", "cMatriculaEditProf", "senhaEditProf", "cSenhaEditProf"], 'editarPerfilProf');
+      
       }).catch(function(p){
+
       if(p.status == 400){
-          showMod('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
-          showMod('msg', 'Edição não efetuada.<br/><br/> Esta matrícula já está em uso.');
+          AlterarModal('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
+          AlterarModal('msg', 'Edição não efetuada.<br/><br/> Esta matrícula já está em uso.');
           myModal.show();
+
           document.getElementById('editarPerfilProf').classList.remove('was-validated');
       }
     });
@@ -79,6 +90,7 @@ function editarProf(header){
     }
 }
 
+//AJAX
 async function editaProf (theUrl, body){
   const myRequest = BASE_URL+theUrl;
   var ret = await jQuery.ajax({

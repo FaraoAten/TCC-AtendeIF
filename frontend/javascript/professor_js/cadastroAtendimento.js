@@ -1,3 +1,5 @@
+// Funções da tela de cadastrar atendimento dos usuários do tipo professor
+
 var atendimento = {};
 
 var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
@@ -32,18 +34,21 @@ function cadastrarAtendimento(id_aluno, id_professor){
         
         atendimento.id_professor = id_professor;
         
-        showMod('confirmacao',`Por favor confirme os dados.<br/><br/>Data: ${dataCadastro.value}<br/>Horário: ${horaCadastro.value}<br/>Local: ${localCadastro.value}<br/>Disciplina: ${disciplinaCadastro.value}`);
-        showMod('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(true)">Confirmar</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button>')
+        AlterarModal('confirmacao',`Por favor confirme os dados.<br/><br/>Data: ${dataCadastro.value}<br/>Horário: ${horaCadastro.value}<br/>Local: ${localCadastro.value}<br/>Disciplina: ${disciplinaCadastro.value}`);
+        AlterarModal('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(true)">Confirmar</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button>')
         myModal.show();
     }
   }
 
   function confirmar (confirm) {
+
     if(confirm){
         cadastroAtendimento("atendimento", atendimento).then(function(result){
-        showMod('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
-        showMod('msg','Atendimento cadastrado com sucesso.');
+
+        AlterarModal('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
+        AlterarModal('msg','Atendimento cadastrado com sucesso.');
         myModal.show();
+
         limpar(["dataCadastro", "horaCadastro", "localCadastro", "disciplinaCadastro"], 'cadastroAtendimento');
         });
     }else{
@@ -51,7 +56,7 @@ function cadastrarAtendimento(id_aluno, id_professor){
     }
 }
 
-  //executa os posts
+//AJAX
 async function cadastroAtendimento (theUrl, body){
   const myRequest = BASE_URL+theUrl;
   var ret = await jQuery.ajax({

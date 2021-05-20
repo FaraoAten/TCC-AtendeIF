@@ -1,3 +1,5 @@
+// Funções da tela de cadastro de estudantes
+
 var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
   keyboard: false,
   focus: true
@@ -5,7 +7,6 @@ var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
 
 var usuario = {};
 
-//Pega as infos do cadastro
 function cadastrar(){
 
     var form = document.getElementById("cadastro");
@@ -26,29 +27,39 @@ function cadastrar(){
 
     usuario.primeiro_login = 0;
 
-    showMod('confirmacao',`Por favor confirme os dados.<br/><br/>Nome: ${nomeCadastro.value}<br/>Matrícula: ${matriculaCadastro.value}<br/>Senha: ${senhaCadastro.value}`);
-    showMod('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(true)">Confirmar</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button>')
+    AlterarModal('confirmacao',`Por favor confirme os dados.<br/><br/>Nome: ${nomeCadastro.value}<br/>Matrícula: ${matriculaCadastro.value}<br/>Senha: ${senhaCadastro.value}`);
+    AlterarModal('msg', '<button type="button" class="btn btn-success btn-lg col-md-3 col-5 me-1 arredondado sombra" onclick="confirmar(true)">Confirmar</button><button type="button" class="btn btn-danger btn-lg col-md-3 col-5 ms-1 arredondado sombra" onclick="confirmar(false)" data-bs-dismiss="modal">Cancelar</button>')
     myModal.show();
+
   }
   }
 
   function confirmar (confirm) {
+
     if(confirm){
       cadastro("usuario", usuario).then(function(result){
-        showMod('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
-        showMod('msg','Seu cadastro foi feito com sucesso.<br/><br/> Volte para a tela inicial para entrar no site.');
+
+        AlterarModal('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
+        AlterarModal('msg','Seu cadastro foi feito com sucesso.<br/><br/> Volte para a tela inicial para entrar no site.');
         myModal.show();
+
         limpar(["nomeCadastro", "matriculaCadastro", "cMatriculaCadastro", "senhaCadastro", "cSenhaCadastro"], 'cadastro');
+
       }).catch(function(p){
+
         if(p.status == 400){
-          showMod('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
-          showMod('msg', 'Cadastro não efetuado.<br/><br/> Este usuário já existe.');
+          AlterarModal('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
+          AlterarModal('msg', 'Cadastro não efetuado.<br/><br/> Este usuário já existe.');
           myModal.show();
+
           document.getElementById('cadastro').classList.remove('was-validated');
+
+        //prevenção de erro
         }else if(p == {}){
-          showMod('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
-          showMod('msg','Seu cadastro foi feito com sucesso.<br/><br/> Volte para a tela inicial para entrar no site.');
+          AlterarModal('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
+          AlterarModal('msg','Seu cadastro foi feito com sucesso.<br/><br/> Volte para a tela inicial para entrar no site.');
           myModal.show();
+
           limpar(["nomeCadastro", "matriculaCadastro", "cMatriculaCadastro", "senhaCadastro", "cSenhaCadastro"], 'cadastro');
         }
       });
@@ -57,7 +68,41 @@ function cadastrar(){
     }
 }
 
-  //executa os posts
+function verificaIgualMatricula(elemento,confirmacao,local){
+
+  verificaE = document.getElementById(elemento).value;
+  verificaC = document.getElementById(confirmacao);
+  erro = document.getElementById(local);
+
+  if(verificaC.value == null || verificaC.value == ""){
+    erro.innerHTML = 'Repita sua matrícula.'
+  }else if(verificaE.toUpperCase() != verificaC.value.toUpperCase()){
+    erro.innerHTML = 'As matrículas estão diferentes.'
+    verificaC.setCustomValidity("As matrículas estão diferentes.");
+  }else if(verificaE.toUpperCase() == verificaC.value.toUpperCase()){
+    verificaC.setCustomValidity("");
+  }
+
+}
+
+function verificaIgualSenha(elemento,confirmacao,local){
+
+  verificaE = document.getElementById(elemento).value;
+  verificaC = document.getElementById(confirmacao);
+  erro = document.getElementById(local);
+
+  if(verificaC.value == null || verificaC.value == ""){
+    erro.innerHTML = 'Repita sua senha.'
+  }else if(verificaE != verificaC.value){
+    erro.innerHTML = 'As senhas estão diferentes.'
+    verificaC.setCustomValidity("As senhas estão diferentes.");
+  }else if(verificaE == verificaC.value){
+    verificaC.setCustomValidity("");
+  }
+
+}
+
+//AJAX
 async function cadastro (theUrl, body){
   const myRequest = BASE_URL+theUrl;
   var ret = await jQuery.ajax({
@@ -70,34 +115,4 @@ async function cadastro (theUrl, body){
   });
 
   return ret;
-}
-
-//Valida se as matriculas são iguais, muda o texto de erro e seta o input como inválido(se os campos não forem iguais) ou válido(se os campos forem iguais)
-function verificaIgualMat(elemento,confirmacao,local){
-  verificaE = document.getElementById(elemento).value;
-  verificaC = document.getElementById(confirmacao);
-  erro = document.getElementById(local);
-  if(verificaC.value == null || verificaC.value == ""){
-    erro.innerHTML = 'Repita sua matrícula.'
-  }else if(verificaE.toUpperCase() != verificaC.value.toUpperCase()){
-    erro.innerHTML = 'As matrículas estão diferentes.'
-    verificaC.setCustomValidity("As matrículas estão diferentes.");
-  }else if(verificaE.toUpperCase() == verificaC.value.toUpperCase()){
-    verificaC.setCustomValidity("");
-  }
-}
-
-//Valida se as senhas são iguais, muda o texto de erro e seta o input como inválido(se os campos não forem iguais) ou válido(se os campos forem iguais)
-function verificaIgualSen(elemento,confirmacao,local){
-  verificaE = document.getElementById(elemento).value;
-  verificaC = document.getElementById(confirmacao);
-  erro = document.getElementById(local);
-  if(verificaC.value == null || verificaC.value == ""){
-    erro.innerHTML = 'Repita sua senha.'
-  }else if(verificaE != verificaC.value){
-    erro.innerHTML = 'As senhas estão diferentes.'
-    verificaC.setCustomValidity("As senhas estão diferentes.");
-  }else if(verificaE == verificaC.value){
-    verificaC.setCustomValidity("");
-  }
 }
