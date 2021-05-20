@@ -4,7 +4,7 @@ window.onload = async function(){
 
     var main = document.getElementById('main');
 
-    await listaNotificacoes('mensagem').then(function(result){
+    await ajaxGetHeaderAuthorization('mensagem').then(function(result){
 
         main.innerHTML = "";
 

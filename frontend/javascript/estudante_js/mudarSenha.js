@@ -34,7 +34,7 @@ function mudarSenha(header){
   function confirmar (confirm) {
 
     if(confirm){
-      mudaSenha("usuario", usuario).then(function(result){
+      ajaxPut("usuario", usuario).then(function(result){
           AlterarModal('confirmacao','<button type="button" class="btn-close" onclick="voltar()" data-bs-dismiss="modal"></button>')
           AlterarModal('msg', 'Senha mudada com sucesso.');
           myModal.show();
@@ -50,17 +50,3 @@ function voltarConfirmacao(){
   myModal.show();
 }
 
-//AJAX
-async function mudaSenha (theUrl, body){
-  const myRequest = BASE_URL+theUrl;
-  var ret = await jQuery.ajax({
-      type: 'PUT',
-      encoding:"UTF-8",
-      dataType: 'json',
-      contentType: 'application/json',
-      url: myRequest,
-      data:JSON.stringify(body),
-  });
-
-  return ret;
-}

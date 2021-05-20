@@ -37,7 +37,7 @@ function cadastrar(){
   function confirmar (confirm) {
 
     if(confirm){
-      cadastro("usuario", usuario).then(function(result){
+      ajaxPost("usuario", usuario).then(function(result){
 
         AlterarModal('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
         AlterarModal('msg','Seu cadastro foi feito com sucesso.<br/><br/> Volte para a tela inicial para entrar no site.');
@@ -100,19 +100,4 @@ function verificaIgualSenha(elemento,confirmacao,local){
     verificaC.setCustomValidity("");
   }
 
-}
-
-//AJAX
-async function cadastro (theUrl, body){
-  const myRequest = BASE_URL+theUrl;
-  var ret = await jQuery.ajax({
-      type: 'POST',
-      encoding:"UTF-8",
-      dataType: 'json',
-      contentType: 'application/json',
-      url: myRequest,
-      data:JSON.stringify(body),
-  });
-
-  return ret;
 }

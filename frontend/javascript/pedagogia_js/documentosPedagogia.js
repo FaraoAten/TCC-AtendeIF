@@ -13,7 +13,7 @@ async function telaDocumentos(){
 
     var adiciona = document.getElementById('adiciona');
     
-    await listaDocumentos('urls').then(function(result){
+    await ajaxGet('urls').then(function(result){
 
         adiciona.innerHTML = "";
 
@@ -89,7 +89,7 @@ function deletarDocumento(){
 async function confirmar (confirm) {
 
     if(confirm){
-        await insereDoc("urls").then(async function(result){
+        await ajaxPostInsereDoc("urls").then(async function(result){
 
             await limpar(["insereDocumento"], 'documentos');
             
@@ -111,7 +111,7 @@ async function confirmarDelete (confirm) {
 
         id.id_urls = sessionStorage.getItem('id_urls');
 
-        await deletaDoc("urls",id).then(function(result){
+        await ajaxDelete("urls",id).then(function(result){
             telaDocumentos();
           });
     }
@@ -121,35 +121,9 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-//AJAX
-async function insereDoc (theUrl){
-    const myRequest = BASE_URL+theUrl;
-    var formData = new FormData();
-    formData.append('URL', $('#insereDocumento')[0].files[0]);
-    formData.append('tipo', 2);
 
-    $.ajax({
-          url : myRequest,
-          type : 'POST',
-          data : formData,
-          processData: false,  
-          contentType: false,  
-    });
-  }
 
-async function deletaDoc (theUrl, body){
-    const myRequest = BASE_URL+theUrl;
-    var ret = await jQuery.ajax({
-        type: 'DELETE',
-        encoding:"UTF-8",
-        dataType: 'json',
-        contentType: 'application/json',
-        url: myRequest,
-        data:JSON.stringify(body),
-    });
 
-    return ret;
-}
 
 
 

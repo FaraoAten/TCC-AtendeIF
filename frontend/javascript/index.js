@@ -18,7 +18,7 @@ function login(){
       focus: true
     });
 
-    enviaLogin("usuario/login", log).then(function(result){
+    ajaxPostReturn("usuario/login", log).then(function(result){
 
         sessionStorage.setItem('authorization', result.id_usuario);
         
@@ -76,18 +76,6 @@ function login(){
 
   limpaSession();
 
-// AJAX
-async function enviaLogin(theUrl, body){
-    const myRequest = BASE_URL+theUrl;
-    var ret = jQuery.ajax({
-        type: 'POST',
-        encoding:"UTF-8",
-        dataType: 'json',
-        contentType: 'application/json',
-        url: myRequest,
-        data:JSON.stringify(body),
-    });
-    return ret;
-  }
+
 
  

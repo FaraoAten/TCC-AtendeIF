@@ -17,7 +17,7 @@ window.onload = function () {
 
         sessionStorage.setItem('primeiroLogin', 1);
         
-        primeiroLogin('usuario/primeiroLogin');
+        ajaxPutPrimeiroLogin('usuario/primeiroLogin');
   }
 
 }
@@ -26,7 +26,7 @@ async function telaAtendimentoProf(){
 
     var main = document.getElementById('main');
 
-    await listaAtendimentoProf('atendimento/professor').then(function(result){
+    await ajaxGetHeaderAuthorization('atendimento/professor').then(function(result){
 
         main.innerHTML = "";
 
@@ -170,12 +170,12 @@ function confirmar (confirm) {
 
 async function cancelar(){
     
-    await montarMsg("atendimento/mensagemCancelamento").then(async function(result){
+    await ajaxGetHeaderIdAtendimento("atendimento/mensagemCancelamento").then(async function(result){
 
         atendimento = {};
         atendimento.id_atendimento = sessionStorage.getItem('id_atendimento');
         atendimento.status_cancelamento = 1;
-        await cancelarAtendimento('atendimento/cancelar', atendimento);
+        await ajaxPut('atendimento/cancelar', atendimento);
 
         var mensagem = {};
         mensagem.titulo = 'Atendimento cancelado';
@@ -183,7 +183,7 @@ async function cancelar(){
         mensagem.id_remetente = sessionStorage.getItem('authorization');
         mensagem.id_destinatario = sessionStorage.getItem('id_usuario');
         mensagem.id_atendimento = sessionStorage.getItem('id_atendimento');
-        await enviaMensagem('mensagem', mensagem);
+        await ajaxPost('mensagem', mensagem);
 
         telaAtendimentoProf();
     });

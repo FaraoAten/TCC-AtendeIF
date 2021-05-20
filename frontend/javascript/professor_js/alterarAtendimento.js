@@ -42,7 +42,7 @@ function alterarAtendimento(header){
   function confirmar (confirm) {
 
     if(confirm){
-      alterarAtendimento("atendimento", atendimento).then(function(result){
+      ajaxPut("atendimento", atendimento).then(function(result){
 
         msgAlterar(); 
 
@@ -74,7 +74,7 @@ async function msgAlterar(){
   }
 
   if((sessionStorage.getItem('data')<=dataComparacaoFormatada) && ((sessionStorage.getItem('data') != atendimento.data_atendimento) || (sessionStorage.getItem('horario') != atendimento.horario))){
-      await montarMsg("atendimento/mensagemAlteraracao").then(async function(result){
+      await ajaxGetHeaderIdAtendimento("atendimento/mensagemAlteraracao").then(async function(result){
 
           var atual = new Date();
           var atualData = "";
@@ -112,7 +112,7 @@ async function msgAlterar(){
           mensagem.id_destinatario = sessionStorage.getItem('id_usuario');
           mensagem.id_atendimento = sessionStorage.getItem('id_atendimento');
 
-          enviaMensagem('mensagem', mensagem);
+          ajaxPost('mensagem', mensagem);
       });
   }
 }

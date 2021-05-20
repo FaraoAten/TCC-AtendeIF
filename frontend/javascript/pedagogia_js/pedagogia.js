@@ -7,7 +7,7 @@ async function pesquisa(){
 
     if(pesquisa != null && pesquisa != ""){
 
-        await pesquisaEstudante("usuario/"+pesquisa).then(function(result){
+        await ajaxGet("usuario/"+pesquisa).then(function(result){
 
             adiciona.innerHTML = "";
 

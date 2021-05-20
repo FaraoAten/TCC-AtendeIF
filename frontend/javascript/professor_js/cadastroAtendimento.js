@@ -43,7 +43,7 @@ function cadastrarAtendimento(id_aluno, id_professor){
   function confirmar (confirm) {
 
     if(confirm){
-        cadastroAtendimento("atendimento", atendimento).then(function(result){
+        ajaxPost("atendimento", atendimento).then(function(result){
 
         AlterarModal('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
         AlterarModal('msg','Atendimento cadastrado com sucesso.');
@@ -56,17 +56,3 @@ function cadastrarAtendimento(id_aluno, id_professor){
     }
 }
 
-//AJAX
-async function cadastroAtendimento (theUrl, body){
-  const myRequest = BASE_URL+theUrl;
-  var ret = await jQuery.ajax({
-      type: 'POST',
-      encoding:"UTF-8",
-      dataType: 'json',
-      contentType: 'application/json',
-      url: myRequest,
-      data:JSON.stringify(body),
-  });
-
-  return ret;
-}

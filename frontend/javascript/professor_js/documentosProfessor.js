@@ -8,7 +8,7 @@ async function telaDocumentos(){
 
     var main = document.getElementById('main');
 
-    await listaDocumentos('urls').then(function(result){
+    await ajaxGet('urls').then(function(result){
 
         main.innerHTML = "";
 

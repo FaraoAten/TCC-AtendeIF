@@ -44,7 +44,7 @@ function editarEstu(header){
   function confirmar (confirm) {
 
     if(confirm){
-      enviaEdicao("usuario", usuario).then(function(result){
+      ajaxPut("usuario", usuario).then(function(result){
 
           AlterarModal('confirmacao','<button type="button" class="btn-close" onclick="voltar()" data-bs-dismiss="modal"></button>')
           AlterarModal('msg', 'Edição efetuada com sucesso.');
@@ -65,18 +65,5 @@ function editarEstu(header){
     }
 }
 
-//AJAX
-async function enviaEdicao (theUrl, body){
-  const myRequest = BASE_URL+theUrl;
-  var ret = await jQuery.ajax({
-      type: 'PUT',
-      encoding:"UTF-8",
-      dataType: 'json',
-      contentType: 'application/json',
-      url: myRequest,
-      data:JSON.stringify(body),
-  });
 
-  return ret;
-}
 

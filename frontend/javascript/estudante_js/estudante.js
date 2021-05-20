@@ -14,7 +14,7 @@ window.onload = function () {
 
           sessionStorage.setItem('primeiroLogin', 1);
           
-          primeiroLogin('usuario/primeiroLogin');
+          ajaxPutPrimeiroLogin('usuario/primeiroLogin');
     }
 }
 
@@ -22,7 +22,7 @@ async function telaAtendimentoEstu(){
 
     var main = document.getElementById('main');
 
-    await listaAtendimentoEstu('atendimento/estudante').then(function(result){
+    await ajaxGetHeaderAuthorization('atendimento/estudante').then(function(result){
 
         main.innerHTML = "";
 
@@ -141,11 +141,11 @@ function confirmar (confirm) {
 
 async function pedidoCancelamento(){
 
-    await montarMsg("atendimento/mensagemPedidoCancelamento").then(async function(result){
+    await ajaxGetHeaderIdAtendimento("atendimento/mensagemPedidoCancelamento").then(async function(result){
         atendimento = {};
         atendimento.id_atendimento = sessionStorage.getItem('id_atendimento');
         atendimento.status_cancelamento = 2;
-        await cancelarAtendimento('atendimento/cancelar', atendimento);
+        await ajaxPut('atendimento/cancelar', atendimento);
 
         var mensagem = {};
         mensagem.titulo = 'Solicitação de cancelamento de atendimento';
@@ -153,25 +153,13 @@ async function pedidoCancelamento(){
         mensagem.id_remetente = sessionStorage.getItem('authorization');
         mensagem.id_destinatario = sessionStorage.getItem('id_usuario');
         mensagem.id_atendimento = sessionStorage.getItem('id_atendimento');
-        await enviaMensagem('mensagem', mensagem);
+        await ajaxPost('mensagem', mensagem);
 
         await telaAtendimentoEstu();
     });
 }
 
-//AJAX
-function listaAtendimentoEstu(theUrl){
-    const myRequest = BASE_URL+theUrl;
-    return new Promise((resolve,reject) => {
-        $.ajax({
-            url: myRequest,
-            type: "GET",
-            beforeSend: function(xhr){xhr.setRequestHeader('authorization', sessionStorage.getItem('authorization'));},
-            success: function(result) {resolve(result)},
-            error: function(erro) {reject(erro)}
-         });
-    });
-}
+
 
 
 

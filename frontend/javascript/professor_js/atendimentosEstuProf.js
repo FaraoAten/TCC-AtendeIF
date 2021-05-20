@@ -13,7 +13,7 @@ window.onload = async function (){
 
     colTopo.classList.add("text-center", "fw-bold", "col-md-7", "col-12", "ms-lg-4", "maior28");
 
-    await listaAtendimentoEstuProf('atendimento/professorEstudante').then(function(result){
+    await ajaxGetHeaderIdUsuario('atendimento/professorEstudante').then(function(result){
 
         main.innerHTML = "";
 
@@ -99,16 +99,3 @@ window.onload = async function (){
   });
 }
 
-//AJAX
-function listaAtendimentoEstuProf(theUrl){
-    const myRequest = BASE_URL+theUrl;
-    return new Promise((resolve,reject) => {
-        $.ajax({
-            url: myRequest,
-            type: "GET",
-            beforeSend: function(xhr){xhr.setRequestHeader('id_usuario', sessionStorage.getItem('id_usuario'));},
-            success: function(result) {resolve(result)},
-            error: function(erro) {reject(erro)}
-         });
-    });
-}

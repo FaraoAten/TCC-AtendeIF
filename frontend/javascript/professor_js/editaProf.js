@@ -50,20 +50,20 @@ function editarProf(header){
   async function confirmar (confirm) {
 
     if(confirm){
-      await editaProf("usuario", usuario).then(async function(result){
+      await ajaxPut("usuario", usuario).then(async function(result){
         
-        await fotoCadastrada("urls/foto").then(async function(result){
+        await ajaxGetHeaderAuthorization("urls/foto").then(async function(result){
     
-          await deletaFoto("urls",result[0]);
+          await ajaxDelete("urls",result[0]);
 
-          await insereFoto("urls", foto).then(function(result){
+          await ajaxPostInsereFoto("urls").then(function(result){
             limpar(["fotoEditProf"], 'editarPerfilProf');
           });
 
         }).catch(function(p){
 
           if(p.status == 404){
-              insereFoto("urls").then(function(result){
+              ajaxPostInsereFoto("urls").then(function(result){
               limpar(["fotoEditProf"], 'editarPerfilProf');
             });
           }
@@ -90,60 +90,4 @@ function editarProf(header){
     }
 }
 
-//AJAX
-async function editaProf (theUrl, body){
-  const myRequest = BASE_URL+theUrl;
-  var ret = await jQuery.ajax({
-      type: 'PUT',
-      encoding:"UTF-8",
-      dataType: 'json',
-      contentType: 'application/json',
-      url: myRequest,
-      data:JSON.stringify(body),
-  });
 
-  return ret;
-}
-
-function fotoCadastrada(theUrl){
-  const myRequest = BASE_URL+theUrl;
-  return new Promise((resolve,reject) => {
-      $.ajax({
-          url: myRequest,
-          type: "GET",
-          beforeSend: function(xhr){xhr.setRequestHeader('authorization', sessionStorage.getItem('authorization'));},
-          success: function(result) {resolve(result)},
-          error: function(erro) {reject(erro)}
-       });
-  });
-}
-
-async function deletaFoto (theUrl, body){
-  const myRequest = BASE_URL+theUrl;
-  var ret = await jQuery.ajax({
-      type: 'DELETE',
-      encoding:"UTF-8",
-      dataType: 'json',
-      contentType: 'application/json',
-      url: myRequest,
-      data:JSON.stringify(body),
-  });
-
-  return ret;
-}
-
-async function insereFoto (theUrl){
-  const myRequest = BASE_URL+theUrl;
-  var formData = new FormData();
-  formData.append('URL', $('#fotoEditProf')[0].files[0]);
-  formData.append('tipo', 1);
-  formData.append('id_usuario', sessionStorage.getItem('authorization'));
-
-  $.ajax({
-        url : myRequest,
-        type : 'POST',
-        data : formData,
-        processData: false,  // tell jQuery not to process the data
-        contentType: false,  // tell jQuery not to set contentType
-  });
-}
