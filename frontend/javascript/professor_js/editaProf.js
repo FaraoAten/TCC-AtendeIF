@@ -52,22 +52,26 @@ function editarProf(header){
     if(confirm){
       await ajaxPut("usuario", usuario).then(async function(result){
         
-        await ajaxGetHeaderAuthorization("urls/foto").then(async function(result){
+        var verificacao = document.getElementById('fotoEditProf').value;
+
+        if(verificacao != null && verificacao != ""){
+          await ajaxGetHeaderAuthorization("urls/foto").then(async function(result){
     
-          await ajaxDelete("urls",result[0]);
-
-          await ajaxPostInsereFoto("urls").then(function(result){
-            limpar(["fotoEditProf"], 'editarPerfilProf');
-          });
-
-        }).catch(function(p){
-
-          if(p.status == 404){
-              ajaxPostInsereFoto("urls").then(function(result){
+            await ajaxDelete("urls",result[0]);
+  
+            await ajaxPostInsereFoto("urls").then(function(result){
               limpar(["fotoEditProf"], 'editarPerfilProf');
             });
-          }
-        });
+  
+          }).catch(function(p){
+  
+            if(p.status == 404){
+                ajaxPostInsereFoto("urls").then(function(result){
+                limpar(["fotoEditProf"], 'editarPerfilProf');
+              });
+            }
+          });
+        }
 
           AlterarModal('confirmacao','<button type="button" class="btn-close" data-bs-dismiss="modal"></button>');
           AlterarModal('msg', 'Edição efetuada com sucesso.');
