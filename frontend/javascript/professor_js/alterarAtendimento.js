@@ -91,12 +91,31 @@ async function msgAlterar(){
             atualData += "-" + ((atual.getDate() ));
           }
 
+          
+          var amanhaData = new Date();
+          amanhaData.setDate(amanhaData.getDate() + 1);
+          var amanhaDataComparacao = "";
+
+          if((amanhaData.getMonth() + 1) < 10){
+            amanhaDataComparacao = amanhaData.getFullYear()+ "-0" + ((amanhaData.getMonth() + 1));
+          }else{
+            amanhaDataComparacao = amanhaData.getFullYear()+ "-" + ((amanhaData.getMonth() + 1));
+          }
+
+          if(((amanhaData.getDate() ))<10){
+            amanhaDataComparacao += "-0" + ((amanhaData.getDate() ));
+          }else{
+            amanhaDataComparacao += "-" + ((amanhaData.getDate() ));
+          }
+
           var dataPreFormatada = new Date(sessionStorage.getItem('data'));
           dataPreFormatada.setDate(dataPreFormatada.getDate()+1);
           let dataFormatada;
 
           if(sessionStorage.getItem('data') == atualData){
               dataFormatada = "Hoje";
+          }else if(sessionStorage.getItem('data') == amanhaDataComparacao){
+              dataFormatada = "Amanhã";
           }else{
               nomeDia = new Array ("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado");
               dataFormatada = nomeDia[dataPreFormatada.getDay()];

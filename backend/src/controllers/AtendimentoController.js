@@ -203,9 +203,14 @@ module.exports = {
             const element = mensagemMontada[i];
             
             var data = element.data_atendimento;
+            var amanhaData = new Date();
+            amanhaData.setDate(amanhaData.getDate() + 1);
+            var amanhaDataComparacao = amanhaData.getFullYear()+"-"+(amanhaData.getMonth() + 1)+"-"+amanhaData.getDate();
             let dataFormatada;
             if((data.getFullYear()+"-"+(data.getMonth() + 1)+"-"+(data.getDate())) == atualData){
                 dataFormatada = "Hoje";
+            }else if((data.getFullYear()+"-"+(data.getMonth() + 1)+"-"+(data.getDate())) == amanhaDataComparacao){
+                dataFormatada = "Amanhã";
             }else{
                 nomeDia = new Array ("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado");
                 dataFormatada = nomeDia[data.getDay()];
@@ -237,9 +242,14 @@ module.exports = {
             const element = mensagemMontada[i];
             
             var data = element.data_atendimento;
+            var amanhaData = new Date();
+            amanhaData.setDate(amanhaData.getDate() + 1);
+            var amanhaDataComparacao = amanhaData.getFullYear()+"-"+(amanhaData.getMonth() + 1)+"-"+amanhaData.getDate();
             let dataFormatada;
             if((data.getFullYear()+"-"+(data.getMonth() + 1)+"-"+(data.getDate())) == atualData){
                 dataFormatada = "Hoje";
+            }else if((data.getFullYear()+"-"+(data.getMonth() + 1)+"-"+(data.getDate())) == amanhaDataComparacao){
+                dataFormatada = "Amanhã";
             }else{
                 nomeDia = new Array ("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado");
                 dataFormatada = nomeDia[data.getDay()];
@@ -292,6 +302,9 @@ module.exports = {
         if(local!=null && local!=""){
             const alterar = await connection('atendimento').where('id_atendimento', id_atendimento).update({local:local});
         }
+
+        var zero = 0;
+        const alterar = await connection('atendimento').where('id_atendimento', id_atendimento).update({status_cancelamento:zero});
 
         return response.status(204).send();
     },
