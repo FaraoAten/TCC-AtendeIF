@@ -42,7 +42,7 @@ async function pesquisa(){
                 spn.classList.add("some");
 
                 spn.innerHTML += '&nbsp;&nbsp;';
-                btn.innerHTML += '<i class="far fa-plus-square fa-lg"></i>';
+                btn.innerHTML += '<i class="far fa-calendar-check fa-lg"></i>';
 
                 btn.onclick = function () {
                     window.location.href = './atendimentosEstuProf.html'; 

@@ -51,7 +51,7 @@ async function pesquisa(){
 
                 spn.innerHTML += '&nbsp;&nbsp;';
                 spnE.innerHTML += '&nbsp;&nbsp;';
-                btn.innerHTML += '<i class="far fa-plus-square fa-lg"></i>';
+                btn.innerHTML += '<i class="far fa-calendar-check fa-lg"></i>';
                 btnE.innerHTML += '<i class="fas fa-pencil-alt"></i>';
 
                 btn.onclick = function () {
