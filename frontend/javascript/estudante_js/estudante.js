@@ -86,6 +86,7 @@ async function telaAtendimentoEstu(){
                 divLocal.classList.add("maior16", "ms-1");
 
                 if(elemento.status==2){
+                    btnPCancela.innerHTML = 'Pedido Enviado'
                     btnPCancela.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-3", "offset-md-3",  "maior14", "disabled");
                 }else{
                     btnPCancela.classList.add("col-md", "col", "btn", "btn-md", "arredondado", "border-dark", "sombra", "azul", "text-white", "mt-3", "offset-md-3", "maior14");
@@ -96,7 +97,11 @@ async function telaAtendimentoEstu(){
                 divDisciplina.innerHTML+=elemento.materia;
                 divLocal.innerHTML+=elemento.local;
                 divHora.innerHTML+=elemento.horario;
-                btnPCancela.innerHTML+='&nbsp;&nbsp;<i class="fas fa-ban fa-lg"></i>';
+                if(elemento.status!=2){
+                    btnPCancela.innerHTML+='&nbsp;&nbsp;<i class="fas fa-ban fa-lg"></i>';
+                }else{
+                    btnPCancela.innerHTML+='&nbsp;&nbsp;<i class="far fa-check-circle fa-lg"></i>';
+                }
 
                 btnPCancela.onclick = function(){
                     sessionStorage.setItem('id_atendimento', elemento.id);
