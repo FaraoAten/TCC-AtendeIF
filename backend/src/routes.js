@@ -15,7 +15,7 @@ const AtendimentoController = require('./controllers/AtendimentoController');
 const UrlsController = require('./controllers/UrlsController');
 
 //Rota de listagem de usuários
-routes.get('/usuario/:informacao', UsuarioController.listarUsuarios)
+routes.get('/usuario/:informacao', UsuarioController.listarUsuarios);
 
 //Rota de registro do usuário
 routes.post('/usuario', UsuarioController.cadastrarUsuarios);
