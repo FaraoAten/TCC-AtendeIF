@@ -38,11 +38,13 @@ function login(){
       }).catch(function(p){
 
         if(p.status == 405){
-          AlterarModal('msg', 'Este usuário não existe.');
+          AlterarModal('msg', 'A matrícula está errada.');
           myModal.show();
+          document.getElementById("login").classList.remove('was-validated');
         }else if(p.status == 400){
-          AlterarModal('msg', 'Senha incorreta.');
+          AlterarModal('msg', 'A senha está errada.');
           myModal.show();
+          document.getElementById("login").classList.remove('was-validated');
 
         //prevenção de erro
         }else if(p == {}){
