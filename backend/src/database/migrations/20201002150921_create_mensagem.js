@@ -8,7 +8,7 @@ exports.up = function(knex) {
         table.string('corpo').notNullable();
         table.string('id_remetente').notNullable();
         table.string('id_destinatario').notNullable();
-        table.integer('id_atendimento').unsigned();
+        table.integer('id_atendimento').unsigned().notNullable();
         table.foreign('id_remetente').references('id_usuario').inTable('usuario').onUpdate('CASCADE');
         table.foreign('id_destinatario').references('id_usuario').inTable('usuario').onUpdate('CASCADE');
         table.foreign('id_atendimento').references('id_atendimento').inTable('atendimento').onUpdate('CASCADE');
